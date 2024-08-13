@@ -35,6 +35,9 @@ jobs:
         with:
           use-public-rspm: true
 
+      - name: Install system dependencies
+        run: sudo apt-get install -y libudunits2-dev
+
       - name: Install Pandoc
         if: ${{ ! github.event.inputs.ghpages }}
         uses: r-lib/actions/setup-pandoc@v2
