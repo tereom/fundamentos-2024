@@ -92,7 +92,7 @@ Referencias: [@Kruschke]
 14. Introducción a inferencia bayesiana
 15. Ejemplos de distribuciones conjugadas
 16. Introducción a métodos computacionales básicos: Muestreadores Metrópolis y Gibbs
-17. 
+17. Ejemplos de inferencia bayesiana en Stan
 
 
 ## Evaluación {-}
@@ -103,7 +103,3 @@ Se evaluará mediante tareas semanales y dos exámenes:
 * Examen parcial en clase y a casa (40%)  
 * Examen final a casa (40%)
 
-
-## Referencias
-
-<div id="refs"></div>
