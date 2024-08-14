@@ -5,7 +5,7 @@
 >
 > --- John Tukey
 
-## El cuarteto de Anscombe {-}
+#### El cuarteto de Anscombe {-}
 
 En 1971 un estadístico llamado Frank Anscombe (fundador del departamento de
 Estadística de la Universidad de Yale) publicó cuatro conjuntos de dato. Cada
