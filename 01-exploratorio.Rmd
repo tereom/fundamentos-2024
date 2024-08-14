@@ -458,7 +458,8 @@ Por otro lado, las variaciones con respecto a las medianas **dentro** de
 cada zona, por grupo, se resume como:
 
 ```{r}
-quantile(casas |> group_by(nombre_zona) |>
+quantile(casas |> 
+           group_by(nombre_zona) |> 
            mutate(residual = precio_m2 - median(precio_m2)) |>
            pull(residual)) |>
   round()
@@ -833,18 +834,15 @@ marcar <- marcar_tabla_fun(25, "red", "black")
 tab_out <- tabla_perfil |>
   arrange(desc(bolsas)) |>
   select(-pct, everything()) |>
-  mutate(across(where(is.numeric), round, 0)) |>
-  mutate(across(where(if_profile), marcar)) |>
+  mutate(across(where(is.numeric), \(x) round(x, 0))) |>
+  mutate(across(where(if_profile), \(x) marcar(x))) |>
   knitr::kable(format_table_salida(), escape = FALSE, digits = 0, booktabs = T) |>
   kableExtra::kable_styling(latex_options = c("striped", "scale_down"),
                             bootstrap_options = c( "hover", "condensed"),
                             full_width = FALSE)
 
-if (knitr::is_latex_output()) {
-  gsub("marca_propia", "marca-propia", tab_out)
-} else {
-  tab_out
-}
+tab_out
+
 ```
 
 Leemos esta tabla como sigue: por ejemplo, los compradores de té suelto
