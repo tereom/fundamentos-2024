@@ -56,7 +56,9 @@ Empezamos explicando algunas ideas que no serán útiles más adelante. El prime
 
 ```{r class.source = 'fold-hide', message = FALSE, warning=FALSE}
 library(tidyverse)
-library(patchwork)
+library(patchwork) # organizar gráficas
+library(gt) # formatear tablas
+
 source("R/funciones_auxiliares.R")
 # usamos los datos tips del paquete reshape2
 propinas <- read_csv("./data/propinas.csv")
@@ -65,7 +67,7 @@ propinas <- read_csv("./data/propinas.csv")
 Y vemos una muestra
 
 ```{r }
-sample_n(propinas, 10) |> formatear_tabla()
+slice_sample(propinas, n = 10) |> gt()
 ```
 
 Aquí la unidad de observación es una cuenta particular. Tenemos tres
@@ -97,8 +99,11 @@ datos están en los extremos y cuáles están en los lugares centrales:
 propinas <- propinas |>
   mutate(orden_cuenta = rank(cuenta_total, ties.method = "first"),
          f = (orden_cuenta - 0.5) / n())
-cuenta <- propinas |> select(orden_cuenta, f, cuenta_total) |> arrange(f)
-bind_rows(head(cuenta), tail(cuenta)) |> formatear_tabla()
+cuenta <- propinas |> 
+  select(orden_cuenta, f, cuenta_total) |> 
+  arrange(f)
+bind_rows(head(cuenta), tail(cuenta)) |> 
+  gt() |> fmt_number(columns = f, decimals = 3)
 ```
 
 También podemos graficar los datos en orden, interpolando valores
@@ -202,8 +207,9 @@ $\hat{F}(q(f_i)) = i/N = f_i$ (demuéstralo).
 acum_cuenta <- ecdf(cuenta$cuenta_total)
 cuenta <- cuenta |>
   mutate(dea_cuenta_total = acum_cuenta(cuenta_total))
-g_acum <- ggplot(cuenta, aes(x = cuenta_total, y = dea_cuenta_total)) + geom_point() +
-  labs(subtitle = "Distribución acum empírica de cuenta total") + xlab("")
+g_acum <- ggplot(cuenta, aes(x = cuenta_total, y = dea_cuenta_total)) +
+  geom_point() +
+  labs(subtitle = "Distribución acum empírica de cuenta total", x = "")
 g_cuantiles + g_acum
 ```
 
@@ -225,9 +231,12 @@ en cada cubeta:
 
 ```{r, fig.width = 10, fig.height = 4, echo = FALSE, message=FALSE}
 binwidth_min <- 1
-g_1 <- ggplot(propinas, aes(x = cuenta_total)) + geom_histogram(binwidth = binwidth_min)
-g_2 <- ggplot(propinas, aes(x = cuenta_total)) + geom_histogram(binwidth = binwidth_min * 2)
-g_3 <- ggplot(propinas, aes(x = cuenta_total)) + geom_histogram(binwidth = binwidth_min * 5)
+g_1 <- ggplot(propinas, aes(x = cuenta_total)) + 
+  geom_histogram(binwidth = binwidth_min)
+g_2 <- ggplot(propinas, aes(x = cuenta_total)) + 
+  geom_histogram(binwidth = binwidth_min * 2)
+g_3 <- ggplot(propinas, aes(x = cuenta_total)) + 
+  geom_histogram(binwidth = binwidth_min * 5)
 g_1 + g_2 + g_3
 ```
 
@@ -241,7 +250,8 @@ compara con distintos histogramas?
 
 ```{r, fig.width = 4, fig.height = 3, cache = TRUE}
 g_1 <- ggplot(propinas, aes(sample = propina)) +
-  geom_qq(distribution = stats::qunif) + xlab("f") + ylab("propina")
+  geom_qq(distribution = stats::qunif) + 
+  labs(x = "f", y = "propina")
 g_1
 ```
 
@@ -253,51 +263,46 @@ Spear/Tufte (ST):
 ```{r, fig.width = 8, fig.height = 4, warning=FALSE}
 library(ggthemes)
 cuartiles <- quantile(cuenta$cuenta_total)
-t(cuartiles) |>  formatear_tabla()
+cuartiles |> round(2)
+
 g_1 <- ggplot(cuenta, aes(x = f, y = cuenta_total)) +
   labs(subtitle = "Gráfica de cuantiles: Cuenta total") +
-  geom_hline(yintercept = cuartiles[2], colour = "gray") +
-  geom_hline(yintercept = cuartiles[3], colour = "gray") +
-  geom_hline(yintercept = cuartiles[4], colour = "gray") +
-  geom_point(alpha = 0.5) + geom_line()
-g_2 <- ggplot(cuenta, aes(x = factor("ST", levels =c("ST")), y = cuenta_total)) +
+  geom_hline(yintercept = cuartiles[2:4], colour = "gray") +
+  geom_point(alpha = 0.5) + 
+  geom_line()
+
+g_2 <- ggplot(cuenta, aes(x = factor("ST", levels = "ST"), y = cuenta_total)) +
   geom_tufteboxplot() +
-  labs(subtitle = " ") +  xlab("") + ylab("")
+  labs(subtitle = "", x = "", y = "")
 g_3 <- ggplot(cuenta, aes(x = factor("T"), y = cuenta_total)) +
   geom_boxplot() +
-  labs(subtitle = " ") +  xlab("") + ylab("")
+  labs(subtitle = "", x = "", y = "")
 g_4 <- ggplot(cuenta, aes(x = factor("P"), y = cuenta_total)) +
   geom_jitter(height = 0, width =0.2, alpha = 0.5) +
-  labs(subtitle = " ") +  xlab("") + ylab("")
+  labs(subtitle = "", x = "", y = "")
 g_5 <- ggplot(cuenta, aes(x = factor("V"), y = cuenta_total)) +
   geom_violin() +
-  labs(subtitle = " ") +  xlab("") + ylab("")
+  labs(subtitle = "", x = "", y = "")
 g_1 + g_2 + g_3 + g_4 +
   plot_layout(widths = c(8, 2, 2, 2))
 ```
 
-::: {.cols data-latex=""}
-::: {.col data-latex="{0.50\\textwidth}"}
-El diagrama de la derecha explica los elementos de la versión típica del
+
+El diagrama de abajo explica los elementos de la versión típica del
 diagrama de caja y brazos (*boxplot*). *RIC* se refiere al **Rango
 Intercuantílico**, definido por la diferencia entre los cuantiles 25% y
 75%.
-:::
 
-::: {.col data-latex="{0.10\\textwidth}"}
-  <!-- an empty Div (with a white space), serving as
-a column separator -->
-:::
 
-::: {.col data-latex="{0.4\\textwidth}"}
-```{r, out.width='55%', echo=FALSE}
+```{r, out.width='45%', echo=FALSE}
 knitr::include_graphics('images/boxplot.png')
 ```
 
 Figura: [Jumanbar / CC
 BY-SA](https://creativecommons.org/licenses/by-sa/3.0)
-:::
-:::
+
+
+
 
 **Ventajas en el análisis inicial**
 
@@ -531,7 +536,7 @@ enlace_tbl <- enlace |> group_by(tipo) |>
   unnest(cols = cuantiles) |> mutate(valor = round(valor))
 enlace_tbl |>
   spread(cuantil, valor) |>
-  formatear_tabla()
+  gt()
 ```
 
 Para un análisis exploratorio podemos utilizar distintas gráficas. Por
@@ -646,7 +651,7 @@ sat_tbl <- sat |> select(state, expend, sat) |>
   unnest(cols = c(cuantiles)) |>
   mutate(valor = round(valor, 1)) |>
   spread(cuantil, valor)
-sat_tbl |> formatear_tabla()
+sat_tbl |> gt()
 ```
 
 Esta variación es considerable para promedios del SAT: el percentil 75
@@ -768,7 +773,7 @@ precio <- te |>
 tipo <- te |>
   count(presentacion) |>
   mutate(pct = round(100 * n / sum(n)))
-tipo |> formatear_tabla()
+tipo |> gt()
 ```
 
 La mayor parte de las personas toma té en bolsas. Sin embargo, el tipo
@@ -786,7 +791,7 @@ tabla_cruzada <- te |>
 tabla_cruzada |>
   pivot_wider(names_from = presentacion, values_from = prop,
               values_fill = list(prop = 0)) |>
-  formatear_tabla()
+  gt()
 ```
 
 Estos datos podemos examinarlos un rato y llegar a conclusiones, pero

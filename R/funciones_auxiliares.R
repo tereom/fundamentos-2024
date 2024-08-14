@@ -11,11 +11,11 @@ format_table_salida <- function() {
 }
 
 formatear_tabla <- function(x_tbl, scroll = FALSE){
-  tabla <- knitr::kable(x_tbl, booktabs = T) %>%
+  tabla <- knitr::kable(x_tbl, booktabs = T) |>
     kableExtra::kable_styling(latex_options = c("striped"),
                               bootstrap_options = c("striped", "hover", "condensed", "responsive"),
                               full_width = FALSE, fixed_thead = TRUE)
-  if(scroll) tabla <- tabla %>% scroll_box(width = "780px")
+  if(scroll) tabla <- tabla |> scroll_box(width = "780px")
   tabla
 }
 
@@ -31,14 +31,14 @@ grafica_cuantiles <- function(datos, grupo, valor){
     datos$.sample <- 1
   }
 
-  cuantiles_tbl <- datos %>% group_by({{ grupo }}, .sample) %>%
+  cuantiles_tbl <- datos |> group_by({{ grupo }}, .sample) |>
     summarise(
       num = n(),
       cuantiles = list(cuantil({{ valor }}, c(0.1, 0.25, 0.5, 0.75, 0.9))),
-      .groups = "drop") %>%
+      .groups = "drop") |>
     unnest(cols = c(cuantiles))
 
-  grafica <- ggplot(cuantiles_tbl  %>% spread(cuantil, valor),
+  grafica <- ggplot(cuantiles_tbl  |> spread(cuantil, valor),
                     aes(x = {{ grupo }}, y = `0.5`)) +
     geom_linerange(aes(ymin= `0.1`, ymax = `0.9`), colour = "gray40") +
     geom_linerange(aes(ymin= `0.25`, ymax = `0.75`), size = 2, colour = "gray") +
