@@ -183,7 +183,7 @@ cada $x_{(i)}$ definimos\
 $$f_i = i / N$$ entonces definimos el cuantil $q(f_i)=x_{(i)}$. Para
 cualquier $f$ entre 0 y 1, podemos definir $q(f)$ como sigue: si $f$
 está entre $f_i$ y $f_{i+1}$ interpolamos linealmente los valores
-correspondientes $x_{(i)}$ y $x_{(i-1)}$.
+correspondientes $x_{(i)}$ y $x_{(i+1)}$.
 
 En la práctica, es más conveniente usar $f_i= \frac{i - 0.5}{N}$. La
 gráfica de cuantiles no cambia mucho comparado con la difinición
@@ -449,6 +449,7 @@ varía la mediana entre zonas:
 casas |>
   group_by(nombre_zona) |>
   summarise(mediana_zona = median(precio_m2), .groups = "drop") |>
+  arrange(mediana_zona) |> 
   pull(mediana_zona) |>
   quantile() |>
   round()
@@ -476,6 +477,7 @@ Podemos resumir este primer análisis con un par de gráficas de cuantiles
 ```{r fig-casas, out.width = '90%', fig.align= 'center', cache=TRUE, fig.height = 5, fig.asp = 0.55}
 mediana <- median(casas$precio_m2)
 resumen <- casas |>
+  select(nombre_zona, precio_m2) |> 
   group_by(nombre_zona) |>
   mutate(mediana_zona = median(precio_m2)) |>
   mutate(residual = precio_m2 - mediana_zona) |>
