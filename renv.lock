@@ -20,6 +20,16 @@
       ],
       "Hash": "065ae649b05f1ff66bb0c793107508f5"
     },
+    "DEoptimR": {
+      "Package": "DEoptimR",
+      "Version": "1.1-3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "stats"
+      ],
+      "Hash": "72f87e0092e39384aee16df8d67d7410"
+    },
     "KernSmooth": {
       "Package": "KernSmooth",
       "Version": "2.23-24",
@@ -359,6 +369,20 @@
       ],
       "Hash": "3f038e5ac7f41d4ac41ce658c85e3042"
     },
+    "cluster": {
+      "Package": "cluster",
+      "Version": "2.1.6",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "grDevices",
+        "graphics",
+        "stats",
+        "utils"
+      ],
+      "Hash": "0aaa05204035dc43ea0004b9c76611dd"
+    },
     "cmdstanr": {
       "Package": "cmdstanr",
       "Version": "0.8.1.9000",
@@ -498,6 +522,17 @@
       ],
       "Hash": "fd6824ad91ede64151e93af67df6376b"
     },
+    "diptest": {
+      "Package": "diptest",
+      "Version": "0.77-1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "graphics",
+        "stats"
+      ],
+      "Hash": "882c35d95d13cdf1cd331008b8402420"
+    },
     "distributional": {
       "Package": "distributional",
       "Version": "0.4.0",
@@ -609,6 +644,26 @@
       "Repository": "CRAN",
       "Hash": "aa5e1cd11c2d15497494c5292d7ffcc8"
     },
+    "flexmix": {
+      "Package": "flexmix",
+      "Version": "2.3-19",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "grDevices",
+        "graphics",
+        "grid",
+        "lattice",
+        "methods",
+        "modeltools",
+        "nnet",
+        "stats",
+        "stats4",
+        "utils"
+      ],
+      "Hash": "0cb3c4b251c2d3fd5923d3e7e6021ee2"
+    },
     "fontawesome": {
       "Package": "fontawesome",
       "Version": "0.5.2",
@@ -649,6 +704,31 @@
         "utils"
       ],
       "Hash": "81fc09bdeab0077a73927ed1243404b6"
+    },
+    "fpc": {
+      "Package": "fpc",
+      "Version": "2.2-12",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "MASS",
+        "R",
+        "class",
+        "cluster",
+        "diptest",
+        "flexmix",
+        "grDevices",
+        "graphics",
+        "kernlab",
+        "mclust",
+        "methods",
+        "parallel",
+        "prabclus",
+        "robustbase",
+        "stats",
+        "utils"
+      ],
+      "Hash": "5679840cd4a975661692045e0d767d65"
     },
     "fs": {
       "Package": "fs",
@@ -1065,6 +1145,20 @@
       ],
       "Hash": "532d16304274c23c8563f94b79351c86"
     },
+    "kernlab": {
+      "Package": "kernlab",
+      "Version": "0.9-33",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "grDevices",
+        "graphics",
+        "methods",
+        "stats"
+      ],
+      "Hash": "97d266249d6c3b4f40e34e1ceaf9c558"
+    },
     "knitr": {
       "Package": "knitr",
       "Version": "1.48",
@@ -1173,6 +1267,20 @@
       ],
       "Hash": "4b3ea27a19d669c0405b38134d89a9d1"
     },
+    "mclust": {
+      "Package": "mclust",
+      "Version": "6.1.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "grDevices",
+        "graphics",
+        "stats",
+        "utils"
+      ],
+      "Hash": "aa9cfd45e2c3297213e270d000d80655"
+    },
     "memoise": {
       "Package": "memoise",
       "Version": "2.0.1",
@@ -1229,6 +1337,25 @@
       ],
       "Hash": "4f50122dc256b1b6996a4703fecea821"
     },
+    "modeltools": {
+      "Package": "modeltools",
+      "Version": "0.2-23",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "methods",
+        "stats",
+        "stats4"
+      ],
+      "Hash": "f5a957c02222589bdf625a67be68b2a9"
+    },
+    "moments": {
+      "Package": "moments",
+      "Version": "0.14.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "bb94fd8ee5f7f127eae2bddbff26864d"
+    },
     "munsell": {
       "Package": "munsell",
       "Version": "0.5.1",
@@ -1253,6 +1380,36 @@
         "utils"
       ],
       "Hash": "2769a88be217841b1f33ed469675c3cc"
+    },
+    "nnet": {
+      "Package": "nnet",
+      "Version": "7.3-19",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "stats",
+        "utils"
+      ],
+      "Hash": "2c797b46eea7fb58ede195bc0b1f1138"
+    },
+    "nullabor": {
+      "Package": "nullabor",
+      "Version": "0.3.12",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "MASS",
+        "dplyr",
+        "fpc",
+        "ggplot2",
+        "magrittr",
+        "moments",
+        "purrr",
+        "tibble",
+        "tidyr"
+      ],
+      "Hash": "1ee032ce1f3122127908af7d1a6a2fe8"
     },
     "numDeriv": {
       "Package": "numDeriv",
@@ -1340,6 +1497,18 @@
         "vctrs"
       ],
       "Hash": "fc1213566f2ed9f0b15bef656ed1000b"
+    },
+    "prabclus": {
+      "Package": "prabclus",
+      "Version": "2.3-3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "MASS",
+        "R",
+        "mclust"
+      ],
+      "Hash": "57b387c58a84b5a77c324a4196703017"
     },
     "prettyunits": {
       "Package": "prettyunits",
@@ -1582,6 +1751,21 @@
         "yaml"
       ],
       "Hash": "27f9502e1cdbfa195f94e03b0f517484"
+    },
+    "robustbase": {
+      "Package": "robustbase",
+      "Version": "0.99-4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "DEoptimR",
+        "R",
+        "graphics",
+        "methods",
+        "stats",
+        "utils"
+      ],
+      "Hash": "dc2014ed526bc05ecdf68d9e4717d15a"
     },
     "rprojroot": {
       "Package": "rprojroot",
