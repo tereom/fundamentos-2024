@@ -669,7 +669,8 @@ una gráfica de dispersión:
 ```{r, warning=FALSE,  cache=TRUE, out.width = '95%', fig.align= 'center', fig.asp=0.65, }
 library(ggrepel)
 ggplot(sat, aes(x = expend, y = sat, label = state)) +
-  geom_point(colour = "red", size = 2) + geom_text_repel(colour = "gray50") +
+  geom_point(colour = "red", size = 2) + 
+  geom_text_repel(colour = "gray50") +
   xlab("Gasto por alumno (miles de dólares)") +
   ylab("Calificación promedio en SAT")
 ```
@@ -691,7 +692,7 @@ toma el SAT. Podemos agregar como sigue:
 ggplot(sat, aes(x = expend, y = math, label=state, colour = frac)) +
   geom_point() + geom_text_repel() +
   xlab("Gasto por alumno (miles de dólares)") +
-  ylab("Calificación en matemáticas")
+  ylab("Calificación promedio en SAT")
 ```
 
 Esto nos permite entender por qué nuestra comparación inicial es
@@ -713,8 +714,7 @@ sat <- sat |> group_by(clase) |>
   mutate(clase_media = factor(clase_media))
 sat <- sat |>
   mutate(rank_p = rank(frac, ties= "first") / length(frac))
-ggplot(sat, aes(x = rank_p, y = frac, label = state,
-                colour = clase_media)) +
+ggplot(sat, aes(x = rank_p, y = frac, label = state, colour = clase_media)) +
   geom_point(size = 2)
 ```
 
@@ -732,7 +732,7 @@ ggplot(sat, aes(x = expend, y = math, label=state, colour = clase_media)) +
   geom_point(size = 3) +
   geom_smooth(method = "lm", se = FALSE) +
   xlab("Gasto por alumno (miles)") +
-  ylab("Calificación en matemáticas") +
+  ylab("Calificación promedio en SAT") +
   geom_text_repel(colour = "gray70")
 ```
 
@@ -890,7 +890,7 @@ generalizan los resultados de nuestro análisis a la población general, y
 entender esto depende de entender qué tanta variación hay de muestra a
 muestra, de todas las posibles muestras que pudimos haber extraido.
 
-En las siguiente secciones discutiremos estos aspectos, en los cuales
+En las siguientes secciones discutiremos estos aspectos, en los cuales
 pasamos del trabajo de "detective" al trabajo de "juez" en nuestro
 trabajo analítico.
 
@@ -899,9 +899,9 @@ trabajo analítico.
 Las gráficas de dispersión son la herramienta básica para describir la
 relación entre dos variables cuantitativas, y como vimos en ejemplo
 anteriores, muchas veces podemos apreciar mejor la relación entre ellas
-si agregamos una curva `loess` que suavice.
+si agregamos una curva `loess`.
 
-Los siguientes datos muestran los premios ofrecidos y las ventas totales
+Veamos un ejemplo, los siguientes datos muestran los premios ofrecidos y las ventas totales
 de una lotería a lo largo de 53 sorteos (las unidades son cantidades de
 dinero indexadas). Graficamos en escalas logarítmicas y agregamos una
 curva `loess`.
@@ -913,10 +913,29 @@ load(here::here("data", "ventas_sorteo.Rdata"))
 
 ggplot(ventas.sorteo, aes(x = premio, y = ventas.tot.1)) +
   geom_point() +
-  geom_smooth(method = "loess", alpha = 0.5, degree = 1, se = FALSE) +
+  geom_smooth(method = "loess", span = 0.6, method.args = list(degree = 1), 
+              se = FALSE) +
   scale_x_log10(breaks = c(20000, 40000, 80000)) +
   scale_y_log10(breaks = c(10000, 15000, 22000, 33000))
 ```
+
+```{r, echo = FALSE, eval=FALSE}
+# Diferencia entre ggplot y graficar ajuste mover n = 10
+ventas.sorteo <- slice_sample(ventas.sorteo, n = 53)
+fit <- loess(log10(ventas.tot.1) ~ log10(premio), data = ventas.sorteo, 
+             span = 0.6, degree = 1)
+
+ventas.sorteo$ajuste <- fitted(fit)
+
+ggplot(ventas.sorteo, aes(x = log10(premio), y = log10(ventas.tot.1))) +
+  geom_point() +
+  geom_smooth(method = "loess", span = 0.6, method.args = list(degree = 1), 
+              se = FALSE) +
+  geom_point(aes(y = ajuste), color = "red") +
+  geom_line(aes(y = ajuste), color = "red")
+
+```
+
 
 El patrón no era difícil de ver en los datos originales, sin embargo, la
 curva lo hace más claro, el logaritmo de las ventas tiene una relación
@@ -943,7 +962,7 @@ con otras familias de funciones (por ejemplo cuadráticas).
 ```{r, fig.width=3.6, fig.height=3.3, fig.align ='center', warning = FALSE, message = FALSE}
 ggplot(ventas.sorteo, aes(x = premio, y = ventas.tot.1)) +
   geom_point() +
-  geom_smooth(method = "lm", alpha = 0.5, se = FALSE) +
+  geom_smooth(method = "lm", se = FALSE) +
   scale_x_log10(breaks = c(20000, 40000, 80000)) +
   scale_y_log10(breaks = c(10000, 15000, 22000, 33000))
 ```
@@ -1077,7 +1096,7 @@ knitr::include_graphics(here::here("images", "02_loess-spans-cuad.gif"))
 La idea es producir ajustes locales de rectas o funciones lineales o
 cuadráticas. Consideremos especificar dos parámetros:
 
--   Parámetro de suavizamiento $\alpha$: cuando $\alpha$ es más grande,
+-   Parámetro de suavizamiento $\alpha$: toma valores en $(0,1)$, cuando $\alpha$ es más grande,
     la curva ajustada es más suave.
 
 -   Grado de los polinomios locales que ajustamos $\lambda$:
@@ -1194,13 +1213,18 @@ natalidad <- read_rds("./data/nacimientos/natalidad.rds") |>
   mutate(año = year(fecha)) |>
   mutate(mes = month(fecha)) |>
   ungroup() |>
-  mutate(dia_semana = recode(dia_semana, Monday = "Lunes", Tuesday = "Martes", Wednesday = "Miércoles",
-                             Thursday = "Jueves", Friday = "Viernes", Saturday = "Sábado", Sunday = "Domingo")) |>
+  mutate(dia_semana = recode(dia_semana, Monday = "Lunes", Tuesday = "Martes", 
+                             Wednesday = "Miércoles", Thursday = "Jueves", 
+                             Friday = "Viernes", Saturday = "Sábado", 
+                             Sunday = "Domingo")) |>
   #necesario pues el LOCALE puede cambiar
-  mutate(dia_semana = recode(dia_semana, lunes = "Lunes", martes = "Martes", miércoles = "Miércoles",
-                             jueves = "Jueves", viernes = "Viernes", sábado = "Sábado", domingo = "Domingo")) |>
+  mutate(dia_semana = recode(dia_semana, lunes = "Lunes", martes = "Martes", 
+                             miércoles = "Miércoles", jueves = "Jueves", 
+                             viernes = "Viernes", sábado = "Sábado", 
+                             domingo = "Domingo")) |>
   mutate(dia_semana = fct_relevel(dia_semana, c("Lunes", "Martes", "Miércoles",
-                                                "Jueves", "Viernes", "Sábado", "Domingo")))
+                                                "Jueves", "Viernes", "Sábado",
+                                                "Domingo")))
 ```
 
 Consideremos los *datos agregados* del número de nacimientos
@@ -1263,11 +1287,11 @@ datos_dia <- natalidad |>
 ```{r, message = FALSE, echo = FALSE, fig.height=3, echo = FALSE,  out.width = '95%', fig.align= 'center', cache=TRUE, fig.asp = 0.45}
 g_1 <- ggplot(datos_dia, aes(x = fecha)) +
   geom_point(aes(y = n), alpha = 0.2, size = 1) +
-  geom_line(aes(y = ajuste_1), colour = "red", size = 1.2) + xlab("") +
+  geom_line(aes(y = ajuste_1), colour = "red", linewidth = 1.2) + xlab("") +
   labs(caption = "Suavizamiento apropiado")
 g_2 <- ggplot(datos_dia, aes(x = fecha, y = n)) +
   geom_point(alpha = 0.2, size = 1) +
-  geom_smooth(method = "loess", span = 0.075, method.args = list(degree = 1), se = FALSE) + xlab("") +
+  geom_smooth(method = "loess", span = 0.075, method.args = list(degree = 2), se = FALSE) + xlab("") +
   labs(caption = "Requiere mayor suavizamiento")
 g_1 + g_2
 ```
@@ -1309,7 +1333,8 @@ datos_dia <- datos_dia |>
   group_by(dia_semana) |>
   nest() |>
   mutate(ajuste_mod =
-           map(data, ~ loess(res_2 ~ as.numeric(fecha), data = .x, span = 0.1, degree = 1))) |>
+           map(data, ~ loess(res_2 ~ as.numeric(fecha), data = .x, span = 0.1, 
+                             degree = 1))) |>
   mutate(ajuste_3 =  map(ajuste_mod, fitted)) |>
   select(-ajuste_mod) |>
   unnest(cols = c(data, ajuste_3)) |>
@@ -1333,7 +1358,7 @@ ajustados:
 ggplot(datos_dia, aes(x = fecha, y = res_3)) +
   geom_line() +
   geom_smooth(method = "loess", span = 0.02,
-              method.args = list(degree=1, family = "symmetric"))
+              method.args = list(degree = 1, family = "symmetric"))
 ```
 
 **Observación**: nótese que la distribución de estos residuales presenta
@@ -1397,7 +1422,7 @@ Y ahora repetimos con la componente de día de la semana:
 ```{r, echo = FALSE, fig.height=3, echo = FALSE,  out.width = '90%', fig.align= 'center', cache=TRUE, fig.asp = 0.35}
 datos_dia <- datos_dia |> group_by(dia_semana) |> nest() |>
   mutate(ajuste_mod = map(data, ~ loess(n_3 ~ as.numeric(fecha), data = .x, span = 0.1,
-                                        degree=1, family = "symmetric"))) |>
+                                        degree = 1, family = "symmetric"))) |>
   mutate(ajuste_6 =  map(ajuste_mod, fitted)) |>
   select(-ajuste_mod) |>
   unnest(cols = c(data, ajuste_6)) |>
@@ -1579,7 +1604,7 @@ datos_dia <- left_join(datos_dia, pascuas, by = "año") |>
 datos_pascua <- datos_dia |> filter(abs(dias_para_pascua) < 20)
 ggplot(datos_pascua, aes(x = dias_para_pascua, y = res_6)) +
   geom_line(aes(group=año), colour ="gray") + geom_point(colour = "gray") +
-  geom_smooth(data = datos_pascua, aes(x=dias_para_pascua, y = res_6),
+  geom_smooth(data = datos_pascua, aes(x = dias_para_pascua, y = res_6),
               se = FALSE, span = 0.12, method = "loess", col = "red") +
   geom_hline(yintercept = 0)+ ylab("Residual: exceso de nacimientos")
 ```
