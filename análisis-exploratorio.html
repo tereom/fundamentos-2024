@@ -220,6 +220,30 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="tipos-de-estudio-y-experimentos.html"><a href="tipos-de-estudio-y-experimentos.html#selección-de-unidades-y-tratamiento"><i class="fa fa-check"></i>Selección de unidades y tratamiento</a></li>
 <li class="chapter" data-level="" data-path="tipos-de-estudio-y-experimentos.html"><a href="tipos-de-estudio-y-experimentos.html#asignación-natural-del-tratamiento"><i class="fa fa-check"></i>Asignación natural del tratamiento</a></li>
 </ul></li>
+<li class="chapter" data-level="3" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html"><i class="fa fa-check"></i><b>3</b> Pruebas de hipótesis</a>
+<ul>
+<li class="chapter" data-level="" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#comparación-con-poblaciones-de-referencia"><i class="fa fa-check"></i>Comparación con poblaciones de referencia</a>
+<ul>
+<li class="chapter" data-level="" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#ejemplo"><i class="fa fa-check"></i>Ejemplo</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#comparando-distribuciones"><i class="fa fa-check"></i>Comparando distribuciones</a></li>
+<li class="chapter" data-level="" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#prueba-de-permutaciones-y-el-lineup"><i class="fa fa-check"></i>Prueba de permutaciones y el <em>lineup</em></a></li>
+<li class="chapter" data-level="" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#comparaciones-usando-lineup-continuación"><i class="fa fa-check"></i>Comparaciones usando <em>lineup</em> (continuación)</a></li>
+<li class="chapter" data-level="" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#prueba-de-permutaciones-para-proporciones"><i class="fa fa-check"></i>Prueba de permutaciones para proporciones</a></li>
+<li class="chapter" data-level="" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#pruebas-de-hipótesis-tradicionales"><i class="fa fa-check"></i>Pruebas de hipótesis tradicionales</a></li>
+<li class="chapter" data-level="" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#tomadores-de-té-continuación"><i class="fa fa-check"></i>Tomadores de té (continuación)</a></li>
+<li class="chapter" data-level="" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#pruebas-de-permutación-implementación."><i class="fa fa-check"></i>Pruebas de permutación: implementación.</a></li>
+<li class="chapter" data-level="" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#ejemplo-tiempos-de-fusión"><i class="fa fa-check"></i>Ejemplo: tiempos de fusión</a></li>
+<li class="chapter" data-level="" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#ejemplo-tiempos-de-fusión-continuación"><i class="fa fa-check"></i>Ejemplo: tiempos de fusión (continuación)</a></li>
+<li class="chapter" data-level="" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#separación-de-grupos"><i class="fa fa-check"></i>Separación de grupos</a>
+<ul>
+<li class="chapter" data-level="" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#avispas-opcional"><i class="fa fa-check"></i>Avispas (opcional)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#la-crisis-de-replicabilidad"><i class="fa fa-check"></i>La “crisis de replicabilidad”</a></li>
+<li class="chapter" data-level="" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#el-jardín-de-los-senderos-que-se-bifurcan"><i class="fa fa-check"></i>El jardín de los senderos que se bifurcan</a></li>
+<li class="chapter" data-level="" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#ejemplo-decisiones-de-análisis-y-valores-p"><i class="fa fa-check"></i>Ejemplo: decisiones de análisis y valores <em>p</em></a></li>
+<li class="chapter" data-level="" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#alternativas-o-soluciones"><i class="fa fa-check"></i>Alternativas o soluciones</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="apéndice-principios-de-visualizacion.html"><a href="apéndice-principios-de-visualizacion.html"><i class="fa fa-check"></i>Apéndice: Principios de visualizacion</a>
 <ul>
 <li class="chapter" data-level="" data-path="apéndice-principios-de-visualizacion.html"><a href="apéndice-principios-de-visualizacion.html#introducción"><i class="fa fa-check"></i>Introducción</a></li>
@@ -305,23 +329,23 @@ En muchos casos, tendremos que hacer algunos supuestos de cómo se generan estos
 <span id="cb1-7"><a href="análisis-exploratorio.html#cb1-7" aria-hidden="true" tabindex="-1"></a>propinas <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;./data/propinas.csv&quot;</span>)</span></code></pre></div>
 <p>Y vemos una muestra</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="análisis-exploratorio.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_sample</span>(propinas, <span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span> <span class="fu">gt</span>()</span></code></pre></div>
-<div id="oytwheqveq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#oytwheqveq table {
+<div id="tuoszwnmgi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#tuoszwnmgi table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#oytwheqveq thead, #oytwheqveq tbody, #oytwheqveq tfoot, #oytwheqveq tr, #oytwheqveq td, #oytwheqveq th {
+#tuoszwnmgi thead, #tuoszwnmgi tbody, #tuoszwnmgi tfoot, #tuoszwnmgi tr, #tuoszwnmgi td, #tuoszwnmgi th {
   border-style: none;
 }
 
-#oytwheqveq p {
+#tuoszwnmgi p {
   margin: 0;
   padding: 0;
 }
 
-#oytwheqveq .gt_table {
+#tuoszwnmgi .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -347,12 +371,12 @@ En muchos casos, tendremos que hacer algunos supuestos de cómo se generan estos
   border-left-color: #D3D3D3;
 }
 
-#oytwheqveq .gt_caption {
+#tuoszwnmgi .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#oytwheqveq .gt_title {
+#tuoszwnmgi .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -364,7 +388,7 @@ En muchos casos, tendremos que hacer algunos supuestos de cómo se generan estos
   border-bottom-width: 0;
 }
 
-#oytwheqveq .gt_subtitle {
+#tuoszwnmgi .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -376,7 +400,7 @@ En muchos casos, tendremos que hacer algunos supuestos de cómo se generan estos
   border-top-width: 0;
 }
 
-#oytwheqveq .gt_heading {
+#tuoszwnmgi .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -388,13 +412,13 @@ En muchos casos, tendremos que hacer algunos supuestos de cómo se generan estos
   border-right-color: #D3D3D3;
 }
 
-#oytwheqveq .gt_bottom_border {
+#tuoszwnmgi .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#oytwheqveq .gt_col_headings {
+#tuoszwnmgi .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -409,7 +433,7 @@ En muchos casos, tendremos que hacer algunos supuestos de cómo se generan estos
   border-right-color: #D3D3D3;
 }
 
-#oytwheqveq .gt_col_heading {
+#tuoszwnmgi .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -429,7 +453,7 @@ En muchos casos, tendremos que hacer algunos supuestos de cómo se generan estos
   overflow-x: hidden;
 }
 
-#oytwheqveq .gt_column_spanner_outer {
+#tuoszwnmgi .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -441,15 +465,15 @@ En muchos casos, tendremos que hacer algunos supuestos de cómo se generan estos
   padding-right: 4px;
 }
 
-#oytwheqveq .gt_column_spanner_outer:first-child {
+#tuoszwnmgi .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#oytwheqveq .gt_column_spanner_outer:last-child {
+#tuoszwnmgi .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#oytwheqveq .gt_column_spanner {
+#tuoszwnmgi .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -461,11 +485,11 @@ En muchos casos, tendremos que hacer algunos supuestos de cómo se generan estos
   width: 100%;
 }
 
-#oytwheqveq .gt_spanner_row {
+#tuoszwnmgi .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#oytwheqveq .gt_group_heading {
+#tuoszwnmgi .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -491,7 +515,7 @@ En muchos casos, tendremos que hacer algunos supuestos de cómo se generan estos
   text-align: left;
 }
 
-#oytwheqveq .gt_empty_group_heading {
+#tuoszwnmgi .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -506,15 +530,15 @@ En muchos casos, tendremos que hacer algunos supuestos de cómo se generan estos
   vertical-align: middle;
 }
 
-#oytwheqveq .gt_from_md > :first-child {
+#tuoszwnmgi .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#oytwheqveq .gt_from_md > :last-child {
+#tuoszwnmgi .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#oytwheqveq .gt_row {
+#tuoszwnmgi .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -533,7 +557,7 @@ En muchos casos, tendremos que hacer algunos supuestos de cómo se generan estos
   overflow-x: hidden;
 }
 
-#oytwheqveq .gt_stub {
+#tuoszwnmgi .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -546,7 +570,7 @@ En muchos casos, tendremos que hacer algunos supuestos de cómo se generan estos
   padding-right: 5px;
 }
 
-#oytwheqveq .gt_stub_row_group {
+#tuoszwnmgi .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -560,15 +584,15 @@ En muchos casos, tendremos que hacer algunos supuestos de cómo se generan estos
   vertical-align: top;
 }
 
-#oytwheqveq .gt_row_group_first td {
+#tuoszwnmgi .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#oytwheqveq .gt_row_group_first th {
+#tuoszwnmgi .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#oytwheqveq .gt_summary_row {
+#tuoszwnmgi .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -578,16 +602,16 @@ En muchos casos, tendremos que hacer algunos supuestos de cómo se generan estos
   padding-right: 5px;
 }
 
-#oytwheqveq .gt_first_summary_row {
+#tuoszwnmgi .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#oytwheqveq .gt_first_summary_row.thick {
+#tuoszwnmgi .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#oytwheqveq .gt_last_summary_row {
+#tuoszwnmgi .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -597,7 +621,7 @@ En muchos casos, tendremos que hacer algunos supuestos de cómo se generan estos
   border-bottom-color: #D3D3D3;
 }
 
-#oytwheqveq .gt_grand_summary_row {
+#tuoszwnmgi .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -607,7 +631,7 @@ En muchos casos, tendremos que hacer algunos supuestos de cómo se generan estos
   padding-right: 5px;
 }
 
-#oytwheqveq .gt_first_grand_summary_row {
+#tuoszwnmgi .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -617,7 +641,7 @@ En muchos casos, tendremos que hacer algunos supuestos de cómo se generan estos
   border-top-color: #D3D3D3;
 }
 
-#oytwheqveq .gt_last_grand_summary_row_top {
+#tuoszwnmgi .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -627,11 +651,11 @@ En muchos casos, tendremos que hacer algunos supuestos de cómo se generan estos
   border-bottom-color: #D3D3D3;
 }
 
-#oytwheqveq .gt_striped {
+#tuoszwnmgi .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#oytwheqveq .gt_table_body {
+#tuoszwnmgi .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -640,7 +664,7 @@ En muchos casos, tendremos que hacer algunos supuestos de cómo se generan estos
   border-bottom-color: #D3D3D3;
 }
 
-#oytwheqveq .gt_footnotes {
+#tuoszwnmgi .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -654,7 +678,7 @@ En muchos casos, tendremos que hacer algunos supuestos de cómo se generan estos
   border-right-color: #D3D3D3;
 }
 
-#oytwheqveq .gt_footnote {
+#tuoszwnmgi .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -663,7 +687,7 @@ En muchos casos, tendremos que hacer algunos supuestos de cómo se generan estos
   padding-right: 5px;
 }
 
-#oytwheqveq .gt_sourcenotes {
+#tuoszwnmgi .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -677,7 +701,7 @@ En muchos casos, tendremos que hacer algunos supuestos de cómo se generan estos
   border-right-color: #D3D3D3;
 }
 
-#oytwheqveq .gt_sourcenote {
+#tuoszwnmgi .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -685,72 +709,72 @@ En muchos casos, tendremos que hacer algunos supuestos de cómo se generan estos
   padding-right: 5px;
 }
 
-#oytwheqveq .gt_left {
+#tuoszwnmgi .gt_left {
   text-align: left;
 }
 
-#oytwheqveq .gt_center {
+#tuoszwnmgi .gt_center {
   text-align: center;
 }
 
-#oytwheqveq .gt_right {
+#tuoszwnmgi .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#oytwheqveq .gt_font_normal {
+#tuoszwnmgi .gt_font_normal {
   font-weight: normal;
 }
 
-#oytwheqveq .gt_font_bold {
+#tuoszwnmgi .gt_font_bold {
   font-weight: bold;
 }
 
-#oytwheqveq .gt_font_italic {
+#tuoszwnmgi .gt_font_italic {
   font-style: italic;
 }
 
-#oytwheqveq .gt_super {
+#tuoszwnmgi .gt_super {
   font-size: 65%;
 }
 
-#oytwheqveq .gt_footnote_marks {
+#tuoszwnmgi .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#oytwheqveq .gt_asterisk {
+#tuoszwnmgi .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#oytwheqveq .gt_indent_1 {
+#tuoszwnmgi .gt_indent_1 {
   text-indent: 5px;
 }
 
-#oytwheqveq .gt_indent_2 {
+#tuoszwnmgi .gt_indent_2 {
   text-indent: 10px;
 }
 
-#oytwheqveq .gt_indent_3 {
+#tuoszwnmgi .gt_indent_3 {
   text-indent: 15px;
 }
 
-#oytwheqveq .gt_indent_4 {
+#tuoszwnmgi .gt_indent_4 {
   text-indent: 20px;
 }
 
-#oytwheqveq .gt_indent_5 {
+#tuoszwnmgi .gt_indent_5 {
   text-indent: 25px;
 }
 
-#oytwheqveq .katex-display {
+#tuoszwnmgi .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#oytwheqveq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#tuoszwnmgi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -766,66 +790,66 @@ En muchos casos, tendremos que hacer algunos supuestos de cómo se generan estos
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td headers="cuenta_total" class="gt_row gt_right">16.82</td>
-<td headers="propina" class="gt_row gt_right">4.00</td>
+    <tr><td headers="cuenta_total" class="gt_row gt_right">7.74</td>
+<td headers="propina" class="gt_row gt_right">1.44</td>
 <td headers="fumador" class="gt_row gt_left">Si</td>
-<td headers="dia" class="gt_row gt_left">Dom</td>
+<td headers="dia" class="gt_row gt_left">Sab</td>
 <td headers="momento" class="gt_row gt_left">Cena</td>
 <td headers="num_personas" class="gt_row gt_right">2</td></tr>
-    <tr><td headers="cuenta_total" class="gt_row gt_right">28.97</td>
-<td headers="propina" class="gt_row gt_right">3.00</td>
-<td headers="fumador" class="gt_row gt_left">Si</td>
-<td headers="dia" class="gt_row gt_left">Vie</td>
-<td headers="momento" class="gt_row gt_left">Cena</td>
+    <tr><td headers="cuenta_total" class="gt_row gt_right">29.80</td>
+<td headers="propina" class="gt_row gt_right">4.20</td>
+<td headers="fumador" class="gt_row gt_left">No</td>
+<td headers="dia" class="gt_row gt_left">Jue</td>
+<td headers="momento" class="gt_row gt_left">Comida</td>
+<td headers="num_personas" class="gt_row gt_right">6</td></tr>
+    <tr><td headers="cuenta_total" class="gt_row gt_right">8.52</td>
+<td headers="propina" class="gt_row gt_right">1.48</td>
+<td headers="fumador" class="gt_row gt_left">No</td>
+<td headers="dia" class="gt_row gt_left">Jue</td>
+<td headers="momento" class="gt_row gt_left">Comida</td>
 <td headers="num_personas" class="gt_row gt_right">2</td></tr>
-    <tr><td headers="cuenta_total" class="gt_row gt_right">17.82</td>
-<td headers="propina" class="gt_row gt_right">1.75</td>
+    <tr><td headers="cuenta_total" class="gt_row gt_right">12.43</td>
+<td headers="propina" class="gt_row gt_right">1.80</td>
+<td headers="fumador" class="gt_row gt_left">No</td>
+<td headers="dia" class="gt_row gt_left">Jue</td>
+<td headers="momento" class="gt_row gt_left">Comida</td>
+<td headers="num_personas" class="gt_row gt_right">2</td></tr>
+    <tr><td headers="cuenta_total" class="gt_row gt_right">12.69</td>
+<td headers="propina" class="gt_row gt_right">2.00</td>
 <td headers="fumador" class="gt_row gt_left">No</td>
 <td headers="dia" class="gt_row gt_left">Sab</td>
 <td headers="momento" class="gt_row gt_left">Cena</td>
 <td headers="num_personas" class="gt_row gt_right">2</td></tr>
-    <tr><td headers="cuenta_total" class="gt_row gt_right">16.43</td>
-<td headers="propina" class="gt_row gt_right">2.30</td>
+    <tr><td headers="cuenta_total" class="gt_row gt_right">34.81</td>
+<td headers="propina" class="gt_row gt_right">5.20</td>
+<td headers="fumador" class="gt_row gt_left">No</td>
+<td headers="dia" class="gt_row gt_left">Dom</td>
+<td headers="momento" class="gt_row gt_left">Cena</td>
+<td headers="num_personas" class="gt_row gt_right">4</td></tr>
+    <tr><td headers="cuenta_total" class="gt_row gt_right">17.47</td>
+<td headers="propina" class="gt_row gt_right">3.50</td>
 <td headers="fumador" class="gt_row gt_left">No</td>
 <td headers="dia" class="gt_row gt_left">Jue</td>
 <td headers="momento" class="gt_row gt_left">Comida</td>
 <td headers="num_personas" class="gt_row gt_right">2</td></tr>
-    <tr><td headers="cuenta_total" class="gt_row gt_right">7.25</td>
-<td headers="propina" class="gt_row gt_right">5.15</td>
+    <tr><td headers="cuenta_total" class="gt_row gt_right">11.35</td>
+<td headers="propina" class="gt_row gt_right">2.50</td>
+<td headers="fumador" class="gt_row gt_left">Si</td>
+<td headers="dia" class="gt_row gt_left">Vie</td>
+<td headers="momento" class="gt_row gt_left">Cena</td>
+<td headers="num_personas" class="gt_row gt_right">2</td></tr>
+    <tr><td headers="cuenta_total" class="gt_row gt_right">15.69</td>
+<td headers="propina" class="gt_row gt_right">1.50</td>
 <td headers="fumador" class="gt_row gt_left">Si</td>
 <td headers="dia" class="gt_row gt_left">Dom</td>
 <td headers="momento" class="gt_row gt_left">Cena</td>
 <td headers="num_personas" class="gt_row gt_right">2</td></tr>
-    <tr><td headers="cuenta_total" class="gt_row gt_right">24.08</td>
-<td headers="propina" class="gt_row gt_right">2.92</td>
-<td headers="fumador" class="gt_row gt_left">No</td>
-<td headers="dia" class="gt_row gt_left">Jue</td>
-<td headers="momento" class="gt_row gt_left">Comida</td>
-<td headers="num_personas" class="gt_row gt_right">4</td></tr>
-    <tr><td headers="cuenta_total" class="gt_row gt_right">25.00</td>
-<td headers="propina" class="gt_row gt_right">3.75</td>
-<td headers="fumador" class="gt_row gt_left">No</td>
-<td headers="dia" class="gt_row gt_left">Dom</td>
-<td headers="momento" class="gt_row gt_left">Cena</td>
-<td headers="num_personas" class="gt_row gt_right">4</td></tr>
-    <tr><td headers="cuenta_total" class="gt_row gt_right">8.77</td>
-<td headers="propina" class="gt_row gt_right">2.00</td>
-<td headers="fumador" class="gt_row gt_left">No</td>
-<td headers="dia" class="gt_row gt_left">Dom</td>
-<td headers="momento" class="gt_row gt_left">Cena</td>
-<td headers="num_personas" class="gt_row gt_right">2</td></tr>
-    <tr><td headers="cuenta_total" class="gt_row gt_right">13.39</td>
-<td headers="propina" class="gt_row gt_right">2.61</td>
-<td headers="fumador" class="gt_row gt_left">No</td>
-<td headers="dia" class="gt_row gt_left">Dom</td>
-<td headers="momento" class="gt_row gt_left">Cena</td>
-<td headers="num_personas" class="gt_row gt_right">2</td></tr>
-    <tr><td headers="cuenta_total" class="gt_row gt_right">22.76</td>
+    <tr><td headers="cuenta_total" class="gt_row gt_right">17.07</td>
 <td headers="propina" class="gt_row gt_right">3.00</td>
 <td headers="fumador" class="gt_row gt_left">No</td>
-<td headers="dia" class="gt_row gt_left">Jue</td>
-<td headers="momento" class="gt_row gt_left">Comida</td>
-<td headers="num_personas" class="gt_row gt_right">2</td></tr>
+<td headers="dia" class="gt_row gt_left">Sab</td>
+<td headers="momento" class="gt_row gt_left">Cena</td>
+<td headers="num_personas" class="gt_row gt_right">3</td></tr>
   </tbody>
   
   
@@ -864,23 +888,23 @@ datos están en los extremos y cuáles están en los lugares centrales:</p>
 <span id="cb3-6"><a href="análisis-exploratorio.html#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(f)</span>
 <span id="cb3-7"><a href="análisis-exploratorio.html#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(<span class="fu">head</span>(cuenta), <span class="fu">tail</span>(cuenta)) <span class="sc">|&gt;</span> </span>
 <span id="cb3-8"><a href="análisis-exploratorio.html#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span> <span class="fu">fmt_number</span>(<span class="at">columns =</span> f, <span class="at">decimals =</span> <span class="dv">3</span>)</span></code></pre></div>
-<div id="sagcblymsb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#sagcblymsb table {
+<div id="jnkgrhfmda" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#jnkgrhfmda table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#sagcblymsb thead, #sagcblymsb tbody, #sagcblymsb tfoot, #sagcblymsb tr, #sagcblymsb td, #sagcblymsb th {
+#jnkgrhfmda thead, #jnkgrhfmda tbody, #jnkgrhfmda tfoot, #jnkgrhfmda tr, #jnkgrhfmda td, #jnkgrhfmda th {
   border-style: none;
 }
 
-#sagcblymsb p {
+#jnkgrhfmda p {
   margin: 0;
   padding: 0;
 }
 
-#sagcblymsb .gt_table {
+#jnkgrhfmda .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -906,12 +930,12 @@ datos están en los extremos y cuáles están en los lugares centrales:</p>
   border-left-color: #D3D3D3;
 }
 
-#sagcblymsb .gt_caption {
+#jnkgrhfmda .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#sagcblymsb .gt_title {
+#jnkgrhfmda .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -923,7 +947,7 @@ datos están en los extremos y cuáles están en los lugares centrales:</p>
   border-bottom-width: 0;
 }
 
-#sagcblymsb .gt_subtitle {
+#jnkgrhfmda .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -935,7 +959,7 @@ datos están en los extremos y cuáles están en los lugares centrales:</p>
   border-top-width: 0;
 }
 
-#sagcblymsb .gt_heading {
+#jnkgrhfmda .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -947,13 +971,13 @@ datos están en los extremos y cuáles están en los lugares centrales:</p>
   border-right-color: #D3D3D3;
 }
 
-#sagcblymsb .gt_bottom_border {
+#jnkgrhfmda .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#sagcblymsb .gt_col_headings {
+#jnkgrhfmda .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -968,7 +992,7 @@ datos están en los extremos y cuáles están en los lugares centrales:</p>
   border-right-color: #D3D3D3;
 }
 
-#sagcblymsb .gt_col_heading {
+#jnkgrhfmda .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -988,7 +1012,7 @@ datos están en los extremos y cuáles están en los lugares centrales:</p>
   overflow-x: hidden;
 }
 
-#sagcblymsb .gt_column_spanner_outer {
+#jnkgrhfmda .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1000,15 +1024,15 @@ datos están en los extremos y cuáles están en los lugares centrales:</p>
   padding-right: 4px;
 }
 
-#sagcblymsb .gt_column_spanner_outer:first-child {
+#jnkgrhfmda .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#sagcblymsb .gt_column_spanner_outer:last-child {
+#jnkgrhfmda .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#sagcblymsb .gt_column_spanner {
+#jnkgrhfmda .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1020,11 +1044,11 @@ datos están en los extremos y cuáles están en los lugares centrales:</p>
   width: 100%;
 }
 
-#sagcblymsb .gt_spanner_row {
+#jnkgrhfmda .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#sagcblymsb .gt_group_heading {
+#jnkgrhfmda .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1050,7 +1074,7 @@ datos están en los extremos y cuáles están en los lugares centrales:</p>
   text-align: left;
 }
 
-#sagcblymsb .gt_empty_group_heading {
+#jnkgrhfmda .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1065,15 +1089,15 @@ datos están en los extremos y cuáles están en los lugares centrales:</p>
   vertical-align: middle;
 }
 
-#sagcblymsb .gt_from_md > :first-child {
+#jnkgrhfmda .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#sagcblymsb .gt_from_md > :last-child {
+#jnkgrhfmda .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#sagcblymsb .gt_row {
+#jnkgrhfmda .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1092,7 +1116,7 @@ datos están en los extremos y cuáles están en los lugares centrales:</p>
   overflow-x: hidden;
 }
 
-#sagcblymsb .gt_stub {
+#jnkgrhfmda .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1105,7 +1129,7 @@ datos están en los extremos y cuáles están en los lugares centrales:</p>
   padding-right: 5px;
 }
 
-#sagcblymsb .gt_stub_row_group {
+#jnkgrhfmda .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1119,15 +1143,15 @@ datos están en los extremos y cuáles están en los lugares centrales:</p>
   vertical-align: top;
 }
 
-#sagcblymsb .gt_row_group_first td {
+#jnkgrhfmda .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#sagcblymsb .gt_row_group_first th {
+#jnkgrhfmda .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#sagcblymsb .gt_summary_row {
+#jnkgrhfmda .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1137,16 +1161,16 @@ datos están en los extremos y cuáles están en los lugares centrales:</p>
   padding-right: 5px;
 }
 
-#sagcblymsb .gt_first_summary_row {
+#jnkgrhfmda .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#sagcblymsb .gt_first_summary_row.thick {
+#jnkgrhfmda .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#sagcblymsb .gt_last_summary_row {
+#jnkgrhfmda .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1156,7 +1180,7 @@ datos están en los extremos y cuáles están en los lugares centrales:</p>
   border-bottom-color: #D3D3D3;
 }
 
-#sagcblymsb .gt_grand_summary_row {
+#jnkgrhfmda .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1166,7 +1190,7 @@ datos están en los extremos y cuáles están en los lugares centrales:</p>
   padding-right: 5px;
 }
 
-#sagcblymsb .gt_first_grand_summary_row {
+#jnkgrhfmda .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1176,7 +1200,7 @@ datos están en los extremos y cuáles están en los lugares centrales:</p>
   border-top-color: #D3D3D3;
 }
 
-#sagcblymsb .gt_last_grand_summary_row_top {
+#jnkgrhfmda .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1186,11 +1210,11 @@ datos están en los extremos y cuáles están en los lugares centrales:</p>
   border-bottom-color: #D3D3D3;
 }
 
-#sagcblymsb .gt_striped {
+#jnkgrhfmda .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#sagcblymsb .gt_table_body {
+#jnkgrhfmda .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1199,7 +1223,7 @@ datos están en los extremos y cuáles están en los lugares centrales:</p>
   border-bottom-color: #D3D3D3;
 }
 
-#sagcblymsb .gt_footnotes {
+#jnkgrhfmda .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1213,7 +1237,7 @@ datos están en los extremos y cuáles están en los lugares centrales:</p>
   border-right-color: #D3D3D3;
 }
 
-#sagcblymsb .gt_footnote {
+#jnkgrhfmda .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1222,7 +1246,7 @@ datos están en los extremos y cuáles están en los lugares centrales:</p>
   padding-right: 5px;
 }
 
-#sagcblymsb .gt_sourcenotes {
+#jnkgrhfmda .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1236,7 +1260,7 @@ datos están en los extremos y cuáles están en los lugares centrales:</p>
   border-right-color: #D3D3D3;
 }
 
-#sagcblymsb .gt_sourcenote {
+#jnkgrhfmda .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1244,72 +1268,72 @@ datos están en los extremos y cuáles están en los lugares centrales:</p>
   padding-right: 5px;
 }
 
-#sagcblymsb .gt_left {
+#jnkgrhfmda .gt_left {
   text-align: left;
 }
 
-#sagcblymsb .gt_center {
+#jnkgrhfmda .gt_center {
   text-align: center;
 }
 
-#sagcblymsb .gt_right {
+#jnkgrhfmda .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#sagcblymsb .gt_font_normal {
+#jnkgrhfmda .gt_font_normal {
   font-weight: normal;
 }
 
-#sagcblymsb .gt_font_bold {
+#jnkgrhfmda .gt_font_bold {
   font-weight: bold;
 }
 
-#sagcblymsb .gt_font_italic {
+#jnkgrhfmda .gt_font_italic {
   font-style: italic;
 }
 
-#sagcblymsb .gt_super {
+#jnkgrhfmda .gt_super {
   font-size: 65%;
 }
 
-#sagcblymsb .gt_footnote_marks {
+#jnkgrhfmda .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#sagcblymsb .gt_asterisk {
+#jnkgrhfmda .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#sagcblymsb .gt_indent_1 {
+#jnkgrhfmda .gt_indent_1 {
   text-indent: 5px;
 }
 
-#sagcblymsb .gt_indent_2 {
+#jnkgrhfmda .gt_indent_2 {
   text-indent: 10px;
 }
 
-#sagcblymsb .gt_indent_3 {
+#jnkgrhfmda .gt_indent_3 {
   text-indent: 15px;
 }
 
-#sagcblymsb .gt_indent_4 {
+#jnkgrhfmda .gt_indent_4 {
   text-indent: 20px;
 }
 
-#sagcblymsb .gt_indent_5 {
+#jnkgrhfmda .gt_indent_5 {
   text-indent: 25px;
 }
 
-#sagcblymsb .katex-display {
+#jnkgrhfmda .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#sagcblymsb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#jnkgrhfmda div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2743,9 +2767,10 @@ calificaciones para estados en distintos niveles de gasto? Podemos usar
 una gráfica de dispersión:</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="análisis-exploratorio.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
 <span id="cb21-2"><a href="análisis-exploratorio.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sat, <span class="fu">aes</span>(<span class="at">x =</span> expend, <span class="at">y =</span> sat, <span class="at">label =</span> state)) <span class="sc">+</span></span>
-<span id="cb21-3"><a href="análisis-exploratorio.html#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">geom_text_repel</span>(<span class="at">colour =</span> <span class="st">&quot;gray50&quot;</span>) <span class="sc">+</span></span>
-<span id="cb21-4"><a href="análisis-exploratorio.html#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Gasto por alumno (miles de dólares)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb21-5"><a href="análisis-exploratorio.html#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Calificación promedio en SAT&quot;</span>)</span></code></pre></div>
+<span id="cb21-3"><a href="análisis-exploratorio.html#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb21-4"><a href="análisis-exploratorio.html#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">colour =</span> <span class="st">&quot;gray50&quot;</span>) <span class="sc">+</span></span>
+<span id="cb21-5"><a href="análisis-exploratorio.html#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Gasto por alumno (miles de dólares)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb21-6"><a href="análisis-exploratorio.html#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Calificación promedio en SAT&quot;</span>)</span></code></pre></div>
 <p><img src="01-exploratorio_files/figure-html/unnamed-chunk-30-1.png" width="95%" style="display: block; margin: auto;" /></p>
 <p>Estas comparaciones no son de alta calidad, solo estamos usando 2
 variables —que son muy pocas— y no hay mucho que podamos decir en
@@ -2760,7 +2785,7 @@ toma el SAT. Podemos agregar como sigue:</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="análisis-exploratorio.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sat, <span class="fu">aes</span>(<span class="at">x =</span> expend, <span class="at">y =</span> math, <span class="at">label=</span>state, <span class="at">colour =</span> frac)) <span class="sc">+</span></span>
 <span id="cb22-2"><a href="análisis-exploratorio.html#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_text_repel</span>() <span class="sc">+</span></span>
 <span id="cb22-3"><a href="análisis-exploratorio.html#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Gasto por alumno (miles de dólares)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb22-4"><a href="análisis-exploratorio.html#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Calificación en matemáticas&quot;</span>)</span></code></pre></div>
+<span id="cb22-4"><a href="análisis-exploratorio.html#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Calificación promedio en SAT&quot;</span>)</span></code></pre></div>
 <p><img src="01-exploratorio_files/figure-html/unnamed-chunk-31-1.png" width="95%" style="display: block; margin: auto;" /></p>
 <p>Esto nos permite entender por qué nuestra comparación inicial es
 relativamente pobre. Los estados con mejores resultados promedio en el
@@ -2778,9 +2803,8 @@ asiste. Podríamos hacer grupos como sigue:</p>
 <span id="cb23-7"><a href="análisis-exploratorio.html#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">clase_media =</span> <span class="fu">factor</span>(clase_media))</span>
 <span id="cb23-8"><a href="análisis-exploratorio.html#cb23-8" aria-hidden="true" tabindex="-1"></a>sat <span class="ot">&lt;-</span> sat <span class="sc">|&gt;</span></span>
 <span id="cb23-9"><a href="análisis-exploratorio.html#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank_p =</span> <span class="fu">rank</span>(frac, <span class="at">ties=</span> <span class="st">&quot;first&quot;</span>) <span class="sc">/</span> <span class="fu">length</span>(frac))</span>
-<span id="cb23-10"><a href="análisis-exploratorio.html#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sat, <span class="fu">aes</span>(<span class="at">x =</span> rank_p, <span class="at">y =</span> frac, <span class="at">label =</span> state,</span>
-<span id="cb23-11"><a href="análisis-exploratorio.html#cb23-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">colour =</span> clase_media)) <span class="sc">+</span></span>
-<span id="cb23-12"><a href="análisis-exploratorio.html#cb23-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div>
+<span id="cb23-10"><a href="análisis-exploratorio.html#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sat, <span class="fu">aes</span>(<span class="at">x =</span> rank_p, <span class="at">y =</span> frac, <span class="at">label =</span> state, <span class="at">colour =</span> clase_media)) <span class="sc">+</span></span>
+<span id="cb23-11"><a href="análisis-exploratorio.html#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="01-exploratorio_files/figure-html/unnamed-chunk-32-1.png" width="95%" style="display: block; margin: auto;" /></p>
 <p>Estos resultados indican que es más probable que buenos alumnos decidan
 hacer el SAT. Lo interesante es que esto ocurre de manera diferente en
@@ -4031,7 +4055,7 @@ probabilístico, entonces es posible en principio entender qué tan bien
 generalizan los resultados de nuestro análisis a la población general, y
 entender esto depende de entender qué tanta variación hay de muestra a
 muestra, de todas las posibles muestras que pudimos haber extraido.</p>
-<p>En las siguiente secciones discutiremos estos aspectos, en los cuales
+<p>En las siguientes secciones discutiremos estos aspectos, en los cuales
 pasamos del trabajo de “detective” al trabajo de “juez” en nuestro
 trabajo analítico.</p>
 </div>
@@ -4042,8 +4066,8 @@ trabajo analítico.</p>
 <p>Las gráficas de dispersión son la herramienta básica para describir la
 relación entre dos variables cuantitativas, y como vimos en ejemplo
 anteriores, muchas veces podemos apreciar mejor la relación entre ellas
-si agregamos una curva <code>loess</code> que suavice.</p>
-<p>Los siguientes datos muestran los premios ofrecidos y las ventas totales
+si agregamos una curva <code>loess</code>.</p>
+<p>Veamos un ejemplo, los siguientes datos muestran los premios ofrecidos y las ventas totales
 de una lotería a lo largo de 53 sorteos (las unidades son cantidades de
 dinero indexadas). Graficamos en escalas logarítmicas y agregamos una
 curva <code>loess</code>.</p>
@@ -4052,9 +4076,10 @@ curva <code>loess</code>.</p>
 <span id="cb34-3"><a href="análisis-exploratorio.html#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-4"><a href="análisis-exploratorio.html#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ventas.sorteo, <span class="fu">aes</span>(<span class="at">x =</span> premio, <span class="at">y =</span> ventas.tot<span class="fl">.1</span>)) <span class="sc">+</span></span>
 <span id="cb34-5"><a href="análisis-exploratorio.html#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb34-6"><a href="análisis-exploratorio.html#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">degree =</span> <span class="dv">1</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb34-7"><a href="análisis-exploratorio.html#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">20000</span>, <span class="dv">40000</span>, <span class="dv">80000</span>)) <span class="sc">+</span></span>
-<span id="cb34-8"><a href="análisis-exploratorio.html#cb34-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">10000</span>, <span class="dv">15000</span>, <span class="dv">22000</span>, <span class="dv">33000</span>))</span></code></pre></div>
+<span id="cb34-6"><a href="análisis-exploratorio.html#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="at">span =</span> <span class="fl">0.6</span>, <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">degree =</span> <span class="dv">1</span>), </span>
+<span id="cb34-7"><a href="análisis-exploratorio.html#cb34-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb34-8"><a href="análisis-exploratorio.html#cb34-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">20000</span>, <span class="dv">40000</span>, <span class="dv">80000</span>)) <span class="sc">+</span></span>
+<span id="cb34-9"><a href="análisis-exploratorio.html#cb34-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">10000</span>, <span class="dv">15000</span>, <span class="dv">22000</span>, <span class="dv">33000</span>))</span></code></pre></div>
 <p><img src="01-exploratorio_files/figure-html/unnamed-chunk-42-1.png" width="345.6" style="display: block; margin: auto;" /></p>
 <p>El patrón no era difícil de ver en los datos originales, sin embargo, la
 curva lo hace más claro, el logaritmo de las ventas tiene una relación
@@ -4076,10 +4101,10 @@ la función de mínimos cuadrados. Nótese que podemos repetir el argumento
 con otras familias de funciones (por ejemplo cuadráticas).</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="análisis-exploratorio.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ventas.sorteo, <span class="fu">aes</span>(<span class="at">x =</span> premio, <span class="at">y =</span> ventas.tot<span class="fl">.1</span>)) <span class="sc">+</span></span>
 <span id="cb35-2"><a href="análisis-exploratorio.html#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb35-3"><a href="análisis-exploratorio.html#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb35-3"><a href="análisis-exploratorio.html#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb35-4"><a href="análisis-exploratorio.html#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">20000</span>, <span class="dv">40000</span>, <span class="dv">80000</span>)) <span class="sc">+</span></span>
 <span id="cb35-5"><a href="análisis-exploratorio.html#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">10000</span>, <span class="dv">15000</span>, <span class="dv">22000</span>, <span class="dv">33000</span>))</span></code></pre></div>
-<p><img src="01-exploratorio_files/figure-html/unnamed-chunk-43-1.png" width="345.6" style="display: block; margin: auto;" /></p>
+<p><img src="01-exploratorio_files/figure-html/unnamed-chunk-44-1.png" width="345.6" style="display: block; margin: auto;" /></p>
 <p>Si observamos la gráfica notamos que este modelo lineal (en los
 logaritmos) no resumen adecuadamente estos datos. Podríamos experimentar
 con otras familias (por ejemplo, una cuadrática o cúbica, potencias,
@@ -4114,7 +4139,7 @@ tener que suavizar demasiado poco:</p>
 <p>La idea es producir ajustes locales de rectas o funciones lineales o
 cuadráticas. Consideremos especificar dos parámetros:</p>
 <ul>
-<li><p>Parámetro de suavizamiento <span class="math inline">\(\alpha\)</span>: cuando <span class="math inline">\(\alpha\)</span> es más grande,
+<li><p>Parámetro de suavizamiento <span class="math inline">\(\alpha\)</span>: toma valores en <span class="math inline">\((0,1)\)</span>, cuando <span class="math inline">\(\alpha\)</span> es más grande,
 la curva ajustada es más suave.</p></li>
 <li><p>Grado de los polinomios locales que ajustamos <span class="math inline">\(\lambda\)</span>:
 generalmente se toma <span class="math inline">\(\lambda=1,2\)</span>.</p></li>
@@ -4153,7 +4178,7 @@ estamos ajustando la regresión local.</p>
 <span id="cb36-2"><a href="análisis-exploratorio.html#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(<span class="fu">abs</span>(x) <span class="sc">&lt;</span> <span class="dv">1</span>, (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">abs</span>(x) <span class="sc">^</span> <span class="dv">3</span>) <span class="sc">^</span> <span class="dv">3</span>, <span class="dv">0</span>)</span>
 <span id="cb36-3"><a href="análisis-exploratorio.html#cb36-3" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb36-4"><a href="análisis-exploratorio.html#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(tricubo, <span class="at">from =</span> <span class="sc">-</span><span class="fl">1.5</span>, <span class="at">to =</span> <span class="fl">1.5</span>)</span></code></pre></div>
-<p><img src="01-exploratorio_files/figure-html/unnamed-chunk-44-1.png" width="326.4" style="display: block; margin: auto;" /></p>
+<p><img src="01-exploratorio_files/figure-html/unnamed-chunk-45-1.png" width="326.4" style="display: block; margin: auto;" /></p>
 <p>Finalmente, para cada valor de <span class="math inline">\(x_k\)</span> que está en el conjunto de datos
 <span class="math inline">\(\{x_1,...,x_n\}\)</span>, ajustamos una recta de mínimos cuadrados ponderados
 por los pesos <span class="math inline">\(w_n(x)\)</span>, es decir, minimizamos (en el caso lineal):</p>
@@ -4211,18 +4236,23 @@ estructura, mecanismos o causalidad?</p>
 <span id="cb37-7"><a href="análisis-exploratorio.html#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(año <span class="ot">=</span> <span class="fu">year</span>(fecha)) <span class="sc">|&gt;</span></span>
 <span id="cb37-8"><a href="análisis-exploratorio.html#cb37-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mes =</span> <span class="fu">month</span>(fecha)) <span class="sc">|&gt;</span></span>
 <span id="cb37-9"><a href="análisis-exploratorio.html#cb37-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
-<span id="cb37-10"><a href="análisis-exploratorio.html#cb37-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dia_semana =</span> <span class="fu">recode</span>(dia_semana, <span class="at">Monday =</span> <span class="st">&quot;Lunes&quot;</span>, <span class="at">Tuesday =</span> <span class="st">&quot;Martes&quot;</span>, <span class="at">Wednesday =</span> <span class="st">&quot;Miércoles&quot;</span>,</span>
-<span id="cb37-11"><a href="análisis-exploratorio.html#cb37-11" aria-hidden="true" tabindex="-1"></a>                             <span class="at">Thursday =</span> <span class="st">&quot;Jueves&quot;</span>, <span class="at">Friday =</span> <span class="st">&quot;Viernes&quot;</span>, <span class="at">Saturday =</span> <span class="st">&quot;Sábado&quot;</span>, <span class="at">Sunday =</span> <span class="st">&quot;Domingo&quot;</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb37-12"><a href="análisis-exploratorio.html#cb37-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">#necesario pues el LOCALE puede cambiar</span></span>
-<span id="cb37-13"><a href="análisis-exploratorio.html#cb37-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dia_semana =</span> <span class="fu">recode</span>(dia_semana, <span class="at">lunes =</span> <span class="st">&quot;Lunes&quot;</span>, <span class="at">martes =</span> <span class="st">&quot;Martes&quot;</span>, miércoles <span class="ot">=</span> <span class="st">&quot;Miércoles&quot;</span>,</span>
-<span id="cb37-14"><a href="análisis-exploratorio.html#cb37-14" aria-hidden="true" tabindex="-1"></a>                             <span class="at">jueves =</span> <span class="st">&quot;Jueves&quot;</span>, <span class="at">viernes =</span> <span class="st">&quot;Viernes&quot;</span>, sábado <span class="ot">=</span> <span class="st">&quot;Sábado&quot;</span>, <span class="at">domingo =</span> <span class="st">&quot;Domingo&quot;</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb37-15"><a href="análisis-exploratorio.html#cb37-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dia_semana =</span> <span class="fu">fct_relevel</span>(dia_semana, <span class="fu">c</span>(<span class="st">&quot;Lunes&quot;</span>, <span class="st">&quot;Martes&quot;</span>, <span class="st">&quot;Miércoles&quot;</span>,</span>
-<span id="cb37-16"><a href="análisis-exploratorio.html#cb37-16" aria-hidden="true" tabindex="-1"></a>                                                <span class="st">&quot;Jueves&quot;</span>, <span class="st">&quot;Viernes&quot;</span>, <span class="st">&quot;Sábado&quot;</span>, <span class="st">&quot;Domingo&quot;</span>)))</span></code></pre></div>
+<span id="cb37-10"><a href="análisis-exploratorio.html#cb37-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dia_semana =</span> <span class="fu">recode</span>(dia_semana, <span class="at">Monday =</span> <span class="st">&quot;Lunes&quot;</span>, <span class="at">Tuesday =</span> <span class="st">&quot;Martes&quot;</span>, </span>
+<span id="cb37-11"><a href="análisis-exploratorio.html#cb37-11" aria-hidden="true" tabindex="-1"></a>                             <span class="at">Wednesday =</span> <span class="st">&quot;Miércoles&quot;</span>, <span class="at">Thursday =</span> <span class="st">&quot;Jueves&quot;</span>, </span>
+<span id="cb37-12"><a href="análisis-exploratorio.html#cb37-12" aria-hidden="true" tabindex="-1"></a>                             <span class="at">Friday =</span> <span class="st">&quot;Viernes&quot;</span>, <span class="at">Saturday =</span> <span class="st">&quot;Sábado&quot;</span>, </span>
+<span id="cb37-13"><a href="análisis-exploratorio.html#cb37-13" aria-hidden="true" tabindex="-1"></a>                             <span class="at">Sunday =</span> <span class="st">&quot;Domingo&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb37-14"><a href="análisis-exploratorio.html#cb37-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">#necesario pues el LOCALE puede cambiar</span></span>
+<span id="cb37-15"><a href="análisis-exploratorio.html#cb37-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dia_semana =</span> <span class="fu">recode</span>(dia_semana, <span class="at">lunes =</span> <span class="st">&quot;Lunes&quot;</span>, <span class="at">martes =</span> <span class="st">&quot;Martes&quot;</span>, </span>
+<span id="cb37-16"><a href="análisis-exploratorio.html#cb37-16" aria-hidden="true" tabindex="-1"></a>                             miércoles <span class="ot">=</span> <span class="st">&quot;Miércoles&quot;</span>, <span class="at">jueves =</span> <span class="st">&quot;Jueves&quot;</span>, </span>
+<span id="cb37-17"><a href="análisis-exploratorio.html#cb37-17" aria-hidden="true" tabindex="-1"></a>                             <span class="at">viernes =</span> <span class="st">&quot;Viernes&quot;</span>, sábado <span class="ot">=</span> <span class="st">&quot;Sábado&quot;</span>, </span>
+<span id="cb37-18"><a href="análisis-exploratorio.html#cb37-18" aria-hidden="true" tabindex="-1"></a>                             <span class="at">domingo =</span> <span class="st">&quot;Domingo&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb37-19"><a href="análisis-exploratorio.html#cb37-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dia_semana =</span> <span class="fu">fct_relevel</span>(dia_semana, <span class="fu">c</span>(<span class="st">&quot;Lunes&quot;</span>, <span class="st">&quot;Martes&quot;</span>, <span class="st">&quot;Miércoles&quot;</span>,</span>
+<span id="cb37-20"><a href="análisis-exploratorio.html#cb37-20" aria-hidden="true" tabindex="-1"></a>                                                <span class="st">&quot;Jueves&quot;</span>, <span class="st">&quot;Viernes&quot;</span>, <span class="st">&quot;Sábado&quot;</span>,</span>
+<span id="cb37-21"><a href="análisis-exploratorio.html#cb37-21" aria-hidden="true" tabindex="-1"></a>                                                <span class="st">&quot;Domingo&quot;</span>)))</span></code></pre></div>
 <p>Consideremos los <em>datos agregados</em> del número de nacimientos
 (registrados) por día desde 1999 hasta 2016. Un primer intento podría
 ser hacer una gráfica de la serie de tiempo. Sin embargo, vemos que no
 es muy útil:</p>
-<p><img src="01-exploratorio_files/figure-html/unnamed-chunk-47-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p><img src="01-exploratorio_files/figure-html/unnamed-chunk-48-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>Hay varias características que notamos. Primero, parece haber una
 tendencia ligeramente decreciente del número de nacimientos a lo largo
 de los años. Segundo, la gráfica sugiere un patrón anual. Y por último,
@@ -4262,7 +4292,7 @@ anual:</p>
 <span id="cb38-2"><a href="análisis-exploratorio.html#cb38-2" aria-hidden="true" tabindex="-1"></a>datos_dia <span class="ot">&lt;-</span> natalidad <span class="sc">|&gt;</span> </span>
 <span id="cb38-3"><a href="análisis-exploratorio.html#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ajuste_1 =</span> <span class="fu">fitted</span>(mod_1)) <span class="sc">|&gt;</span></span>
 <span id="cb38-4"><a href="análisis-exploratorio.html#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">res_1 =</span> n <span class="sc">-</span> ajuste_1)</span></code></pre></div>
-<p><img src="01-exploratorio_files/figure-html/unnamed-chunk-50-1.png" width="95%" style="display: block; margin: auto;" /></p>
+<p><img src="01-exploratorio_files/figure-html/unnamed-chunk-51-1.png" width="95%" style="display: block; margin: auto;" /></p>
 <p>Notemos que a principios de 2000 el suavizador está en niveles de
 alrededor de 7000 nacimientos diarios, hacia 2015 ese número es más
 cercano a unos 6000.</p>
@@ -4277,7 +4307,12 @@ evitamos capturar tendencia:</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="análisis-exploratorio.html#cb39-1" aria-hidden="true" tabindex="-1"></a>mod_anual <span class="ot">&lt;-</span> <span class="fu">loess</span>(res_1 <span class="sc">~</span> <span class="fu">as.numeric</span>(fecha), <span class="at">data =</span> datos_dia, <span class="at">degree =</span> <span class="dv">2</span>, <span class="at">span =</span> <span class="fl">0.005</span>)</span>
 <span id="cb39-2"><a href="análisis-exploratorio.html#cb39-2" aria-hidden="true" tabindex="-1"></a>datos_dia <span class="ot">&lt;-</span> datos_dia <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">ajuste_2 =</span> <span class="fu">fitted</span>(mod_anual)) <span class="sc">|&gt;</span></span>
 <span id="cb39-3"><a href="análisis-exploratorio.html#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">res_2 =</span> res_1 <span class="sc">-</span> ajuste_2)</span></code></pre></div>
-<p><img src="01-exploratorio_files/figure-html/unnamed-chunk-52-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<p><img src="01-exploratorio_files/figure-html/unnamed-chunk-53-1.png" width="90%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="día-de-la-semana" class="section level3 unnumbered hasAnchor">
 <h3>Día de la semana<a href="análisis-exploratorio.html#día-de-la-semana" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -4286,30 +4321,31 @@ evitamos capturar tendencia:</p>
 anual) de nuestra serie de tiempo. Ahora, veremos cómo capturar el
 efecto por día de la semana. En este caso, podemos hacer suavizamiento
 <code>loess</code> para cada serie de manera independiente</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="análisis-exploratorio.html#cb40-1" aria-hidden="true" tabindex="-1"></a>datos_dia <span class="ot">&lt;-</span> datos_dia <span class="sc">|&gt;</span></span>
-<span id="cb40-2"><a href="análisis-exploratorio.html#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(dia_semana) <span class="sc">|&gt;</span></span>
-<span id="cb40-3"><a href="análisis-exploratorio.html#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>() <span class="sc">|&gt;</span></span>
-<span id="cb40-4"><a href="análisis-exploratorio.html#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ajuste_mod =</span></span>
-<span id="cb40-5"><a href="análisis-exploratorio.html#cb40-5" aria-hidden="true" tabindex="-1"></a>           <span class="fu">map</span>(data, <span class="sc">~</span> <span class="fu">loess</span>(res_2 <span class="sc">~</span> <span class="fu">as.numeric</span>(fecha), <span class="at">data =</span> .x, <span class="at">span =</span> <span class="fl">0.1</span>, <span class="at">degree =</span> <span class="dv">1</span>))) <span class="sc">|&gt;</span></span>
-<span id="cb40-6"><a href="análisis-exploratorio.html#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ajuste_3 =</span>  <span class="fu">map</span>(ajuste_mod, fitted)) <span class="sc">|&gt;</span></span>
-<span id="cb40-7"><a href="análisis-exploratorio.html#cb40-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>ajuste_mod) <span class="sc">|&gt;</span></span>
-<span id="cb40-8"><a href="análisis-exploratorio.html#cb40-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(<span class="at">cols =</span> <span class="fu">c</span>(data, ajuste_3)) <span class="sc">|&gt;</span></span>
-<span id="cb40-9"><a href="análisis-exploratorio.html#cb40-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">res_3 =</span> res_2 <span class="sc">-</span> ajuste_3) <span class="sc">|&gt;</span></span>
-<span id="cb40-10"><a href="análisis-exploratorio.html#cb40-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div>
-<p><img src="01-exploratorio_files/figure-html/unnamed-chunk-54-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="análisis-exploratorio.html#cb41-1" aria-hidden="true" tabindex="-1"></a>datos_dia <span class="ot">&lt;-</span> datos_dia <span class="sc">|&gt;</span></span>
+<span id="cb41-2"><a href="análisis-exploratorio.html#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(dia_semana) <span class="sc">|&gt;</span></span>
+<span id="cb41-3"><a href="análisis-exploratorio.html#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>() <span class="sc">|&gt;</span></span>
+<span id="cb41-4"><a href="análisis-exploratorio.html#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ajuste_mod =</span></span>
+<span id="cb41-5"><a href="análisis-exploratorio.html#cb41-5" aria-hidden="true" tabindex="-1"></a>           <span class="fu">map</span>(data, <span class="sc">~</span> <span class="fu">loess</span>(res_2 <span class="sc">~</span> <span class="fu">as.numeric</span>(fecha), <span class="at">data =</span> .x, <span class="at">span =</span> <span class="fl">0.1</span>, </span>
+<span id="cb41-6"><a href="análisis-exploratorio.html#cb41-6" aria-hidden="true" tabindex="-1"></a>                             <span class="at">degree =</span> <span class="dv">1</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb41-7"><a href="análisis-exploratorio.html#cb41-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ajuste_3 =</span>  <span class="fu">map</span>(ajuste_mod, fitted)) <span class="sc">|&gt;</span></span>
+<span id="cb41-8"><a href="análisis-exploratorio.html#cb41-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>ajuste_mod) <span class="sc">|&gt;</span></span>
+<span id="cb41-9"><a href="análisis-exploratorio.html#cb41-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(<span class="at">cols =</span> <span class="fu">c</span>(data, ajuste_3)) <span class="sc">|&gt;</span></span>
+<span id="cb41-10"><a href="análisis-exploratorio.html#cb41-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">res_3 =</span> res_2 <span class="sc">-</span> ajuste_3) <span class="sc">|&gt;</span></span>
+<span id="cb41-11"><a href="análisis-exploratorio.html#cb41-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div>
+<p><img src="01-exploratorio_files/figure-html/unnamed-chunk-55-1.png" width="90%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="residuales" class="section level3 unnumbered hasAnchor">
 <h3>Residuales<a href="análisis-exploratorio.html#residuales" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Por último, examinamos los residuales finales quitando los efectos
 ajustados:</p>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
-<p><img src="01-exploratorio_files/figure-html/unnamed-chunk-55-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p><img src="01-exploratorio_files/figure-html/unnamed-chunk-56-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p><strong>Observación</strong>: nótese que la distribución de estos residuales presenta
 irregularidades interesantes. La distribución es de <em>colas largas</em>, y no
 se debe a unos cuantos datos atípicos. Esto generalmente es indicación
 que hay factores importantes que hay que examinar mas a detalle en los
 residuales:</p>
-<p><img src="01-exploratorio_files/figure-html/unnamed-chunk-56-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p><img src="01-exploratorio_files/figure-html/unnamed-chunk-57-1.png" width="90%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="reestimación" class="section level3 unnumbered hasAnchor">
 <h3>Reestimación<a href="análisis-exploratorio.html#reestimación" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -4320,27 +4356,27 @@ es posible suavizar menos sin capturar <em>componentes de más alta
 frecuencia.</em></p>
 <p>Así que podemos regresar a la serie original para hacer mejores
 estimaciones, más suavizadas:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="análisis-exploratorio.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Quitamos componente anual y efecto de día de la semana</span></span>
-<span id="cb42-2"><a href="análisis-exploratorio.html#cb42-2" aria-hidden="true" tabindex="-1"></a>datos_dia <span class="ot">&lt;-</span> datos_dia <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">n_1 =</span> n <span class="sc">-</span> ajuste_2 <span class="sc">-</span> ajuste_3)</span>
-<span id="cb42-3"><a href="análisis-exploratorio.html#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Reajustamos</span></span>
-<span id="cb42-4"><a href="análisis-exploratorio.html#cb42-4" aria-hidden="true" tabindex="-1"></a>mod_1 <span class="ot">&lt;-</span> <span class="fu">loess</span>(n_1 <span class="sc">~</span> <span class="fu">as.numeric</span>(fecha), <span class="at">data =</span> datos_dia, <span class="at">span =</span> <span class="fl">0.02</span>, <span class="at">degree =</span> <span class="dv">2</span>,</span>
-<span id="cb42-5"><a href="análisis-exploratorio.html#cb42-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">family =</span> <span class="st">&quot;symmetric&quot;</span>)</span></code></pre></div>
-<p><img src="01-exploratorio_files/figure-html/unnamed-chunk-58-1.png" width="90%" style="display: block; margin: auto;" /></p>
-<p><img src="01-exploratorio_files/figure-html/unnamed-chunk-60-1.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>Y ahora repetimos con la componente de día de la semana:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="análisis-exploratorio.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Quitamos componente anual y efecto de día de la semana</span></span>
+<span id="cb43-2"><a href="análisis-exploratorio.html#cb43-2" aria-hidden="true" tabindex="-1"></a>datos_dia <span class="ot">&lt;-</span> datos_dia <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">n_1 =</span> n <span class="sc">-</span> ajuste_2 <span class="sc">-</span> ajuste_3)</span>
+<span id="cb43-3"><a href="análisis-exploratorio.html#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Reajustamos</span></span>
+<span id="cb43-4"><a href="análisis-exploratorio.html#cb43-4" aria-hidden="true" tabindex="-1"></a>mod_1 <span class="ot">&lt;-</span> <span class="fu">loess</span>(n_1 <span class="sc">~</span> <span class="fu">as.numeric</span>(fecha), <span class="at">data =</span> datos_dia, <span class="at">span =</span> <span class="fl">0.02</span>, <span class="at">degree =</span> <span class="dv">2</span>,</span>
+<span id="cb43-5"><a href="análisis-exploratorio.html#cb43-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">family =</span> <span class="st">&quot;symmetric&quot;</span>)</span></code></pre></div>
+<p><img src="01-exploratorio_files/figure-html/unnamed-chunk-59-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p><img src="01-exploratorio_files/figure-html/unnamed-chunk-61-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>Y ahora repetimos con la componente de día de la semana:</p>
+<p><img src="01-exploratorio_files/figure-html/unnamed-chunk-62-1.png" width="90%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="análisis-de-componentes" class="section level3 unnumbered hasAnchor">
 <h3>Análisis de componentes<a href="análisis-exploratorio.html#análisis-de-componentes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Ahora comparamos las componentes estimadas y los residuales en una misma
 gráfica. Por definición, la suma de todas estas componentes da los datos
 originales.</p>
-<p><img src="01-exploratorio_files/figure-html/unnamed-chunk-62-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p><img src="01-exploratorio_files/figure-html/unnamed-chunk-63-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>Este último paso nos permite diversas comparaciones que explican la
 variación que vimos en los datos. Una gran parte de los residuales está
 entre <span class="math inline">\(\pm 250\)</span> nacimientos por día. Sin embargo, vemos que las colas
 tienen una dispersión mucho mayor:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="análisis-exploratorio.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(datos_dia<span class="sc">$</span>res_6, <span class="fu">c</span>(<span class="dv">00</span>, .<span class="dv">01</span>,<span class="fl">0.05</span>, <span class="fl">0.10</span>, <span class="fl">0.90</span>, <span class="fl">0.95</span>, <span class="fl">0.99</span>, <span class="dv">1</span>)) <span class="sc">|&gt;</span> <span class="fu">round</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="análisis-exploratorio.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(datos_dia<span class="sc">$</span>res_6, <span class="fu">c</span>(<span class="dv">00</span>, .<span class="dv">01</span>,<span class="fl">0.05</span>, <span class="fl">0.10</span>, <span class="fl">0.90</span>, <span class="fl">0.95</span>, <span class="fl">0.99</span>, <span class="dv">1</span>)) <span class="sc">|&gt;</span> <span class="fu">round</span>()</span></code></pre></div>
 <pre><code>##    0%    1%    5%   10%   90%   95%   99%  100% 
 ## -2238 -1134  -315  -202   188   268   516  2521</code></pre>
 <p>¿A qué se deben estas colas tan largas?</p>
@@ -4348,7 +4384,7 @@ tienen una dispersión mucho mayor:</p>
 <h4>Viernes 13?<a href="análisis-exploratorio.html#viernes-13" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Podemos empezar con una curosidad. Los días Viernes o Martes 13, ¿nacen
 menos niños?</p>
-<p><img src="01-exploratorio_files/figure-html/unnamed-chunk-65-1.png" width="1152" /></p>
+<p><img src="01-exploratorio_files/figure-html/unnamed-chunk-66-1.png" width="1152" /></p>
 <p>Nótese que fue útil agregar el indicador de Semana santa por el Viernes
 13 de Semana Santa que se ve como un atípico en el panel de los viernes
 13.</p>
@@ -4358,7 +4394,7 @@ menos niños?</p>
 <h3>Residuales: antes y después de 2006<a href="análisis-exploratorio.html#residuales-antes-y-después-de-2006" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Veamos primero una agregación sobre los años de los residuales. Lo
 primero es observar un cambio que sucedió repentinamente en 2006:</p>
-<p><img src="01-exploratorio_files/figure-html/unnamed-chunk-66-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p><img src="01-exploratorio_files/figure-html/unnamed-chunk-67-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>La razón es un cambio en la ley acerca de cuándo pueden entrar los niños
 a la primaria. Antes era por edad y había poco margen. Ese exceso de
 nacimientos son reportes falsos para que los niños no tuvieran que
@@ -4379,7 +4415,7 @@ dispersión a lo largo de los años) para cada día del año. Podemos
 identificar ahora los residuales más grandes: se deben, por ejemplo, a
 días feriados, con consecuencias adicionales que tienen en días ajuntos
 (excesos de nacimientos):</p>
-<p><img src="01-exploratorio_files/figure-html/unnamed-chunk-67-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p><img src="01-exploratorio_files/figure-html/unnamed-chunk-68-1.png" width="90%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="semana-santa" class="section level3 unnumbered hasAnchor">
 <h3>Semana santa<a href="análisis-exploratorio.html#semana-santa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -4388,7 +4424,7 @@ datos por días antes de Domingo de Pascua, obtenemos un patrón de caída
 fuerte de nacimientos el Viernes de Semana Santa, y la característica
 forma de “valle con hombros” en días anteriores y posteriores estos
 Viernes. ¿Por qué ocurre este patrón?</p>
-<p><img src="01-exploratorio_files/figure-html/unnamed-chunk-68-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p><img src="01-exploratorio_files/figure-html/unnamed-chunk-69-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>Nótese un defecto de nuestro modelo: el patrón de “hombros” alrededor
 del Viernes Santo no es suficientemente fuerte para equilibrar los
 nacimientos faltantes. ¿Cómo podríamos mejorar nuestra descomposición?</p>

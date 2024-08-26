@@ -67,23 +67,23 @@ slice_sample(propinas, n = 10) |> gt()
 ```
 
 ```{=html}
-<div id="oytwheqveq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#oytwheqveq table {
+<div id="tuoszwnmgi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#tuoszwnmgi table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#oytwheqveq thead, #oytwheqveq tbody, #oytwheqveq tfoot, #oytwheqveq tr, #oytwheqveq td, #oytwheqveq th {
+#tuoszwnmgi thead, #tuoszwnmgi tbody, #tuoszwnmgi tfoot, #tuoszwnmgi tr, #tuoszwnmgi td, #tuoszwnmgi th {
   border-style: none;
 }
 
-#oytwheqveq p {
+#tuoszwnmgi p {
   margin: 0;
   padding: 0;
 }
 
-#oytwheqveq .gt_table {
+#tuoszwnmgi .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -109,12 +109,12 @@ slice_sample(propinas, n = 10) |> gt()
   border-left-color: #D3D3D3;
 }
 
-#oytwheqveq .gt_caption {
+#tuoszwnmgi .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#oytwheqveq .gt_title {
+#tuoszwnmgi .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -126,7 +126,7 @@ slice_sample(propinas, n = 10) |> gt()
   border-bottom-width: 0;
 }
 
-#oytwheqveq .gt_subtitle {
+#tuoszwnmgi .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -138,7 +138,7 @@ slice_sample(propinas, n = 10) |> gt()
   border-top-width: 0;
 }
 
-#oytwheqveq .gt_heading {
+#tuoszwnmgi .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -150,13 +150,13 @@ slice_sample(propinas, n = 10) |> gt()
   border-right-color: #D3D3D3;
 }
 
-#oytwheqveq .gt_bottom_border {
+#tuoszwnmgi .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#oytwheqveq .gt_col_headings {
+#tuoszwnmgi .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -171,7 +171,7 @@ slice_sample(propinas, n = 10) |> gt()
   border-right-color: #D3D3D3;
 }
 
-#oytwheqveq .gt_col_heading {
+#tuoszwnmgi .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -191,7 +191,7 @@ slice_sample(propinas, n = 10) |> gt()
   overflow-x: hidden;
 }
 
-#oytwheqveq .gt_column_spanner_outer {
+#tuoszwnmgi .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -203,15 +203,15 @@ slice_sample(propinas, n = 10) |> gt()
   padding-right: 4px;
 }
 
-#oytwheqveq .gt_column_spanner_outer:first-child {
+#tuoszwnmgi .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#oytwheqveq .gt_column_spanner_outer:last-child {
+#tuoszwnmgi .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#oytwheqveq .gt_column_spanner {
+#tuoszwnmgi .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -223,11 +223,11 @@ slice_sample(propinas, n = 10) |> gt()
   width: 100%;
 }
 
-#oytwheqveq .gt_spanner_row {
+#tuoszwnmgi .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#oytwheqveq .gt_group_heading {
+#tuoszwnmgi .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -253,7 +253,7 @@ slice_sample(propinas, n = 10) |> gt()
   text-align: left;
 }
 
-#oytwheqveq .gt_empty_group_heading {
+#tuoszwnmgi .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -268,15 +268,15 @@ slice_sample(propinas, n = 10) |> gt()
   vertical-align: middle;
 }
 
-#oytwheqveq .gt_from_md > :first-child {
+#tuoszwnmgi .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#oytwheqveq .gt_from_md > :last-child {
+#tuoszwnmgi .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#oytwheqveq .gt_row {
+#tuoszwnmgi .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -295,7 +295,7 @@ slice_sample(propinas, n = 10) |> gt()
   overflow-x: hidden;
 }
 
-#oytwheqveq .gt_stub {
+#tuoszwnmgi .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -308,7 +308,7 @@ slice_sample(propinas, n = 10) |> gt()
   padding-right: 5px;
 }
 
-#oytwheqveq .gt_stub_row_group {
+#tuoszwnmgi .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -322,15 +322,15 @@ slice_sample(propinas, n = 10) |> gt()
   vertical-align: top;
 }
 
-#oytwheqveq .gt_row_group_first td {
+#tuoszwnmgi .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#oytwheqveq .gt_row_group_first th {
+#tuoszwnmgi .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#oytwheqveq .gt_summary_row {
+#tuoszwnmgi .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -340,16 +340,16 @@ slice_sample(propinas, n = 10) |> gt()
   padding-right: 5px;
 }
 
-#oytwheqveq .gt_first_summary_row {
+#tuoszwnmgi .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#oytwheqveq .gt_first_summary_row.thick {
+#tuoszwnmgi .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#oytwheqveq .gt_last_summary_row {
+#tuoszwnmgi .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -359,7 +359,7 @@ slice_sample(propinas, n = 10) |> gt()
   border-bottom-color: #D3D3D3;
 }
 
-#oytwheqveq .gt_grand_summary_row {
+#tuoszwnmgi .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -369,7 +369,7 @@ slice_sample(propinas, n = 10) |> gt()
   padding-right: 5px;
 }
 
-#oytwheqveq .gt_first_grand_summary_row {
+#tuoszwnmgi .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -379,7 +379,7 @@ slice_sample(propinas, n = 10) |> gt()
   border-top-color: #D3D3D3;
 }
 
-#oytwheqveq .gt_last_grand_summary_row_top {
+#tuoszwnmgi .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -389,11 +389,11 @@ slice_sample(propinas, n = 10) |> gt()
   border-bottom-color: #D3D3D3;
 }
 
-#oytwheqveq .gt_striped {
+#tuoszwnmgi .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#oytwheqveq .gt_table_body {
+#tuoszwnmgi .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -402,7 +402,7 @@ slice_sample(propinas, n = 10) |> gt()
   border-bottom-color: #D3D3D3;
 }
 
-#oytwheqveq .gt_footnotes {
+#tuoszwnmgi .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -416,7 +416,7 @@ slice_sample(propinas, n = 10) |> gt()
   border-right-color: #D3D3D3;
 }
 
-#oytwheqveq .gt_footnote {
+#tuoszwnmgi .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -425,7 +425,7 @@ slice_sample(propinas, n = 10) |> gt()
   padding-right: 5px;
 }
 
-#oytwheqveq .gt_sourcenotes {
+#tuoszwnmgi .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -439,7 +439,7 @@ slice_sample(propinas, n = 10) |> gt()
   border-right-color: #D3D3D3;
 }
 
-#oytwheqveq .gt_sourcenote {
+#tuoszwnmgi .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -447,72 +447,72 @@ slice_sample(propinas, n = 10) |> gt()
   padding-right: 5px;
 }
 
-#oytwheqveq .gt_left {
+#tuoszwnmgi .gt_left {
   text-align: left;
 }
 
-#oytwheqveq .gt_center {
+#tuoszwnmgi .gt_center {
   text-align: center;
 }
 
-#oytwheqveq .gt_right {
+#tuoszwnmgi .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#oytwheqveq .gt_font_normal {
+#tuoszwnmgi .gt_font_normal {
   font-weight: normal;
 }
 
-#oytwheqveq .gt_font_bold {
+#tuoszwnmgi .gt_font_bold {
   font-weight: bold;
 }
 
-#oytwheqveq .gt_font_italic {
+#tuoszwnmgi .gt_font_italic {
   font-style: italic;
 }
 
-#oytwheqveq .gt_super {
+#tuoszwnmgi .gt_super {
   font-size: 65%;
 }
 
-#oytwheqveq .gt_footnote_marks {
+#tuoszwnmgi .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#oytwheqveq .gt_asterisk {
+#tuoszwnmgi .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#oytwheqveq .gt_indent_1 {
+#tuoszwnmgi .gt_indent_1 {
   text-indent: 5px;
 }
 
-#oytwheqveq .gt_indent_2 {
+#tuoszwnmgi .gt_indent_2 {
   text-indent: 10px;
 }
 
-#oytwheqveq .gt_indent_3 {
+#tuoszwnmgi .gt_indent_3 {
   text-indent: 15px;
 }
 
-#oytwheqveq .gt_indent_4 {
+#tuoszwnmgi .gt_indent_4 {
   text-indent: 20px;
 }
 
-#oytwheqveq .gt_indent_5 {
+#tuoszwnmgi .gt_indent_5 {
   text-indent: 25px;
 }
 
-#oytwheqveq .katex-display {
+#tuoszwnmgi .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#oytwheqveq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#tuoszwnmgi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -528,66 +528,66 @@ slice_sample(propinas, n = 10) |> gt()
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td headers="cuenta_total" class="gt_row gt_right">16.82</td>
-<td headers="propina" class="gt_row gt_right">4.00</td>
+    <tr><td headers="cuenta_total" class="gt_row gt_right">7.74</td>
+<td headers="propina" class="gt_row gt_right">1.44</td>
 <td headers="fumador" class="gt_row gt_left">Si</td>
-<td headers="dia" class="gt_row gt_left">Dom</td>
+<td headers="dia" class="gt_row gt_left">Sab</td>
 <td headers="momento" class="gt_row gt_left">Cena</td>
 <td headers="num_personas" class="gt_row gt_right">2</td></tr>
-    <tr><td headers="cuenta_total" class="gt_row gt_right">28.97</td>
-<td headers="propina" class="gt_row gt_right">3.00</td>
-<td headers="fumador" class="gt_row gt_left">Si</td>
-<td headers="dia" class="gt_row gt_left">Vie</td>
-<td headers="momento" class="gt_row gt_left">Cena</td>
+    <tr><td headers="cuenta_total" class="gt_row gt_right">29.80</td>
+<td headers="propina" class="gt_row gt_right">4.20</td>
+<td headers="fumador" class="gt_row gt_left">No</td>
+<td headers="dia" class="gt_row gt_left">Jue</td>
+<td headers="momento" class="gt_row gt_left">Comida</td>
+<td headers="num_personas" class="gt_row gt_right">6</td></tr>
+    <tr><td headers="cuenta_total" class="gt_row gt_right">8.52</td>
+<td headers="propina" class="gt_row gt_right">1.48</td>
+<td headers="fumador" class="gt_row gt_left">No</td>
+<td headers="dia" class="gt_row gt_left">Jue</td>
+<td headers="momento" class="gt_row gt_left">Comida</td>
 <td headers="num_personas" class="gt_row gt_right">2</td></tr>
-    <tr><td headers="cuenta_total" class="gt_row gt_right">17.82</td>
-<td headers="propina" class="gt_row gt_right">1.75</td>
+    <tr><td headers="cuenta_total" class="gt_row gt_right">12.43</td>
+<td headers="propina" class="gt_row gt_right">1.80</td>
+<td headers="fumador" class="gt_row gt_left">No</td>
+<td headers="dia" class="gt_row gt_left">Jue</td>
+<td headers="momento" class="gt_row gt_left">Comida</td>
+<td headers="num_personas" class="gt_row gt_right">2</td></tr>
+    <tr><td headers="cuenta_total" class="gt_row gt_right">12.69</td>
+<td headers="propina" class="gt_row gt_right">2.00</td>
 <td headers="fumador" class="gt_row gt_left">No</td>
 <td headers="dia" class="gt_row gt_left">Sab</td>
 <td headers="momento" class="gt_row gt_left">Cena</td>
 <td headers="num_personas" class="gt_row gt_right">2</td></tr>
-    <tr><td headers="cuenta_total" class="gt_row gt_right">16.43</td>
-<td headers="propina" class="gt_row gt_right">2.30</td>
+    <tr><td headers="cuenta_total" class="gt_row gt_right">34.81</td>
+<td headers="propina" class="gt_row gt_right">5.20</td>
+<td headers="fumador" class="gt_row gt_left">No</td>
+<td headers="dia" class="gt_row gt_left">Dom</td>
+<td headers="momento" class="gt_row gt_left">Cena</td>
+<td headers="num_personas" class="gt_row gt_right">4</td></tr>
+    <tr><td headers="cuenta_total" class="gt_row gt_right">17.47</td>
+<td headers="propina" class="gt_row gt_right">3.50</td>
 <td headers="fumador" class="gt_row gt_left">No</td>
 <td headers="dia" class="gt_row gt_left">Jue</td>
 <td headers="momento" class="gt_row gt_left">Comida</td>
 <td headers="num_personas" class="gt_row gt_right">2</td></tr>
-    <tr><td headers="cuenta_total" class="gt_row gt_right">7.25</td>
-<td headers="propina" class="gt_row gt_right">5.15</td>
+    <tr><td headers="cuenta_total" class="gt_row gt_right">11.35</td>
+<td headers="propina" class="gt_row gt_right">2.50</td>
+<td headers="fumador" class="gt_row gt_left">Si</td>
+<td headers="dia" class="gt_row gt_left">Vie</td>
+<td headers="momento" class="gt_row gt_left">Cena</td>
+<td headers="num_personas" class="gt_row gt_right">2</td></tr>
+    <tr><td headers="cuenta_total" class="gt_row gt_right">15.69</td>
+<td headers="propina" class="gt_row gt_right">1.50</td>
 <td headers="fumador" class="gt_row gt_left">Si</td>
 <td headers="dia" class="gt_row gt_left">Dom</td>
 <td headers="momento" class="gt_row gt_left">Cena</td>
 <td headers="num_personas" class="gt_row gt_right">2</td></tr>
-    <tr><td headers="cuenta_total" class="gt_row gt_right">24.08</td>
-<td headers="propina" class="gt_row gt_right">2.92</td>
-<td headers="fumador" class="gt_row gt_left">No</td>
-<td headers="dia" class="gt_row gt_left">Jue</td>
-<td headers="momento" class="gt_row gt_left">Comida</td>
-<td headers="num_personas" class="gt_row gt_right">4</td></tr>
-    <tr><td headers="cuenta_total" class="gt_row gt_right">25.00</td>
-<td headers="propina" class="gt_row gt_right">3.75</td>
-<td headers="fumador" class="gt_row gt_left">No</td>
-<td headers="dia" class="gt_row gt_left">Dom</td>
-<td headers="momento" class="gt_row gt_left">Cena</td>
-<td headers="num_personas" class="gt_row gt_right">4</td></tr>
-    <tr><td headers="cuenta_total" class="gt_row gt_right">8.77</td>
-<td headers="propina" class="gt_row gt_right">2.00</td>
-<td headers="fumador" class="gt_row gt_left">No</td>
-<td headers="dia" class="gt_row gt_left">Dom</td>
-<td headers="momento" class="gt_row gt_left">Cena</td>
-<td headers="num_personas" class="gt_row gt_right">2</td></tr>
-    <tr><td headers="cuenta_total" class="gt_row gt_right">13.39</td>
-<td headers="propina" class="gt_row gt_right">2.61</td>
-<td headers="fumador" class="gt_row gt_left">No</td>
-<td headers="dia" class="gt_row gt_left">Dom</td>
-<td headers="momento" class="gt_row gt_left">Cena</td>
-<td headers="num_personas" class="gt_row gt_right">2</td></tr>
-    <tr><td headers="cuenta_total" class="gt_row gt_right">22.76</td>
+    <tr><td headers="cuenta_total" class="gt_row gt_right">17.07</td>
 <td headers="propina" class="gt_row gt_right">3.00</td>
 <td headers="fumador" class="gt_row gt_left">No</td>
-<td headers="dia" class="gt_row gt_left">Jue</td>
-<td headers="momento" class="gt_row gt_left">Comida</td>
-<td headers="num_personas" class="gt_row gt_right">2</td></tr>
+<td headers="dia" class="gt_row gt_left">Sab</td>
+<td headers="momento" class="gt_row gt_left">Cena</td>
+<td headers="num_personas" class="gt_row gt_right">3</td></tr>
   </tbody>
   
   
@@ -636,23 +636,23 @@ bind_rows(head(cuenta), tail(cuenta)) |>
 ```
 
 ```{=html}
-<div id="sagcblymsb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#sagcblymsb table {
+<div id="jnkgrhfmda" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#jnkgrhfmda table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#sagcblymsb thead, #sagcblymsb tbody, #sagcblymsb tfoot, #sagcblymsb tr, #sagcblymsb td, #sagcblymsb th {
+#jnkgrhfmda thead, #jnkgrhfmda tbody, #jnkgrhfmda tfoot, #jnkgrhfmda tr, #jnkgrhfmda td, #jnkgrhfmda th {
   border-style: none;
 }
 
-#sagcblymsb p {
+#jnkgrhfmda p {
   margin: 0;
   padding: 0;
 }
 
-#sagcblymsb .gt_table {
+#jnkgrhfmda .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -678,12 +678,12 @@ bind_rows(head(cuenta), tail(cuenta)) |>
   border-left-color: #D3D3D3;
 }
 
-#sagcblymsb .gt_caption {
+#jnkgrhfmda .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#sagcblymsb .gt_title {
+#jnkgrhfmda .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -695,7 +695,7 @@ bind_rows(head(cuenta), tail(cuenta)) |>
   border-bottom-width: 0;
 }
 
-#sagcblymsb .gt_subtitle {
+#jnkgrhfmda .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -707,7 +707,7 @@ bind_rows(head(cuenta), tail(cuenta)) |>
   border-top-width: 0;
 }
 
-#sagcblymsb .gt_heading {
+#jnkgrhfmda .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -719,13 +719,13 @@ bind_rows(head(cuenta), tail(cuenta)) |>
   border-right-color: #D3D3D3;
 }
 
-#sagcblymsb .gt_bottom_border {
+#jnkgrhfmda .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#sagcblymsb .gt_col_headings {
+#jnkgrhfmda .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -740,7 +740,7 @@ bind_rows(head(cuenta), tail(cuenta)) |>
   border-right-color: #D3D3D3;
 }
 
-#sagcblymsb .gt_col_heading {
+#jnkgrhfmda .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -760,7 +760,7 @@ bind_rows(head(cuenta), tail(cuenta)) |>
   overflow-x: hidden;
 }
 
-#sagcblymsb .gt_column_spanner_outer {
+#jnkgrhfmda .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -772,15 +772,15 @@ bind_rows(head(cuenta), tail(cuenta)) |>
   padding-right: 4px;
 }
 
-#sagcblymsb .gt_column_spanner_outer:first-child {
+#jnkgrhfmda .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#sagcblymsb .gt_column_spanner_outer:last-child {
+#jnkgrhfmda .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#sagcblymsb .gt_column_spanner {
+#jnkgrhfmda .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -792,11 +792,11 @@ bind_rows(head(cuenta), tail(cuenta)) |>
   width: 100%;
 }
 
-#sagcblymsb .gt_spanner_row {
+#jnkgrhfmda .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#sagcblymsb .gt_group_heading {
+#jnkgrhfmda .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -822,7 +822,7 @@ bind_rows(head(cuenta), tail(cuenta)) |>
   text-align: left;
 }
 
-#sagcblymsb .gt_empty_group_heading {
+#jnkgrhfmda .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -837,15 +837,15 @@ bind_rows(head(cuenta), tail(cuenta)) |>
   vertical-align: middle;
 }
 
-#sagcblymsb .gt_from_md > :first-child {
+#jnkgrhfmda .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#sagcblymsb .gt_from_md > :last-child {
+#jnkgrhfmda .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#sagcblymsb .gt_row {
+#jnkgrhfmda .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -864,7 +864,7 @@ bind_rows(head(cuenta), tail(cuenta)) |>
   overflow-x: hidden;
 }
 
-#sagcblymsb .gt_stub {
+#jnkgrhfmda .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -877,7 +877,7 @@ bind_rows(head(cuenta), tail(cuenta)) |>
   padding-right: 5px;
 }
 
-#sagcblymsb .gt_stub_row_group {
+#jnkgrhfmda .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -891,15 +891,15 @@ bind_rows(head(cuenta), tail(cuenta)) |>
   vertical-align: top;
 }
 
-#sagcblymsb .gt_row_group_first td {
+#jnkgrhfmda .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#sagcblymsb .gt_row_group_first th {
+#jnkgrhfmda .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#sagcblymsb .gt_summary_row {
+#jnkgrhfmda .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -909,16 +909,16 @@ bind_rows(head(cuenta), tail(cuenta)) |>
   padding-right: 5px;
 }
 
-#sagcblymsb .gt_first_summary_row {
+#jnkgrhfmda .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#sagcblymsb .gt_first_summary_row.thick {
+#jnkgrhfmda .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#sagcblymsb .gt_last_summary_row {
+#jnkgrhfmda .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -928,7 +928,7 @@ bind_rows(head(cuenta), tail(cuenta)) |>
   border-bottom-color: #D3D3D3;
 }
 
-#sagcblymsb .gt_grand_summary_row {
+#jnkgrhfmda .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -938,7 +938,7 @@ bind_rows(head(cuenta), tail(cuenta)) |>
   padding-right: 5px;
 }
 
-#sagcblymsb .gt_first_grand_summary_row {
+#jnkgrhfmda .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -948,7 +948,7 @@ bind_rows(head(cuenta), tail(cuenta)) |>
   border-top-color: #D3D3D3;
 }
 
-#sagcblymsb .gt_last_grand_summary_row_top {
+#jnkgrhfmda .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -958,11 +958,11 @@ bind_rows(head(cuenta), tail(cuenta)) |>
   border-bottom-color: #D3D3D3;
 }
 
-#sagcblymsb .gt_striped {
+#jnkgrhfmda .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#sagcblymsb .gt_table_body {
+#jnkgrhfmda .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -971,7 +971,7 @@ bind_rows(head(cuenta), tail(cuenta)) |>
   border-bottom-color: #D3D3D3;
 }
 
-#sagcblymsb .gt_footnotes {
+#jnkgrhfmda .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -985,7 +985,7 @@ bind_rows(head(cuenta), tail(cuenta)) |>
   border-right-color: #D3D3D3;
 }
 
-#sagcblymsb .gt_footnote {
+#jnkgrhfmda .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -994,7 +994,7 @@ bind_rows(head(cuenta), tail(cuenta)) |>
   padding-right: 5px;
 }
 
-#sagcblymsb .gt_sourcenotes {
+#jnkgrhfmda .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1008,7 +1008,7 @@ bind_rows(head(cuenta), tail(cuenta)) |>
   border-right-color: #D3D3D3;
 }
 
-#sagcblymsb .gt_sourcenote {
+#jnkgrhfmda .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1016,72 +1016,72 @@ bind_rows(head(cuenta), tail(cuenta)) |>
   padding-right: 5px;
 }
 
-#sagcblymsb .gt_left {
+#jnkgrhfmda .gt_left {
   text-align: left;
 }
 
-#sagcblymsb .gt_center {
+#jnkgrhfmda .gt_center {
   text-align: center;
 }
 
-#sagcblymsb .gt_right {
+#jnkgrhfmda .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#sagcblymsb .gt_font_normal {
+#jnkgrhfmda .gt_font_normal {
   font-weight: normal;
 }
 
-#sagcblymsb .gt_font_bold {
+#jnkgrhfmda .gt_font_bold {
   font-weight: bold;
 }
 
-#sagcblymsb .gt_font_italic {
+#jnkgrhfmda .gt_font_italic {
   font-style: italic;
 }
 
-#sagcblymsb .gt_super {
+#jnkgrhfmda .gt_super {
   font-size: 65%;
 }
 
-#sagcblymsb .gt_footnote_marks {
+#jnkgrhfmda .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#sagcblymsb .gt_asterisk {
+#jnkgrhfmda .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#sagcblymsb .gt_indent_1 {
+#jnkgrhfmda .gt_indent_1 {
   text-indent: 5px;
 }
 
-#sagcblymsb .gt_indent_2 {
+#jnkgrhfmda .gt_indent_2 {
   text-indent: 10px;
 }
 
-#sagcblymsb .gt_indent_3 {
+#jnkgrhfmda .gt_indent_3 {
   text-indent: 15px;
 }
 
-#sagcblymsb .gt_indent_4 {
+#jnkgrhfmda .gt_indent_4 {
   text-indent: 20px;
 }
 
-#sagcblymsb .gt_indent_5 {
+#jnkgrhfmda .gt_indent_5 {
   text-indent: 25px;
 }
 
-#sagcblymsb .katex-display {
+#jnkgrhfmda .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#sagcblymsb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#jnkgrhfmda div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2641,7 +2641,8 @@ una gráfica de dispersión:
 ``` r
 library(ggrepel)
 ggplot(sat, aes(x = expend, y = sat, label = state)) +
-  geom_point(colour = "red", size = 2) + geom_text_repel(colour = "gray50") +
+  geom_point(colour = "red", size = 2) + 
+  geom_text_repel(colour = "gray50") +
   xlab("Gasto por alumno (miles de dólares)") +
   ylab("Calificación promedio en SAT")
 ```
@@ -2666,7 +2667,7 @@ toma el SAT. Podemos agregar como sigue:
 ggplot(sat, aes(x = expend, y = math, label=state, colour = frac)) +
   geom_point() + geom_text_repel() +
   xlab("Gasto por alumno (miles de dólares)") +
-  ylab("Calificación en matemáticas")
+  ylab("Calificación promedio en SAT")
 ```
 
 <img src="01-exploratorio_files/figure-html/unnamed-chunk-31-1.png" width="95%" style="display: block; margin: auto;" />
@@ -2691,8 +2692,7 @@ sat <- sat |> group_by(clase) |>
   mutate(clase_media = factor(clase_media))
 sat <- sat |>
   mutate(rank_p = rank(frac, ties= "first") / length(frac))
-ggplot(sat, aes(x = rank_p, y = frac, label = state,
-                colour = clase_media)) +
+ggplot(sat, aes(x = rank_p, y = frac, label = state, colour = clase_media)) +
   geom_point(size = 2)
 ```
 
@@ -3936,7 +3936,7 @@ generalizan los resultados de nuestro análisis a la población general, y
 entender esto depende de entender qué tanta variación hay de muestra a
 muestra, de todas las posibles muestras que pudimos haber extraido.
 
-En las siguiente secciones discutiremos estos aspectos, en los cuales
+En las siguientes secciones discutiremos estos aspectos, en los cuales
 pasamos del trabajo de "detective" al trabajo de "juez" en nuestro
 trabajo analítico.
 
@@ -3945,9 +3945,9 @@ trabajo analítico.
 Las gráficas de dispersión son la herramienta básica para describir la
 relación entre dos variables cuantitativas, y como vimos en ejemplo
 anteriores, muchas veces podemos apreciar mejor la relación entre ellas
-si agregamos una curva `loess` que suavice.
+si agregamos una curva `loess`.
 
-Los siguientes datos muestran los premios ofrecidos y las ventas totales
+Veamos un ejemplo, los siguientes datos muestran los premios ofrecidos y las ventas totales
 de una lotería a lo largo de 53 sorteos (las unidades son cantidades de
 dinero indexadas). Graficamos en escalas logarítmicas y agregamos una
 curva `loess`.
@@ -3960,12 +3960,16 @@ load(here::here("data", "ventas_sorteo.Rdata"))
 
 ggplot(ventas.sorteo, aes(x = premio, y = ventas.tot.1)) +
   geom_point() +
-  geom_smooth(method = "loess", alpha = 0.5, degree = 1, se = FALSE) +
+  geom_smooth(method = "loess", span = 0.6, method.args = list(degree = 1), 
+              se = FALSE) +
   scale_x_log10(breaks = c(20000, 40000, 80000)) +
   scale_y_log10(breaks = c(10000, 15000, 22000, 33000))
 ```
 
 <img src="01-exploratorio_files/figure-html/unnamed-chunk-42-1.png" width="345.6" style="display: block; margin: auto;" />
+
+
+
 
 El patrón no era difícil de ver en los datos originales, sin embargo, la
 curva lo hace más claro, el logaritmo de las ventas tiene una relación
@@ -3993,12 +3997,12 @@ con otras familias de funciones (por ejemplo cuadráticas).
 ``` r
 ggplot(ventas.sorteo, aes(x = premio, y = ventas.tot.1)) +
   geom_point() +
-  geom_smooth(method = "lm", alpha = 0.5, se = FALSE) +
+  geom_smooth(method = "lm", se = FALSE) +
   scale_x_log10(breaks = c(20000, 40000, 80000)) +
   scale_y_log10(breaks = c(10000, 15000, 22000, 33000))
 ```
 
-<img src="01-exploratorio_files/figure-html/unnamed-chunk-43-1.png" width="345.6" style="display: block; margin: auto;" />
+<img src="01-exploratorio_files/figure-html/unnamed-chunk-44-1.png" width="345.6" style="display: block; margin: auto;" />
 
 Si observamos la gráfica notamos que este modelo lineal (en los
 logaritmos) no resumen adecuadamente estos datos. Podríamos experimentar
@@ -4041,7 +4045,7 @@ tener que suavizar demasiado poco:
 La idea es producir ajustes locales de rectas o funciones lineales o
 cuadráticas. Consideremos especificar dos parámetros:
 
--   Parámetro de suavizamiento $\alpha$: cuando $\alpha$ es más grande,
+-   Parámetro de suavizamiento $\alpha$: toma valores en $(0,1)$, cuando $\alpha$ es más grande,
     la curva ajustada es más suave.
 
 -   Grado de los polinomios locales que ajustamos $\lambda$:
@@ -4092,7 +4096,7 @@ tricubo <- function(x) {
 curve(tricubo, from = -1.5, to = 1.5)
 ```
 
-<img src="01-exploratorio_files/figure-html/unnamed-chunk-44-1.png" width="326.4" style="display: block; margin: auto;" />
+<img src="01-exploratorio_files/figure-html/unnamed-chunk-45-1.png" width="326.4" style="display: block; margin: auto;" />
 
 Finalmente, para cada valor de $x_k$ que está en el conjunto de datos
 $\{x_1,...,x_n\}$, ajustamos una recta de mínimos cuadrados ponderados
@@ -4160,13 +4164,18 @@ natalidad <- read_rds("./data/nacimientos/natalidad.rds") |>
   mutate(año = year(fecha)) |>
   mutate(mes = month(fecha)) |>
   ungroup() |>
-  mutate(dia_semana = recode(dia_semana, Monday = "Lunes", Tuesday = "Martes", Wednesday = "Miércoles",
-                             Thursday = "Jueves", Friday = "Viernes", Saturday = "Sábado", Sunday = "Domingo")) |>
+  mutate(dia_semana = recode(dia_semana, Monday = "Lunes", Tuesday = "Martes", 
+                             Wednesday = "Miércoles", Thursday = "Jueves", 
+                             Friday = "Viernes", Saturday = "Sábado", 
+                             Sunday = "Domingo")) |>
   #necesario pues el LOCALE puede cambiar
-  mutate(dia_semana = recode(dia_semana, lunes = "Lunes", martes = "Martes", miércoles = "Miércoles",
-                             jueves = "Jueves", viernes = "Viernes", sábado = "Sábado", domingo = "Domingo")) |>
+  mutate(dia_semana = recode(dia_semana, lunes = "Lunes", martes = "Martes", 
+                             miércoles = "Miércoles", jueves = "Jueves", 
+                             viernes = "Viernes", sábado = "Sábado", 
+                             domingo = "Domingo")) |>
   mutate(dia_semana = fct_relevel(dia_semana, c("Lunes", "Martes", "Miércoles",
-                                                "Jueves", "Viernes", "Sábado", "Domingo")))
+                                                "Jueves", "Viernes", "Sábado",
+                                                "Domingo")))
 ```
 
 Consideremos los *datos agregados* del número de nacimientos
@@ -4174,7 +4183,7 @@ Consideremos los *datos agregados* del número de nacimientos
 ser hacer una gráfica de la serie de tiempo. Sin embargo, vemos que no
 es muy útil:
 
-<img src="01-exploratorio_files/figure-html/unnamed-chunk-47-1.png" width="90%" style="display: block; margin: auto;" />
+<img src="01-exploratorio_files/figure-html/unnamed-chunk-48-1.png" width="90%" style="display: block; margin: auto;" />
 
 Hay varias características que notamos. Primero, parece haber una
 tendencia ligeramente decreciente del número de nacimientos a lo largo
@@ -4223,7 +4232,7 @@ datos_dia <- natalidad |>
   mutate(res_1 = n - ajuste_1)
 ```
 
-<img src="01-exploratorio_files/figure-html/unnamed-chunk-50-1.png" width="95%" style="display: block; margin: auto;" />
+<img src="01-exploratorio_files/figure-html/unnamed-chunk-51-1.png" width="95%" style="display: block; margin: auto;" />
 
 Notemos que a principios de 2000 el suavizador está en niveles de
 alrededor de 7000 nacimientos diarios, hacia 2015 ese número es más
@@ -4244,7 +4253,16 @@ datos_dia <- datos_dia |> mutate(ajuste_2 = fitted(mod_anual)) |>
   mutate(res_2 = res_1 - ajuste_2)
 ```
 
-<img src="01-exploratorio_files/figure-html/unnamed-chunk-52-1.png" width="90%" style="display: block; margin: auto;" />
+
+```
+## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.
+```
+
+<img src="01-exploratorio_files/figure-html/unnamed-chunk-53-1.png" width="90%" style="display: block; margin: auto;" />
 
 ### Día de la semana {.unnumbered}
 
@@ -4260,7 +4278,8 @@ datos_dia <- datos_dia |>
   group_by(dia_semana) |>
   nest() |>
   mutate(ajuste_mod =
-           map(data, ~ loess(res_2 ~ as.numeric(fecha), data = .x, span = 0.1, degree = 1))) |>
+           map(data, ~ loess(res_2 ~ as.numeric(fecha), data = .x, span = 0.1, 
+                             degree = 1))) |>
   mutate(ajuste_3 =  map(ajuste_mod, fitted)) |>
   select(-ajuste_mod) |>
   unnest(cols = c(data, ajuste_3)) |>
@@ -4268,7 +4287,7 @@ datos_dia <- datos_dia |>
   ungroup()
 ```
 
-<img src="01-exploratorio_files/figure-html/unnamed-chunk-54-1.png" width="90%" style="display: block; margin: auto;" />
+<img src="01-exploratorio_files/figure-html/unnamed-chunk-55-1.png" width="90%" style="display: block; margin: auto;" />
 
 ### Residuales {.unnumbered}
 
@@ -4280,7 +4299,7 @@ ajustados:
 ## `geom_smooth()` using formula = 'y ~ x'
 ```
 
-<img src="01-exploratorio_files/figure-html/unnamed-chunk-55-1.png" width="90%" style="display: block; margin: auto;" />
+<img src="01-exploratorio_files/figure-html/unnamed-chunk-56-1.png" width="90%" style="display: block; margin: auto;" />
 
 **Observación**: nótese que la distribución de estos residuales presenta
 irregularidades interesantes. La distribución es de *colas largas*, y no
@@ -4288,7 +4307,7 @@ se debe a unos cuantos datos atípicos. Esto generalmente es indicación
 que hay factores importantes que hay que examinar mas a detalle en los
 residuales:
 
-<img src="01-exploratorio_files/figure-html/unnamed-chunk-56-1.png" width="90%" style="display: block; margin: auto;" />
+<img src="01-exploratorio_files/figure-html/unnamed-chunk-57-1.png" width="90%" style="display: block; margin: auto;" />
 
 ### Reestimación {.unnumbered}
 
@@ -4310,15 +4329,15 @@ mod_1 <- loess(n_1 ~ as.numeric(fecha), data = datos_dia, span = 0.02, degree = 
                family = "symmetric")
 ```
 
-<img src="01-exploratorio_files/figure-html/unnamed-chunk-58-1.png" width="90%" style="display: block; margin: auto;" />
+<img src="01-exploratorio_files/figure-html/unnamed-chunk-59-1.png" width="90%" style="display: block; margin: auto;" />
 
 
 
-<img src="01-exploratorio_files/figure-html/unnamed-chunk-60-1.png" width="90%" style="display: block; margin: auto;" />
+<img src="01-exploratorio_files/figure-html/unnamed-chunk-61-1.png" width="90%" style="display: block; margin: auto;" />
 
 Y ahora repetimos con la componente de día de la semana:
 
-<img src="01-exploratorio_files/figure-html/unnamed-chunk-61-1.png" width="90%" style="display: block; margin: auto;" />
+<img src="01-exploratorio_files/figure-html/unnamed-chunk-62-1.png" width="90%" style="display: block; margin: auto;" />
 
 ### Análisis de componentes {.unnumbered}
 
@@ -4326,7 +4345,7 @@ Ahora comparamos las componentes estimadas y los residuales en una misma
 gráfica. Por definición, la suma de todas estas componentes da los datos
 originales.
 
-<img src="01-exploratorio_files/figure-html/unnamed-chunk-62-1.png" width="90%" style="display: block; margin: auto;" />
+<img src="01-exploratorio_files/figure-html/unnamed-chunk-63-1.png" width="90%" style="display: block; margin: auto;" />
 
 Este último paso nos permite diversas comparaciones que explican la
 variación que vimos en los datos. Una gran parte de los residuales está
@@ -4352,7 +4371,7 @@ quantile(datos_dia$res_6, c(00, .01,0.05, 0.10, 0.90, 0.95, 0.99, 1)) |> round()
 Podemos empezar con una curosidad. Los días Viernes o Martes 13, ¿nacen
 menos niños?
 
-<img src="01-exploratorio_files/figure-html/unnamed-chunk-65-1.png" width="1152" />
+<img src="01-exploratorio_files/figure-html/unnamed-chunk-66-1.png" width="1152" />
 
 Nótese que fue útil agregar el indicador de Semana santa por el Viernes
 13 de Semana Santa que se ve como un atípico en el panel de los viernes
@@ -4363,7 +4382,7 @@ Nótese que fue útil agregar el indicador de Semana santa por el Viernes
 Veamos primero una agregación sobre los años de los residuales. Lo
 primero es observar un cambio que sucedió repentinamente en 2006:
 
-<img src="01-exploratorio_files/figure-html/unnamed-chunk-66-1.png" width="90%" style="display: block; margin: auto;" />
+<img src="01-exploratorio_files/figure-html/unnamed-chunk-67-1.png" width="90%" style="display: block; margin: auto;" />
 
 La razón es un cambio en la ley acerca de cuándo pueden entrar los niños
 a la primaria. Antes era por edad y había poco margen. Ese exceso de
@@ -4386,7 +4405,7 @@ identificar ahora los residuales más grandes: se deben, por ejemplo, a
 días feriados, con consecuencias adicionales que tienen en días ajuntos
 (excesos de nacimientos):
 
-<img src="01-exploratorio_files/figure-html/unnamed-chunk-67-1.png" width="90%" style="display: block; margin: auto;" />
+<img src="01-exploratorio_files/figure-html/unnamed-chunk-68-1.png" width="90%" style="display: block; margin: auto;" />
 
 ### Semana santa {.unnumbered}
 
@@ -4396,7 +4415,7 @@ fuerte de nacimientos el Viernes de Semana Santa, y la característica
 forma de "valle con hombros" en días anteriores y posteriores estos
 Viernes. ¿Por qué ocurre este patrón?
 
-<img src="01-exploratorio_files/figure-html/unnamed-chunk-68-1.png" width="90%" style="display: block; margin: auto;" />
+<img src="01-exploratorio_files/figure-html/unnamed-chunk-69-1.png" width="90%" style="display: block; margin: auto;" />
 
 Nótese un defecto de nuestro modelo: el patrón de "hombros" alrededor
 del Viernes Santo no es suficientemente fuerte para equilibrar los
