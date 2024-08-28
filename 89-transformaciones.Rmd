@@ -1,0 +1,125 @@
+# Apéndice: Transformaciones {-}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(tsibbledata)
+library(MASS)
+library(ggrepel)
+library(ggpmisc)
+library(patchwork)
+```
+
+
+En ocasiones es conveniente transformar los datos para el análisis, el 
+objetivo de los ajustes es simplificar la interpretación y el análisis al 
+eliminar fuentes de variación conocidas, o para simplificar los patrones.
+
+Algunos ejemplos donde eliminamos efectos conocidos: 
+
+1. Cuando analizamos el precio de venta de las casas podemos eliminar la variación 
+debida al tamaño de las casas al pasar de precio de venta a precio de venta por metro cuadrado. 
+De manera similar considerar propina como porcentaje de la cuenta.
+
+2. En series de tiempo cuando los datos están relacionados con el tamaño de la 
+población podemos ajustar a mediciones per capita (en series de tiempo PIB). También es común ajustar por inflación, o poner cantidades monetarias en valor presente.
+
+```{r}
+mex_dat <- global_economy |> 
+  filter(Code == "MEX")
+
+pib <- ggplot(mex_dat, aes(x = Year, y = GDP / 1e6)) +
+  geom_line()
+```
+
+```{r, out.height=4, out.width=7.5}
+pib_pc <- ggplot(mex_dat, aes(x = Year, y = GDP / Population)) +
+  geom_line()
+
+pib + pib_pc
+```
+
+
+Adicionalmente podemos recurrir a otras transformaciones matemáticas (e.g. logaritmo, raíz cuadrada) que simplifiquen
+el patrón en los datos y la interpretación. 
+
+Veamos un ejemplo donde es apropiado la transformación logaritmo. 
+
+```{r}
+animals_tbl <- as_tibble(Animals, rownames = "animal")
+
+p1 <- ggplot(animals_tbl, aes(x = body, y = brain, label = animal)) +
+  geom_point()
+
+p2 <- ggplot(animals_tbl, aes(x = body, y = brain, label = animal)) +
+  geom_point() + xlim(0, 500) + ylim(0, 1500) +
+  geom_text_repel()
+
+(p1 + p2)
+```
+
+Cuando hacemos la transformación logaritmo obtenemos una gráfica más fácil de 
+leer y los datos se modelarán con más facilidad.
+
+```{r}
+p3 <- ggplot(animals_tbl, aes(x = log(body), y = log(brain), label = animal)) +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  geom_point() + 
+  geom_text_repel()  + 
+  stat_poly_eq(use_label(c("eq"))) 
+
+p3
+```
+
+La transformación logaritmo tiene además ventajas en interpretación, para diferencias
+chicas en escala log, las diferencias corresponden a diferencias porcentuales
+en la escala original, por ejempo consideremos la diferencia entre el peso en escala
+log de humano y borrego: 4.13 - 4.02 = 0.11. 
+Confirmamos que el humano es aproximadamente 11% más pesado que el borrego en la 
+escala original: 62/55.5 - 1 = 0.12
+
+
+```{r}
+animals_tbl |>  
+  mutate(log_body = log(body), 
+         log_brain = log(brain)) |> 
+  filter(animal == "Human" | animal == "Sheep") |> 
+  arrange(body) |> 
+  gt::gt() |> 
+  gt::fmt_number()
+  
+```
+
+Y podemos usarlo también para interpretar la recta de referencia $y = 2.55 + 0.5 x$
+, para cambios chicos:
+*Un incremento de 10% en masa total corresponde en un incremento de 5% en masa cerebral.*
+
+**Justificación**
+
+Para entender la interpretación como cambio porcentual recordemos primero 
+que la representación con series de Taylor de la función exponencial es:
+
+
+$$e^x = \sum_{n=1}^\infty \frac{x^n}{n!}$$
+
+Más aún podemos tener una aproximación usando [polinomios de Taylor](https://en.wikipedia.org/wiki/Taylor%27s_theorem), en el caso de la 
+exponencial el $k$-ésimo polinomio de Taylor está dado por:
+
+$$e^\delta \approx 1 + \delta + \frac{1}{2!}\delta^2 + \dots +  \frac{1}{k!}\delta^k$$
+
+y si $\delta$ es chica (digamos menor a 0.15), entonces la aproximación de primer grado es
+razonable y tenemos:
+
+$$Ae^{\delta} \approx A(1+\delta)$$
+
+```{r}
+dat <- tibble(delta = seq(0, 0.25, 0.01), exp_delta = exp(delta), uno_mas_delta = 1 + delta)
+
+ggplot(dat, aes(x = uno_mas_delta, y = exp_delta)) +
+  geom_line() +
+  geom_abline(color = "red") +
+  annotate("text", x = 1.20, y = 1.18, label = "y = x", color = "red", size = 6)
+```
+
+
+
+
