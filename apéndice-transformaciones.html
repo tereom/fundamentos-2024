@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Apéndice: Principios de visualizacion | Fundamentos de Estadística con Remuestreo</title>
+  <title>Apéndice: Transformaciones | Fundamentos de Estadística con Remuestreo</title>
   <meta name="description" content="Curso de Fundamentos de Estadística con Remuestreo, maestría en Ciencia de Datos, ITAM, Otoño 2024." />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Apéndice: Principios de visualizacion | Fundamentos de Estadística con Remuestreo" />
+  <meta property="og:title" content="Apéndice: Transformaciones | Fundamentos de Estadística con Remuestreo" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Curso de Fundamentos de Estadística con Remuestreo, maestría en Ciencia de Datos, ITAM, Otoño 2024." />
   <meta name="github-repo" content="tereom/fundamentos-2024" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Apéndice: Principios de visualizacion | Fundamentos de Estadística con Remuestreo" />
+  <meta name="twitter:title" content="Apéndice: Transformaciones | Fundamentos de Estadística con Remuestreo" />
   
   <meta name="twitter:description" content="Curso de Fundamentos de Estadística con Remuestreo, maestría en Ciencia de Datos, ITAM, Otoño 2024." />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="estimación-y-distribución-de-muestreo-1.html"/>
-<link rel="next" href="apéndice-transformaciones.html"/>
+<link rel="prev" href="apéndice-principios-de-visualizacion.html"/>
+<link rel="next" href="referencias.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -307,368 +307,585 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="apéndice-principios-de-visualizacion" class="section level1 unnumbered hasAnchor">
-<h1>Apéndice: Principios de visualizacion<a href="apéndice-principios-de-visualizacion.html#apéndice-principios-de-visualizacion" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<blockquote>
-<p>“The simple graph has brought more information to the data analyst’s
-mind than any other device.”</p>
-<p>— John Tukey</p>
-</blockquote>
-<div id="el-cuarteto-de-anscombe" class="section level4 unnumbered hasAnchor">
-<h4>El cuarteto de Anscombe<a href="apéndice-principios-de-visualizacion.html#el-cuarteto-de-anscombe" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>En 1971 un estadístico llamado Frank Anscombe (fundador del departamento de
-Estadística de la Universidad de Yale) publicó cuatro conjuntos de dato. Cada
-uno consiste de 11 observaciones. La peculariedad de estos conjuntos es
-que tienen las mismas propiedades estadísticas.</p>
-<p>Sin embargo, cuando analizamos los datos de manera gráfica en un histograma
-encontramos rápidamente que los conjuntos de datos son muy distintos.</p>
-<div style="float:left;top:-10px;width:500px;">
-<p><img src="88-visualizacion_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-</div>
-<p></br>
-</br></p>
-<p>Media de <span class="math inline">\(x\)</span>: 9<br />
-Varianza muestral de <span class="math inline">\(x\)</span>: 11<br />
-Media de <span class="math inline">\(y\)</span>: 7.50<br />
-Varianza muestral de <span class="math inline">\(y\)</span>: 4.12<br />
-Correlación entre <span class="math inline">\(x\)</span> y <span class="math inline">\(y\)</span>: 0.816<br />
-Línea de regresión lineal: <span class="math inline">\(y = 3.00 + 0.500x\)</span></p>
-<div style="clear:both">
+<div id="apéndice-transformaciones" class="section level1 unnumbered hasAnchor">
+<h1>Apéndice: Transformaciones<a href="apéndice-transformaciones.html#apéndice-transformaciones" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>En ocasiones es conveniente transformar los datos para el análisis, el
+objetivo de los ajustes es simplificar la interpretación y el análisis al
+eliminar fuentes de variación conocidas, también es común realizan
+transformaciones para simplificar los patrones.</p>
+<p>Algunos ejemplos donde eliminamos efectos conocidos:</p>
+<ol style="list-style-type: decimal">
+<li><p>Cuando analizamos el precio de venta de las casas podemos eliminar la variación
+debida al tamaño de las casas al pasar de precio de venta a precio de venta por metro cuadrado.
+De manera similar al analizar las propinas puede convenir considerar la propina como porcentaje de la cuenta.</p></li>
+<li><p>En series de tiempo cuando los datos están relacionados con el tamaño de la
+población podemos ajustar a mediciones per capita (en series de tiempo PIB). También es común ajustar por inflación, o poner cantidades monetarias en valor presente.</p></li>
+</ol>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="apéndice-transformaciones.html#cb146-1" aria-hidden="true" tabindex="-1"></a>mex_dat <span class="ot">&lt;-</span> global_economy <span class="sc">|&gt;</span> </span>
+<span id="cb146-2"><a href="apéndice-transformaciones.html#cb146-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Code <span class="sc">==</span> <span class="st">&quot;MEX&quot;</span>)</span>
+<span id="cb146-3"><a href="apéndice-transformaciones.html#cb146-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb146-4"><a href="apéndice-transformaciones.html#cb146-4" aria-hidden="true" tabindex="-1"></a>pib <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mex_dat, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> GDP <span class="sc">/</span> <span class="fl">1e6</span>)) <span class="sc">+</span></span>
+<span id="cb146-5"><a href="apéndice-transformaciones.html#cb146-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span>
+<span id="cb146-6"><a href="apéndice-transformaciones.html#cb146-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb146-7"><a href="apéndice-transformaciones.html#cb146-7" aria-hidden="true" tabindex="-1"></a>pib_pc <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mex_dat, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> GDP <span class="sc">/</span> Population)) <span class="sc">+</span></span>
+<span id="cb146-8"><a href="apéndice-transformaciones.html#cb146-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span>
+<span id="cb146-9"><a href="apéndice-transformaciones.html#cb146-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb146-10"><a href="apéndice-transformaciones.html#cb146-10" aria-hidden="true" tabindex="-1"></a>pib <span class="sc">/</span> pib_pc</span></code></pre></div>
+<p><img src="89-transformaciones_files/figure-html/unnamed-chunk-2-1.png" width="576" /></p>
+<p>Adicionalmente podemos recurrir a otras transformaciones matemáticas (e.g. logaritmo, raíz cuadrada) que simplifiquen
+el patrón en los datos y la interpretación.</p>
+<p>Veamos un ejemplo donde es apropiado la transformación logaritmo.</p>
+<p>Usamos los datos Animals con información de peso corporal promedio y peso cerebral
+promedio para 28 especies. Buscamos entender la relación entre estas dos
+variables, e inspeccionar que especies se desvían (residuales) del esperado.
+Comenzamos con un diagrama de dispersión usando las unidades originales</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="apéndice-transformaciones.html#cb147-1" aria-hidden="true" tabindex="-1"></a>animals_tbl <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(Animals, <span class="at">rownames =</span> <span class="st">&quot;animal&quot;</span>)</span>
+<span id="cb147-2"><a href="apéndice-transformaciones.html#cb147-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb147-3"><a href="apéndice-transformaciones.html#cb147-3" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(animals_tbl, <span class="fu">aes</span>(<span class="at">x =</span> body, <span class="at">y =</span> brain, <span class="at">label =</span> animal)) <span class="sc">+</span></span>
+<span id="cb147-4"><a href="apéndice-transformaciones.html#cb147-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb147-5"><a href="apéndice-transformaciones.html#cb147-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">&quot;Unidades originales&quot;</span>)</span>
+<span id="cb147-6"><a href="apéndice-transformaciones.html#cb147-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb147-7"><a href="apéndice-transformaciones.html#cb147-7" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(animals_tbl, <span class="fu">aes</span>(<span class="at">x =</span> body, <span class="at">y =</span> brain, <span class="at">label =</span> animal)) <span class="sc">+</span></span>
+<span id="cb147-8"><a href="apéndice-transformaciones.html#cb147-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">500</span>) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">1500</span>) <span class="sc">+</span></span>
+<span id="cb147-9"><a href="apéndice-transformaciones.html#cb147-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>() <span class="sc">+</span> </span>
+<span id="cb147-10"><a href="apéndice-transformaciones.html#cb147-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">&quot;Unidades originales, eliminando &#39;grandes&#39;&quot;</span>)</span>
+<span id="cb147-11"><a href="apéndice-transformaciones.html#cb147-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb147-12"><a href="apéndice-transformaciones.html#cb147-12" aria-hidden="true" tabindex="-1"></a>(p1 <span class="sc">+</span> p2)</span></code></pre></div>
+<p><img src="89-transformaciones_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>Incluso cuando nos limitamos a especies de menos de 500 kg de masa corporal, la
+relación no es fácil de descrubir.En la suguiente gráfica hacemos la transformación
+logaritmo y obtenemos una gráfica más fácil de
+leer, además los datos se modelarán con más facilidad.</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="apéndice-transformaciones.html#cb148-1" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(animals_tbl, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(body), <span class="at">y =</span> <span class="fu">log</span>(brain), <span class="at">label =</span> animal)) <span class="sc">+</span></span>
+<span id="cb148-2"><a href="apéndice-transformaciones.html#cb148-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb148-3"><a href="apéndice-transformaciones.html#cb148-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb148-4"><a href="apéndice-transformaciones.html#cb148-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>()  <span class="sc">+</span> </span>
+<span id="cb148-5"><a href="apéndice-transformaciones.html#cb148-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_poly_eq</span>(<span class="fu">use_label</span>(<span class="fu">c</span>(<span class="st">&quot;eq&quot;</span>))) </span>
+<span id="cb148-6"><a href="apéndice-transformaciones.html#cb148-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb148-7"><a href="apéndice-transformaciones.html#cb148-7" aria-hidden="true" tabindex="-1"></a>p3</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="89-transformaciones_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>La transformación logaritmo tiene también ventajas en interpretación, para diferencias
+chicas en escala log, las diferencias corresponden a diferencias porcentuales
+en la escala original, por ejempo consideremos la diferencia entre el peso en escala
+log de humano y borrego: 4.13 - 4.02 = 0.11.
+Confirmamos que el humano es aproximadamente 11% más pesado que el borrego en la
+escala original: 62/55.5 - 1 = 0.12</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="apéndice-transformaciones.html#cb150-1" aria-hidden="true" tabindex="-1"></a>animals_tbl <span class="ot">&lt;-</span> animals_tbl <span class="sc">|&gt;</span>  </span>
+<span id="cb150-2"><a href="apéndice-transformaciones.html#cb150-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">log_body =</span> <span class="fu">log</span>(body), </span>
+<span id="cb150-3"><a href="apéndice-transformaciones.html#cb150-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">log_brain =</span> <span class="fu">log</span>(brain)) </span>
+<span id="cb150-4"><a href="apéndice-transformaciones.html#cb150-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb150-5"><a href="apéndice-transformaciones.html#cb150-5" aria-hidden="true" tabindex="-1"></a>animals_tbl <span class="sc">|&gt;</span> </span>
+<span id="cb150-6"><a href="apéndice-transformaciones.html#cb150-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(animal <span class="sc">==</span> <span class="st">&quot;Human&quot;</span> <span class="sc">|</span> animal <span class="sc">==</span> <span class="st">&quot;Sheep&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb150-7"><a href="apéndice-transformaciones.html#cb150-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(body) <span class="sc">|&gt;</span> </span>
+<span id="cb150-8"><a href="apéndice-transformaciones.html#cb150-8" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb150-9"><a href="apéndice-transformaciones.html#cb150-9" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>()</span></code></pre></div>
+<div id="oiszkdmnrn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#oiszkdmnrn table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-</div>
-<p>En la gráfica del primer conjunto de datos, se ve clara una
-relación lineal simple con un modelo que cumple los supuestos de
-normalidad. La segunda gráfica (arriba a la derecha) muestra unos datos que
-tienen una asociación pero definitivamente no es lineal. En la tercera gráfica
-(abajo a la izquierda) están puntos alineados perfectamente en una línea recta,
-excepto por uno de ellos. En la última gráfica podemos ver un ejemplo en el cual
-basta tener una observación atípica para que se produzca un coeficiente de
-correlación alto aún cuando en realidad no existe una asociación lineal entre
-las dos variables.</p>
-<div style="clear:both">
+#oiszkdmnrn thead, #oiszkdmnrn tbody, #oiszkdmnrn tfoot, #oiszkdmnrn tr, #oiszkdmnrn td, #oiszkdmnrn th {
+  border-style: none;
+}
 
-</div>
-<div style="float:right;padding=10px; top:-10px; width:350px">
-<p><img src="images/datasaurus.gif" /><!-- --></p>
-</div>
-<p>El cuarteto de Ascombe inspiró una técnica reciente para crear datos que comparten las
-mismas propiedades estadísticas al igual que en el cuarteto, pero que producen gráficas
-muy distintas (<a href="https://www.autodeskresearch.com/publications/samestats">Matejka,
-Fitzmaurice</a>).</p>
-<div style="clear:both">
+#oiszkdmnrn p {
+  margin: 0;
+  padding: 0;
+}
 
-</div>
-</div>
-<div id="introducción" class="section level2 unnumbered hasAnchor">
-<h2>Introducción<a href="apéndice-principios-de-visualizacion.html#introducción" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>La visualización de datos no trata de hacer gráficas “bonitas” o “divertidas”,
-ni de simplificar lo complejo o ayudar a una persona “que no entiende mucho” a
-entender ideas complejas. Más bien, trata de aprovechar nuestra gran capacidad
-de procesamiento visual para exhibir de manera clara aspectos importantes de los
-datos.</p>
-<p>El siguiente ejemplo de <span class="citation">(<a href="#ref-tufte06" role="doc-biblioref">Tufte 2006</a>)</span>, ilustra claramente la diferencia entre estos
-dos enfoques. A la izquierda están gráficas (más o menos típicas de Powerpoint)
-basadas en la filosofía de simplificar, de intentar no “ahogar” al lector con
-datos. El resultado es una colección incoherente, de bajo contenido, que no
-tiene mucho qué decir y que es, “indeferente al contenido y la evidencia”.
-A la derecha está una variación del rediseño de Tufte en forma de tabla, que en
-este caso particular es una manera eficiente de mostrar claramente los patrones
-que hay en este conjunto simple de datos.</p>
-<p>¿Qué principios son los que soportan la efectividad de esta tabla sobre la
-gráfica de la derecha? Veremos que hay dos conjuntos de principios importantes:
-unos relacionados con el diseño y otros con la naturaleza del análisis de datos,
-independientemente del método de visualización.</p>
-<p><img src="images/tufte_cancer.jpg" width="88%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="visualización-popular-de-datos" class="section level2 unnumbered hasAnchor">
-<h2>Visualización popular de datos<a href="apéndice-principios-de-visualizacion.html#visualización-popular-de-datos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Publicaciones populares (periódicos, revistas, sitios internet) muchas veces
-incluyen visualización de datos como parte de sus artículos o reportajes. En
-general siguen el mismo patrón que en la visión tradicionalista de la
-estadística: sirven más para divertir que para explicar, tienden a explicar
-ideas simples y conjuntos chicos de datos, y se consideran como una “ayuda”
-para los “lectores menos sofisticados”. Casi siempre se trata de gráficas
-triviales (muchas veces con errores graves) que no aportan mucho a artículos que
-tienen un nivel de complejidad mucho mayor (es la filosofía: lo escrito para el
-adulto, lo graficado para el niño).</p>
-<p><img src="images/nyt.png" width="88%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="teoría-de-visualización-de-datos" class="section level2 unnumbered hasAnchor">
-<h2>Teoría de visualización de datos<a href="apéndice-principios-de-visualizacion.html#teoría-de-visualización-de-datos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Existe teoría fundamentada acerca de la visualización. Después del trabajo
-pionero de Tukey, los principios e indicadores de Tufte se basan en un estudio
-de la historia de la graficación y ejercicios de muestreo de la práctica gráfica
-a lo largo de varias disciplinas (¿cuáles son las mejores gráficas? ¿por qué?)
-El trabajo de Cleveland es orientado a la práctica del análisis de datos
-(¿cuáles gráficas nos han ayudado a mostrar claramente los resultados del
-análisis?), por una parte, y a algunos estudios de percepción visual.</p>
-<p>En resumen, hablaremos de las siguientes guías:</p>
-<div id="principios-generales-del-diseño-analítico" class="section level3 unnumbered hasAnchor">
-<h3>Principios generales del diseño analítico<a href="apéndice-principios-de-visualizacion.html#principios-generales-del-diseño-analítico" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Aplicables a una presentación o análisis completos, y como guía para construir
-nuevas visualizaciones <span class="citation">(<a href="#ref-tufte06" role="doc-biblioref">Tufte 2006</a>)</span>.</p>
-<div class="caja">
-<p>
-<strong>Principio 1.</strong> Muestra comparaciones, contrastes,
-diferencias.<br />
-<strong>Principio 2.</strong> Muestra causalidad, mecanismo,
-explicación, estructura sistemática.<br />
-<strong>Principio 3.</strong> Muestra datos multivariados, es decir, más
-de una o dos variables.<br />
-<strong>Principio 4.</strong> Integra palabras, números, imágenes y
-diagramas.<br />
-<strong>Principio 5.</strong> Describe la totalidad de la evidencia.
-Muestra fuentes usadas y problemas relevantes.<br />
-<strong>Principio 6.</strong> Las presentaciones analíticas, a fin de
-cuentas, se sostienen o caen dependiendo de la calidad, relevancia e
-integridad de su contenido.
-</p>
-</div>
-</div>
-<div id="técnicas-de-visualización" class="section level3 unnumbered hasAnchor">
-<h3>Técnicas de visualización<a href="apéndice-principios-de-visualizacion.html#técnicas-de-visualización" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Esta categoría incluye técnicas específicas que dependen de la forma de nuestros
-datos y el tipo de pregunta que queremos investigar (<span class="citation">Tukey (<a href="#ref-tukey77" role="doc-biblioref">1977</a>)</span>, <span class="citation">William S. Cleveland (<a href="#ref-cleveland93" role="doc-biblioref">1993</a>)</span>,
-<span class="citation">W. S. Cleveland (<a href="#ref-cleveland94" role="doc-biblioref">1994</a>)</span>, <span class="citation">Tufte (<a href="#ref-tufte06" role="doc-biblioref">2006</a>)</span>).</p>
-<div class="caja">
-<p>
-<strong>Tipos de gráficas:</strong> cuantiles, histogramas, caja y
-brazos, gráficas de dispersión, puntos/barras/ líneas, series de
-tiempo.<br />
-<strong>Técnicas para mejorar gráficas:</strong> Transformación de
-datos, transparencia, vibración, banking 45, suavizamiento y bandas de
-confianza.<br />
-<strong>Pequeños múltiplos</strong>
-</p>
-</div>
-</div>
-<div id="indicadores-de-calidad-gráfica" class="section level3 unnumbered hasAnchor">
-<h3>Indicadores de calidad gráfica<a href="apéndice-principios-de-visualizacion.html#indicadores-de-calidad-gráfica" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Aplicables a cualquier gráfica en particular. Estas son guías concretas y
-relativamente objetivas para evaluar la calidad de una gráfica <span class="citation">(<a href="#ref-tufte86" role="doc-biblioref">Tufte 1986</a>)</span>.</p>
-<div class="caja">
-<p>
-<strong>Integridad Gráfica.</strong> El factor de engaño, es decir,
-la distorsión gráfica de las cantidades representadas, debe ser
-mínimo.<br />
-<strong>Chartjunk.</strong> Minimizar el uso de decoración gráfica que
-interfiera con la interpretación de los datos: 3D, rejillas, rellenos
-con patrones.<br />
-<strong>Tinta de datos.</strong> Maximizar la proporción de tinta de
-datos vs. tinta total de la gráfica. <em>For non-data- ink, less is
-more. For data-ink, less is a bore.</em><br />
-<strong>Densidad de datos.</strong> Las mejores gráficas tienen mayor
-densidad de datos, que es la razón entre el tamaño del conjunto de datos
-y el área de la gráfica. Las gráficas se pueden encoger mucho.
-Percepción visual. Algunas tareas son más fáciles para el ojo humano que
-otras <span class="citation"><span class="citation">(<a href="#ref-cleveland94" role="doc-biblioref">W. S. Cleveland 1994</a>)</span></span>.
-</p>
-</div>
-</div>
-<div id="factor-de-engaño-y-chartjunk" class="section level3 unnumbered hasAnchor">
-<h3>Factor de engaño y Chartjunk<a href="apéndice-principios-de-visualizacion.html#factor-de-engaño-y-chartjunk" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div style="float:right;position: relative; top: -10px;width:140px">
-<p><img src="images/pies.jpg" /></p>
-</div>
-<p>El <strong>factor de engaño</strong> es el cociente entre el efecto mostrado en una gráfica y
-el efecto correspondiente en los datos. Idealmente, el factor de engaño debe ser
-1 (ninguna distorsión).</p>
-<p>El <strong>chartjunk</strong> son aquellos elementos gráficos que no corresponden a variación
-de datos, o que entorpecen la interpretación de una gráfica.<br />
-Estos son los indicadores de calidad más fáciles de entender y aplicar, y
-afortunadamente cada vez son menos comunes.</p>
-<p>Un diseño popular que califica como chartjunk y además introduce factores de
-engaño es el <em>pie</em> de 3D. En la gráfica de la derecha, podemos ver como la
-rebanada C se ve más grande que la rebanada A, aunque claramente ese no es el
-caso (factor de engaño). La razón es la variación en la perspectiva que no
-corresponde a variación en los datos (chartjunk).</p>
-<div id="crítica-gráfica-gráfica-de-pie" class="section level4 unnumbered hasAnchor">
-<h4>Crítica gráfica: Gráfica de <em>pie</em><a href="apéndice-principios-de-visualizacion.html#crítica-gráfica-gráfica-de-pie" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Todavía elementos que pueden mejorar la comprensión de nuestra
-gráfica de <em>pie</em>: se trata de la
-decodificiación que hay que hacer categoría - color - cuantificación. Podemos
-agregar las etiquetas como se muestra en la serie de la derecha, pero entonces:
-¿por qué no mostrar simplemente la tabla de datos? ¿qué agrega el <em>pie</em> a la
-interpretación?</p>
-<p>La deficiencias en el <em>pie</em> se pueden ver claramente al intentar graficar más
-categorías (13) . En el primer <em>pie</em> no podemos distinguir realmente cuáles son
-las categorías grandes y cuáles las chicas, y es muy difícil tener una imagen
-mental clara de estos datos. Agregar los porcentajes ayuda, pero entonces, otra
-vez, preguntamos cuál es el propósito del pie. La tabla de la izquierda hace
-todo el trabajo (una vez que ordenamos las categrías de la más grande a la más
-chica). Es posible hacer una gráfica de barras como la de abajo a la izquierda.</p>
-<div style="clear:both">
+#oiszkdmnrn .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
 
-</div>
-<div style="float:left;top: -0px;width:300px">
-<p><img src="images/barras_pie.jpg" /></p>
-</div>
-<p>Hay otros tipos de <strong>chartjunk</strong> comunes: uno es la textura de barras, por ejemplo.
-El efecto es la producción de un efecto moiré que es desagradable y quita la
-atención de los datos, como en la gráfica de barras de abajo. Otro común son las
-rejillas, como mostramos en las gráficas de la izquierda. Nótese como en estos
-casos hay efectos ópticos no planeados que degradan la percepción de los
-patrones en los datos.</p>
-<p><img src="images/barras_moire.jpg" width="100%" /></p>
-</div>
-</div>
-<div id="pequeños-múltiplos-y-densidad-gráfica" class="section level3 unnumbered hasAnchor">
-<h3>Pequeños múltiplos y densidad gráfica<a href="apéndice-principios-de-visualizacion.html#pequeños-múltiplos-y-densidad-gráfica" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>La densidad de una gráfica es el tamaño del conjunto de datos que se grafica
-comparado con el área total de la gráfica. En el siguiente ejemplo, graficamos
-en logaritmo-10 de millones de cabezas de ganado en Francia (cerdos, res, ovejas y
-caballos). La gráfica de la izquierda es pobre en densidad pues sólo representa
-4 datos. La manera más fácil de mejorar la densidad es hacer más chica la
-gráfica:</p>
-<p><img src="images/france_plot.jpg" width="98%" /></p>
-<p>La razón de este encogimiento es una que tiene qué ver con las oportunidades perdidas de una gráfica grande. Si repetimos este mismo patrón (misma escala, mismos tipos de ganado) para distintos países obtenemos la siguiente gráfica:</p>
-<div style="float:left;top: -10px;width:500px">
-<p><img src="images/europe_plot.jpg" /></p>
-</div>
-<p>Esta es una gráfica de puntos. Es útil como sustituto de una gráfica de barras,
-y es superior en el sentido de que una mayor proporción de la tinta que se usa
-es tinta de datos. Otra vez, mayor proporción de tinta de datos representa más
-oportunidades que se pueden capitalizar.</p>
-<div style="clear:both">
+#oiszkdmnrn .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
 
-</div>
-<div id="más-pequeños-múltiplos" class="section level4 unnumbered hasAnchor">
-<h4>Más pequeños múltiplos<a href="apéndice-principios-de-visualizacion.html#más-pequeños-múltiplos" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Los pequeños múltiplos presentan oportunidades para mostrar más acerca
-de nuestro problema de interés. Consideramos por ejemplo la relación
-de radiación solar y niveles de ozono:</p>
-<p><img src="88-visualizacion_files/figure-html/unnamed-chunk-10-1.png" width="45%" style="display: block; margin: auto;" /></p>
-<p>En el ejemplo anterior incluyendo
-una variable adicional (velocidad del viento) podemos entender más
-acerca de la relación de radiación solar y niveles de ozono:</p>
-<p><img src="88-visualizacion_files/figure-html/unnamed-chunk-11-1.png" width="95%" style="display: block; margin: auto;" /></p>
-</div>
-</div>
-<div id="tinta-de-datos" class="section level3 unnumbered hasAnchor">
-<h3>Tinta de datos<a href="apéndice-principios-de-visualizacion.html#tinta-de-datos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Maximizar la proporción de tinta de datos en nuestras gráficas tiene beneficios
-inmediatos. La regla es: si hay tinta que no representa variación en los datos,
-o la eliminación de esa tinta no representa pérdidas de significado, esa tinta
-debe ser eliminada. El ejemplo más claro es el de las rejillas en gráficas y
-tablas:</p>
-<p><img src="images/tinta_datos.jpg" width="95%" style="display: block; margin: auto;" /></p>
-<p><img src="images/tabla_tinta_datos.jpg" width="63%" style="display: block; margin: auto;" /></p>
-<p>¿Por qué usar grises en lugar de negros? La respuesta tiene qué ver con el
-principio de tinta de datos: si marcamos las diferencias sutil pero claramente,
-tenemos más oportunidades abiertas para hacer énfasis en lo que nos interesa: a
-una gráfica o tabla saturada no se le puede hacer más - es difícil agregar
-elementos adicionales que ayuden a la comprensión. Si comenzamos marcando con
-sutileza, entonces se puede hacer más. Los mapas geográficos son un buen ejemplo
-de este principio.</p>
-<p>El espacio en blanco es suficientemente bueno para indicar las fronteras en una
-tabla, y facilita la lectura:</p>
-<p><img src="images/tabla_2_tinta_datos.jpg" width="65%" style="display: block; margin: auto;" /></p>
-<p>Para un ejemplo del proceso de rediseño de una tabla, ver <a href="https://www.darkhorseanalytics.com/blog/clear-off-the-table">aquí</a>.
-Finalmente, podemos ver un ejemplo que intenta incorporar
-los elementos del diseño analítico, incluyendo pequeños múltiplos:</p>
-<p><img src="images/ejemplo_enigh.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="decoración" class="section level3 unnumbered hasAnchor">
-<h3>Decoración<a href="apéndice-principios-de-visualizacion.html#decoración" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><img src="images/ejemplo_csi.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="percepción-de-escala" class="section level3 unnumbered hasAnchor">
-<h3>Percepción de escala<a href="apéndice-principios-de-visualizacion.html#percepción-de-escala" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Entre la percepción visual y la interpretación de una gráfica están implícitas
-tareas visuales específicas que las personas debemos realizar para ver
-correctamente la gráfica. En la década de los ochenta, William S. Cleveland y
-Robert McGill realizaron algunos experimentos identificando y clasificando estas
-tareas para diferentes tipos de gráficos <span class="citation">(<a href="#ref-cleveland84" role="doc-biblioref">William S. Cleveland and McGill 1984</a>)</span>.
-En estos, se le pregunta a la persona que compare dos valores dentro de una
-gráfica, por ejemplo, en dos barras en una gráfica de barras, o dos rebanadas de
-una gráfica de pie.</p>
-<p><img src="images/cleveland_tasks.png" width="95%" style="display: block; margin: auto;" /></p>
-<p>Los resultados de Cleveland y McGill fueron replicados por Heer y Bostock en
-2010 y los resultados se muestran en las gráficas de la derecha:</p>
-<p><img src="images/heer-bostock_results.png" width="50%" style="display: block; margin: auto;" /></p>
-</div>
-</div>
-<div id="ejemplo-gráfica-de-minard" class="section level2 unnumbered hasAnchor">
-<h2>Ejemplo: gráfica de Minard<a href="apéndice-principios-de-visualizacion.html#ejemplo-gráfica-de-minard" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Concluimos esta sección con una gráfica que, aunque poco común, ejemplifica
-los principios de una buena gráfica, y es reconocida como una de las mejores
-visualizaciones de la historia.</p>
-<blockquote>
-<p>Una gráfica excelente, presenta datos interesantes de forma bien
-diseñada: es una cuestión de fondo, de diseño, y estadística… [Se] compone de
-ideas complejas comunicadas con claridad, precisión y eficiencia. … [Es] lo
-que da al espectador la mayor cantidad de ideas, en el menor tiempo, con
-la menor cantidad de tinta, y en el espacio más pequeño. … Es casi siempre
-multivariado. … Una excelente gráfica debe decir la verdad acerca de los
-datos. (Tufte, 1983)</p>
-</blockquote>
-<p>La <a href="https://upload.wikimedia.org/wikipedia/commons/2/29/Minard.png">famosa visualización</a> de Charles Joseph Minard de la marcha de Napoleón sobre
-Moscú, ilustra los principios de una buena gráfica. Tufte señala que esta imagen
-“bien podría ser el mejor gráfico estadístico jamás dibujado”, y sostiene que
-“cuenta una historia rica y coherente con sus datos multivariados, mucho más
-esclarecedora que un solo número que rebota en el tiempo”. Se representan seis
-variables: el tamaño del ejército, su ubicación en una superficie bidimensional,
-la dirección del movimiento del ejército y la temperatura en varias fechas
-durante la retirada de Moscú”.</p>
-<p><img src="images/minard.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>Hoy en día Minard es reconocido como uno de los principales contribuyentes a la
-teoría de análisis de datos y creación de <strong>infografías</strong> con un fundamento
-estadístico.</p>
-<p>Se grafican 6 variables: el número de tropas de Napoleón, la distancia, la
-temperatura, la latitud y la longitud, la dirección en que viajaban las tropas
-y la localización relativa a fechas específicas.</p>
-<p>La gráfica de Minard, como la describe E.J. Marey, parece “desafiar la pluma del
-historiador con su brutal elocuencia”, la combinación de datos del mapa, y la
-serie de tiempo, dibujados en 1869, “retratan una secuencia de pérdidas
-devastadoras que sufrieron las tropas de Napoleón en 1812”. Comienza en la
-izquierda, en la frontera de Polonia y Rusia, cerca del río Niemen. La línea
-gruesa dorada muestra el tamaño de la Gran Armada (422,000) en el momento en que
-invadía Rusia en junio de 1812.</p>
-<p>El ancho de esta banda indica el tamaño de la armada en cada punto del mapa. En
-septiembre, la armada llegó a Moscú, que ya había sido saqueada y dejada
-desértica, con sólo 100,000 hombres.</p>
-<p>El camino del retiro de Napoleón desde Moscú está representado por la línea
-oscura (gris) que está en la parte inferior, que está relacionada a su vez con
-la temperatura y las fechas en el diagrama de abajo. Fue un invierno muy frío,
-y muchos se congelaron en su salida de Rusia. Como se muestra en el mapa, cruzar
-el río Berezina fue un desastre, y el ejército de Napoleón logró regresar a
-Polonia con tan sólo 10,000 hombres.</p>
-<p>También se muestran los movimientos de las tropas auxiliaries, que buscaban
-proteger por atrás y por la delantera mientras la armada avanzaba hacia Moscú.
-La gráfica de Minard cuenta una historia rica y cohesiva, coherente con datos
-multivariados y con los hechos históricos, y que puede ser más ilustrativa que
-tan sólo representar un número rebotando a lo largo del tiempo.</p>
+#oiszkdmnrn .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
 
+#oiszkdmnrn .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#oiszkdmnrn .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#oiszkdmnrn .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#oiszkdmnrn .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#oiszkdmnrn .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#oiszkdmnrn .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#oiszkdmnrn .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#oiszkdmnrn .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#oiszkdmnrn .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#oiszkdmnrn .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#oiszkdmnrn .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#oiszkdmnrn .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#oiszkdmnrn .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#oiszkdmnrn .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#oiszkdmnrn .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#oiszkdmnrn .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#oiszkdmnrn .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#oiszkdmnrn .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#oiszkdmnrn .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#oiszkdmnrn .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#oiszkdmnrn .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#oiszkdmnrn .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#oiszkdmnrn .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#oiszkdmnrn .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#oiszkdmnrn .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#oiszkdmnrn .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#oiszkdmnrn .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#oiszkdmnrn .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#oiszkdmnrn .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#oiszkdmnrn .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#oiszkdmnrn .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#oiszkdmnrn .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#oiszkdmnrn .gt_left {
+  text-align: left;
+}
+
+#oiszkdmnrn .gt_center {
+  text-align: center;
+}
+
+#oiszkdmnrn .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#oiszkdmnrn .gt_font_normal {
+  font-weight: normal;
+}
+
+#oiszkdmnrn .gt_font_bold {
+  font-weight: bold;
+}
+
+#oiszkdmnrn .gt_font_italic {
+  font-style: italic;
+}
+
+#oiszkdmnrn .gt_super {
+  font-size: 65%;
+}
+
+#oiszkdmnrn .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#oiszkdmnrn .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#oiszkdmnrn .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#oiszkdmnrn .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#oiszkdmnrn .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#oiszkdmnrn .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#oiszkdmnrn .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#oiszkdmnrn .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#oiszkdmnrn div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="animal">animal</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="body">body</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="brain">brain</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="log_body">log_body</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="log_brain">log_brain</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="animal" class="gt_row gt_left">Sheep</td>
+<td headers="body" class="gt_row gt_right">55.50</td>
+<td headers="brain" class="gt_row gt_right">175.00</td>
+<td headers="log_body" class="gt_row gt_right">4.02</td>
+<td headers="log_brain" class="gt_row gt_right">5.16</td></tr>
+    <tr><td headers="animal" class="gt_row gt_left">Human</td>
+<td headers="body" class="gt_row gt_right">62.00</td>
+<td headers="brain" class="gt_row gt_right">1,320.00</td>
+<td headers="log_body" class="gt_row gt_right">4.13</td>
+<td headers="log_brain" class="gt_row gt_right">7.19</td></tr>
+  </tbody>
+  
+  
+</table>
 </div>
-</div>
-<h3>Referencias<a href="referencias.html#referencias" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-cleveland94" class="csl-entry">
-Cleveland, W. S. 1994. <em>The Elements of Graphing Data</em>. AT&amp;T Bell Laboratories. <a href="https://books.google.com.mx/books?id=KMsZAQAAIAAJ">https://books.google.com.mx/books?id=KMsZAQAAIAAJ</a>.
-</div>
-<div id="ref-cleveland93" class="csl-entry">
-Cleveland, William S. 1993. <em>Visualizing Data</em>. Hobart Press.
-</div>
-<div id="ref-cleveland84" class="csl-entry">
-Cleveland, William S., and Robert McGill. 1984. <span>“Graphical Perception: Theory, Experimentation, and Application to the Development of Graphical Methods.”</span> <em>Journal of the American Statistical Association</em> 79 (387): pp. 531–554. <a href="http://www.jstor.org/stable/2288400">http://www.jstor.org/stable/2288400</a>.
-</div>
-<div id="ref-tufte86" class="csl-entry">
-Tufte, Edward R. 1986. <em>The Visual Display of Quantitative Information</em>. Cheshire, CT, USA: Graphics Press.
-</div>
-<div id="ref-tufte06" class="csl-entry">
-———. 2006. <em>Beautiful Evidence</em>. Cheshire, CT: Graphics Press.
-</div>
-<div id="ref-tukey77" class="csl-entry">
-Tukey, J. W. 1977. <em>Exploratory Data Analysis</em>. Addison-Wesley Series in Behavioral Science. Addison-Wesley Publishing Company. <a href="https://books.google.com.mx/books?id=UT9dAAAAIAAJ">https://books.google.com.mx/books?id=UT9dAAAAIAAJ</a>.
-</div>
+<p>Y podemos usarlo también para interpretar la recta de referencia <span class="math inline">\(y = 2.55 + 0.5 x\)</span>
+, para cambios chicos:
+<em>Un incremento de 10% en masa total corresponde en un incremento de 5% en masa cerebral.</em></p>
+<p>El coeficiente de la regresión log-log, en nuestro ejemplo 0.5, es la <a href="https://en.wikipedia.org/wiki/Elasticity_(economics)">elasticidad</a> y es un concepto
+común en economía.</p>
+<p><strong>Justificación</strong></p>
+<p>Para entender la interpretación como cambio porcentual recordemos primero
+que la representación con series de Taylor de la función exponencial es:</p>
+<p><span class="math display">\[e^x = \sum_{n=0}^\infty \frac{x^n}{n!}\]</span></p>
+<p>Más aún podemos tener una aproximación usando <a href="https://en.wikipedia.org/wiki/Taylor%27s_theorem">polinomios de Taylor</a>, en el caso de la
+exponencial el <span class="math inline">\(k\)</span>-ésimo polinomio de Taylor está dado por:</p>
+<p><span class="math display">\[e^\delta \approx 1 + \delta + \frac{1}{2!}\delta^2 + \dots +  \frac{1}{k!}\delta^k\]</span></p>
+<p>y si <span class="math inline">\(\delta\)</span> es chica (digamos menor a 0.15), entonces la aproximación de primer grado es
+razonable y tenemos:</p>
+<p><span class="math display">\[Ae^{\delta} \approx A(1+\delta)\]</span></p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="apéndice-transformaciones.html#cb151-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">delta =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.01</span>), <span class="at">exp_delta =</span> <span class="fu">exp</span>(delta), <span class="at">uno_mas_delta =</span> <span class="dv">1</span> <span class="sc">+</span> delta)</span>
+<span id="cb151-2"><a href="apéndice-transformaciones.html#cb151-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb151-3"><a href="apéndice-transformaciones.html#cb151-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(<span class="at">x =</span> uno_mas_delta, <span class="at">y =</span> exp_delta)) <span class="sc">+</span></span>
+<span id="cb151-4"><a href="apéndice-transformaciones.html#cb151-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb151-5"><a href="apéndice-transformaciones.html#cb151-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb151-6"><a href="apéndice-transformaciones.html#cb151-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="fl">1.20</span>, <span class="at">y =</span> <span class="fl">1.18</span>, <span class="at">label =</span> <span class="st">&quot;y = x&quot;</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">6</span>)</span></code></pre></div>
+<p><img src="89-transformaciones_files/figure-html/unnamed-chunk-7-1.png" width="432" /></p>
+
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="estimación-y-distribución-de-muestreo-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="apéndice-transformaciones.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="apéndice-principios-de-visualizacion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="referencias.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -699,7 +916,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/88-visualizacion.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/89-transformaciones.Rmd",
 "text": "Edit"
 },
 "history": {

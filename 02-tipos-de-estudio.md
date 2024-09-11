@@ -20,6 +20,21 @@ ambas muestras es sesgada a la derecha. ¿Qué prueba me recomiendas para
 <p class="caption">(\#fig:grafica-pcr)Error CPR, gráfica de densidad.</p>
 </div>
 
+
+<!-- Es común saltar a responder análisis o pruebas estadísiticas sin primero  -->
+<!-- entender el problema. Sin embargo, recordemos que el objetivo del análisis de datos y la estadística es resolver el problema y no simplemente aplicar técnicas.  -->
+
+<!-- Debemos preguntar ¿Qué es el error CPR?, ¿que quiere decir media pre vs post?  -->
+<!-- ¿Cuántas observaciones hay? ¿cómo se colectaron los datos? -->
+
+<!-- Parte de las responsabilidades del analista de datos es no solo responder lo que se -->
+<!-- pregunta sino considerar si las preguntas son adecuadas. -->
+
+<!-- En este caso el cliente preguntó como hacer una comparación de medias, sin embbargo,  -->
+<!-- hay datos extremos por lo que la comparación de medias no es apropiada -->
+
+
+
 </br>
 
 > Far better an approximate answer to the right question, which is often vague, than an exact answer to the wrong question, which can always be made precise.
@@ -43,7 +58,8 @@ caracteriza el mejor trabajo de análisis de datos:
 
 Ejemplos: Alguien nos pregunta cuáles son las tiendas que mas venden de una 
 cadena. Podríamos consultar bases de datos, hacer extracciones, definir 
-periodos, etc. y dar una respuesta que probablemente es poco útil. Nos damos 
+periodos, etc. y reportar el promedio de ventas en el último mes, esta respuesta 
+probablemente es poco útil. Nos damos 
 cuenta, por ejemplo, porque la
 peor tienda es una que abrió hace relativamente poco, y la mejor es una de las tiendas
 más grandes que está en una zona de tráfico de alto costo. Una pregunta más interesante
@@ -77,7 +93,8 @@ decimos que puede ocurrir con 10% de probabilidad ocurre efectivamente 1 de cada
 10 veces, si decimos 20% entonces ocurre 2 de 20, etc.
 
 Veremos que para muestras dadas naturalmente, a veces es muy difiícil entender a 
-fondo el proceso generación de la muestra.
+fondo el proceso que generó la muestra y por tanto no tenemos las garantías de 
+eficiencia y calibración.
 
 ### Ejemplo: Prevalencia de anemia {-}
 
@@ -125,6 +142,10 @@ mediríamos la prevalencia de anemia en la muestra, usaríamos esta muestra para
 estimar la prevalencia en la población y tendríamos además las herramientas 
 para medir la incertidumbre de nuestra estimación (reportar intervalos, 
 o errores estándar).
+
+El elemento clave, es la aleatorización en la selección de la muestra, la idea
+es distribuir los efecros desconcidos o no controlables que pueden introducir
+sesgos o variabilidad no conocida en los resultados. 
 
 ## Pero si no podemos hacer muestreo aleatorio? {-}
 
@@ -181,8 +202,6 @@ original. Por ejemplo con modelos de regresión. Sin embargo,
 debemos preguntarnos:
 
 - ¿Hay más variables qué nos falta considerar?  
-- Nuestras estimaciones están bien calibradas?
-
 
 ### Ejemplo: Policías y tráfico {-}
 
@@ -284,7 +303,7 @@ se consideran _Complicados_ según datos históricos. Esto resta credibilidad a 
 comparación que hicimos inicialmente:
 
 - La comparación del estimador estándar no es de peras con peras: estamos comparando qué efecto tienen los
-policías en cruceros difíciles con cruceros no difíciles donde no hay policía.
+policías en cruceros difíciles, con cruceros no difíciles donde no hay policía.
 - La razón de esto es que el proceso generador de los datos incluye el hecho de que no
 se envían policías a lugares donde no hay tráfico.
 - ¿Cómo producir contrafactuales para hacer la comparación correcta?
@@ -474,7 +493,9 @@ fundamental para entender las inferencias que podemos hacer en distintos escenar
 ![Inferencia estadística de acuerdo al tipo del diseño (@ramsey).](images/03_inferencia-estudio.png)
 
 * El cuadro arriba a la izquierda es donde el análisis es más simple y los 
-resultados son más fáciles de interpretar.
+resultados son más fáciles de interpretar. En este escenario don de la aleatorización 
+es tanto en unidades como en grupos no hacen falta supuestos adicionales para 
+tener las garantías de métodos de inferencia.
 
 * Es posible hacer análisis fuera de este cuadro,  pero el proceso es más 
 complicado, requieren más supuestos, conocimiento del dominio y habilidades 
