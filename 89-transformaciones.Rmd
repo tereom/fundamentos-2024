@@ -12,30 +12,29 @@ library(patchwork)
 
 En ocasiones es conveniente transformar los datos para el análisis, el 
 objetivo de los ajustes es simplificar la interpretación y el análisis al 
-eliminar fuentes de variación conocidas, o para simplificar los patrones.
+eliminar fuentes de variación conocidas, también es común realizan
+transformaciones para simplificar los patrones.
 
 Algunos ejemplos donde eliminamos efectos conocidos: 
 
 1. Cuando analizamos el precio de venta de las casas podemos eliminar la variación 
 debida al tamaño de las casas al pasar de precio de venta a precio de venta por metro cuadrado. 
-De manera similar considerar propina como porcentaje de la cuenta.
+De manera similar al analizar las propinas puede convenir considerar la propina como porcentaje de la cuenta.
 
 2. En series de tiempo cuando los datos están relacionados con el tamaño de la 
 población podemos ajustar a mediciones per capita (en series de tiempo PIB). También es común ajustar por inflación, o poner cantidades monetarias en valor presente.
 
-```{r}
+```{r, fig.height=8, fig.width=6}
 mex_dat <- global_economy |> 
   filter(Code == "MEX")
 
 pib <- ggplot(mex_dat, aes(x = Year, y = GDP / 1e6)) +
   geom_line()
-```
 
-```{r, out.height=4, out.width=7.5}
 pib_pc <- ggplot(mex_dat, aes(x = Year, y = GDP / Population)) +
   geom_line()
 
-pib + pib_pc
+pib / pib_pc
 ```
 
 
@@ -44,23 +43,32 @@ el patrón en los datos y la interpretación.
 
 Veamos un ejemplo donde es apropiado la transformación logaritmo. 
 
-```{r}
+Usamos los datos Animals con información de peso corporal promedio y peso cerebral
+promedio para 28 especies. Buscamos entender la relación entre estas dos
+variables, e inspeccionar que especies se desvían (residuales) del esperado. 
+Comenzamos con un diagrama de dispersión usando las unidades originales
+
+```{r, warning=FALSE, fig.height=5}
 animals_tbl <- as_tibble(Animals, rownames = "animal")
 
 p1 <- ggplot(animals_tbl, aes(x = body, y = brain, label = animal)) +
-  geom_point()
+  geom_point() + 
+  labs(subtitle = "Unidades originales")
 
 p2 <- ggplot(animals_tbl, aes(x = body, y = brain, label = animal)) +
   geom_point() + xlim(0, 500) + ylim(0, 1500) +
-  geom_text_repel()
+  geom_text_repel() + 
+  labs(subtitle = "Unidades originales, eliminando 'grandes'")
 
 (p1 + p2)
 ```
 
-Cuando hacemos la transformación logaritmo obtenemos una gráfica más fácil de 
-leer y los datos se modelarán con más facilidad.
+Incluso cuando nos limitamos a especies de menos de 500 kg de masa corporal, la 
+relación no es fácil de descrubir.En la suguiente gráfica hacemos la transformación 
+logaritmo y obtenemos una gráfica más fácil de 
+leer, además los datos se modelarán con más facilidad.
 
-```{r}
+```{r, warning=FALSE}
 p3 <- ggplot(animals_tbl, aes(x = log(body), y = log(brain), label = animal)) +
   geom_smooth(method = "lm", se = FALSE, color = "red") +
   geom_point() + 
@@ -70,7 +78,7 @@ p3 <- ggplot(animals_tbl, aes(x = log(body), y = log(brain), label = animal)) +
 p3
 ```
 
-La transformación logaritmo tiene además ventajas en interpretación, para diferencias
+La transformación logaritmo tiene también ventajas en interpretación, para diferencias
 chicas en escala log, las diferencias corresponden a diferencias porcentuales
 en la escala original, por ejempo consideremos la diferencia entre el peso en escala
 log de humano y borrego: 4.13 - 4.02 = 0.11. 
@@ -79,9 +87,11 @@ escala original: 62/55.5 - 1 = 0.12
 
 
 ```{r}
-animals_tbl |>  
+animals_tbl <- animals_tbl |>  
   mutate(log_body = log(body), 
-         log_brain = log(brain)) |> 
+         log_brain = log(brain)) 
+
+animals_tbl |> 
   filter(animal == "Human" | animal == "Sheep") |> 
   arrange(body) |> 
   gt::gt() |> 
@@ -89,9 +99,24 @@ animals_tbl |>
   
 ```
 
+
+```{r, eval=FALSE, include=FALSE, echo=FALSE}
+fit <- lm(log_brain ~ log_body, data = animals_tbl)
+animals_tbl |>  
+  mutate(log_body = log(body), 
+         log_brain = log(brain), 
+         log_brain_pred = fitted(fit)) |> 
+  arrange(body)
+```
+
+
+
 Y podemos usarlo también para interpretar la recta de referencia $y = 2.55 + 0.5 x$
 , para cambios chicos:
 *Un incremento de 10% en masa total corresponde en un incremento de 5% en masa cerebral.*
+
+El coeficiente de la regresión log-log, en nuestro ejemplo 0.5, es la [elasticidad](https://en.wikipedia.org/wiki/Elasticity_(economics)) y es un concepto
+común en economía.
 
 **Justificación**
 
@@ -99,7 +124,7 @@ Para entender la interpretación como cambio porcentual recordemos primero
 que la representación con series de Taylor de la función exponencial es:
 
 
-$$e^x = \sum_{n=1}^\infty \frac{x^n}{n!}$$
+$$e^x = \sum_{n=0}^\infty \frac{x^n}{n!}$$
 
 Más aún podemos tener una aproximación usando [polinomios de Taylor](https://en.wikipedia.org/wiki/Taylor%27s_theorem), en el caso de la 
 exponencial el $k$-ésimo polinomio de Taylor está dado por:
@@ -111,8 +136,8 @@ razonable y tenemos:
 
 $$Ae^{\delta} \approx A(1+\delta)$$
 
-```{r}
-dat <- tibble(delta = seq(0, 0.25, 0.01), exp_delta = exp(delta), uno_mas_delta = 1 + delta)
+```{r, fig.height=4, fig.width=4.5}
+dat <- tibble(delta = seq(0, 1, 0.01), exp_delta = exp(delta), uno_mas_delta = 1 + delta)
 
 ggplot(dat, aes(x = uno_mas_delta, y = exp_delta)) +
   geom_line() +
