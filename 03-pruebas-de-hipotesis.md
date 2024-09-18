@@ -882,7 +882,7 @@ de fusión de los estereogramas.</p>
 
 ## Ejemplo: tiempos de fusión (continuación) {-}
 
-Podemos usar las pruebas de permutaciones para distintos de tipos de
+Podemos usar las pruebas de permutaciones para distintos tipos de
 estadísticas: medianas, medias, comparar dispersión usando rangos
 intercuartiles o varianzas, etc.
 
