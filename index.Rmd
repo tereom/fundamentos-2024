@@ -24,11 +24,11 @@ Notas del curso *Fundamentos de Estadística con Remuestreo*, este curso busca e
 - Repositorio con material: <https://github.com/tereom/fundamentos-2024>\
 - Correo: [teresa.ortiz.mancera\@gmail.com](mailto:teresa.ortiz.mancera@gmail.com)\
 - Zoom clase (miércoles 4:00-7:00 pm): <https://itam.zoom.us/j/92745909276>\
-- Zoom sesiones de dudas (lunes y viernes de 5:00-6:00 pm): <https://itam.zoom.us/j/92518922348>\
+- Zoom sesiones de dudas (lunes de 5:30-6:30 pm): <https://itam.zoom.us/j/92518922348>\
 - Canvas: <https://itam.instructure.com/courses/13328>\
 
 </br>
-
+x
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="Licencia Creative Commons" style="border-width:0"/></a><br />Este trabajo está bajo una <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Licencia Creative Commons Atribución 4.0 Internacional</a>.
 
 # Temario {-}
