@@ -333,8 +333,8 @@ muestreo**:
 
 - *Si tenemos la población*, podemos *calcular* la distribución de muestreo de
 nuestro estimador tomando muchas muestras de la *población*.
-- Estimamos la *poblacion* con la *muestra* y enchufamos en la frase anterior:
-- Podemos *estimar* la distribución de muestreo de nuestro estimador
+- Estimamos la *poblacion* con la *muestra* y enchufamos en la frase anterior: 
+*estimamos* la distribución de muestreo de nuestro estimador
 tomando muchas muestras de la *muestra*.
 
 Nótese que el proceso de muestreo en el último paso **debe ser el mismo** que
@@ -367,8 +367,7 @@ entre las observaciones de la remuestra, y cómo serían las remuestras sin reem
 
 **Observación 2**. Estos argumentos se pueden escribir con fórmulas usando por
 ejemplo la función de distribución acumulada $F$ de la población y su estimador,
-que es la función empírica $\hat{F}$, como en @Efron. 
-Si $\theta = t(F)$ es una
+que es la función empírica $\hat{F}$. Si $\theta = t(F)$ es una
 cantidad poblacional que queremos estimar, su estimador plug-in es
 $\hat{\theta} = t(\hat{F})$. 
 
@@ -379,8 +378,8 @@ $\hat{F}$ converge a $F$ cuando el tamaño de muestra $n\to\infty$, lo cual es
 intuitivamente claro.
 
 
-
 ### Ejemplo {-}
+
 En el ejemplo de tomadores de té, podemos estimar la proporción de tomadores
 de té que prefiere el té negro usando nuestra muestra:
 
@@ -457,6 +456,21 @@ prop_negro_tbl |>
 ```
 
 
+<!-- <!-- comentar --> -->
+<!-- agregar entre cambio de clase -->
+<!-- ### Resumen -->
+
+<!-- * La idea detrás del bootstrap (no paramétrico) es que la muestra original es -->
+<!-- representativa de la población. Entonces las remuestras de la muestra aproximan lo que obtendríamos si tomáramos muestras de la población. -->
+
+<!-- * Es así que la distribución bootstrap de una estadística, basada en un número grande -->
+<!-- de remuestras, aproxima la distribución muestral de la estadística. -->
+
+<!-- * Para un gran número de estadísiticas, la distribuciones bootstrap aproximan la dispersón,  -->
+<!-- sesgo y forma de la distribución muestral. -->
+
+<!-- <!-- comentar --> -->
+
 ## Discusión: propiedades de la distribución bootstrap {-}
 
 Uasremos la distribución bootstrap principalmente para evaluar la variabilidad
@@ -467,8 +481,8 @@ de muestreo, o para "mejorar" la estimación remuestreando.
 
 ### Ejemplo {-}
 
-En nuestro ejemplo, podemos ver varias muestras (por ejemplo 20) de tamaño 200, y
-vemos cómo se ve la aproximación a la distribución de la población:
+En este ejemplo, vemos 20 muestras de tamaño 200, y
+evaluamos cómo se ve la aproximación a la distribución de la población (rojo):
 
 <img src="05-remuestreo_files/figure-html/unnamed-chunk-19-1.png" width="384" style="display: block; margin: auto;" />
 
@@ -617,7 +631,7 @@ que es la desviación estándar de la **distribución bootsrap**.
 define como la desviación estándar de la distribución bootstrap de $\theta$. 
 
 El **intervalo de confianza normal bootstrap** al 95\% está dado por
-$$[\hat{\theta} - 2\mathsf{ee}(\hat{\theta}), \hat{\theta} + 2\mathsf{ee}(\hat{\theta})].$$
+$$[\hat{\theta} - 2\hat{\mathsf{ee}}_{\textrm{boot}}(\hat{\theta}), \hat{\theta} + 2\hat{\mathsf{ee}}_{\textrm{boot}}(\hat{\theta})].$$
   </div>\EndKnitrBlock{mathblock}
 
 Nótese que hay varias cosas qué revisar aquí: que el teorema central del límite aplica y
@@ -1382,7 +1396,7 @@ graf_casas <- function(data){
         geom_smooth(aes(y = precio_m2_miles), method = "loess", span = 0.7, 
                 se = FALSE, method.args = list(degree = 1, family = "symmetric"))     
 }
-graf_casas(muestra_casas)
+graf_casas(casas_muestra)
 ```
 
 <img src="05-remuestreo_files/figure-html/unnamed-chunk-61-1.png" width="480" style="display: block; margin: auto;" />
@@ -2208,7 +2222,7 @@ object_size(computos_boot)/nrow(computos_boot)
 ```
 
 ``` r
-# el incremento en tamaño es << 100
+# el incremento en tamaño es << 1000
 as.numeric(object_size(computos_boot)/object_size(muestra_computos))
 ```
 

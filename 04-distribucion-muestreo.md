@@ -2,7 +2,7 @@
 
 
 
-En esta sección discutiremos cuál el objetivo general del proceso de estimación.
+En esta sección discutiremos cuál el objetivo general del proceso de estimación,
 y cómo entender y manejar la variabilidad que se produce cuando aleatorizamos
 la selección de las muestras que utilizamos para hacer análisis.
 
@@ -96,7 +96,7 @@ estimación diferente. Por ejemplo:
 
 ``` r
 estimar_total(sample_n(marco_casas, 100), N) |>
-  mutate(across(where(is.numeric), round, 2))
+  mutate(across(where(is.numeric), \(x) round(x, 2)))
 ```
 
 ```
@@ -590,16 +590,17 @@ replicar_muestreo_exp <- function(est = mean, m, n = 150, lambda = 1){
   valores_est <- map_dbl(1:m, ~ est(rexp(n, lambda)))
   tibble(id_muestra = 1:m, estimacion = valores_est)
 }
-sim_estimador_1 <- replicar_muestreo_exp(sum, 4000, n = 150)
+sim_estimador_1 <- replicar_muestreo_exp(sum, 4000, n = 15)
 teorica <- tibble(x = seq(0, 35, 0.001)) |>
-  mutate(f_dens = dgamma(x, shape = 150, rate = 1))
+  mutate(f_dens = dgamma(x, shape = 15, rate = 1))
 # graficar aprox de distribución de muestreo
 ggplot(sim_estimador_1) +
-  geom_histogram(aes(x = estimacion, y = ..density..), bins = 35) +
-  geom_line(data = teorica, aes(x = x, y = f_dens), colour = "red", size = 1.2)
+  geom_histogram(aes(x = estimacion, y = after_stat(density)), bins = 35) +
+  geom_line(data = teorica, aes(x = x, y = f_dens), colour = "red", linewidth = 1.2)
 ```
 
 <img src="04-distribucion-muestreo_files/figure-html/unnamed-chunk-26-1.png" width="480" style="display: block; margin: auto;" />
+
 
 ## Teorema central del límite {-}
 
@@ -863,6 +864,10 @@ ggplot(replicaciones_2, aes(sample = est_total_millones)) +
 ```
 
 <img src="04-distribucion-muestreo_files/figure-html/unnamed-chunk-37-1.png" width="384" style="display: block; margin: auto;" />
+
+
+
+
 Y vemos que en efecto el TCL aplica en este ejemplo, y la aproximación es buena.
 Aunque la población original es sesgada, la descripción de la distribución de
 muestreo es sorprendemente compacta:
@@ -941,19 +946,25 @@ aproximar probabilidades en las colas de la distribución:
 
 
 ``` r
-sims_gamma <- map_df(1:2000, ~ tibble(suma = mean(rgamma(30, 0.1, 1))), 
+sims_gamma <- map_df(1:2000, ~ tibble(suma = sum(rgamma(30, 0.1, 1))), 
                      .id = "n_sim")
 ggplot(sims_gamma, aes(x = suma)) + geom_histogram()
 ```
 
-<img src="04-distribucion-muestreo_files/figure-html/unnamed-chunk-42-1.png" width="480" style="display: block; margin: auto;" />
+<img src="04-distribucion-muestreo_files/figure-html/unnamed-chunk-43-1.png" width="480" style="display: block; margin: auto;" />
 
 ## Más del Teorema central del límite {-}
 
 - El teorema central del límite aplica a situaciones más generales que
-las del enunciado del teorema básico. Por ejemplo, aplica a poblaciones
-finitas (como vimos en el ejemplo de las casas) bajo muestreo sin
-reemplazo, y aplica también a otras estadísticas como los cuantiles muestrales.
+las del enunciado del teorema básico. Por ejemplo, 
+  + aplica a poblaciones finitas (como vimos en el ejemplo de las casas), en 1960
+  Jaroslav Hajek demostró una versión del TCL bajo muestreo sin
+reemplazo.
+  + Mas allá de la media muestral, el TCL se puede utilizar para más estadísticas ya que muchas
+ pueden verse como promedios, como totales o errores estándar. El TLC se ha generalizado incluso para cuantiles muestrales.
+ 
+ <!-- Loosely speaking, a consequence of the CLT for sample quantiles is that the 100𝑝% sample quantile of a large number of identically distributed random variables, each with probability density function 𝑓 -->
+ <!-- and 100𝑝% quantile 𝜉(𝑝), has approximately a normal distribution. See, for example, Lehmann (1999) for a precise statement and conditions. -->
 
 - Es importante notar que la calidad de la aproximación del TCL depende de características
 de la población y también del tamaño de muestra $n$. Para ver si el TCL aplica, podemos hacer ejercicios de simulación bajo diferentes supuestos acerca de la población. 
@@ -967,8 +978,10 @@ el máximo de un conjunto de uniformes, por ejemplo).
 exactas, particularmente en la construcción de intervalos de confianza, por ejemplo. Dependemos menos de **resultados asintóticos**, como el TCL.
 
 - Cuando aproximamos una distribución discreta mediante la distribución normal,
-conviene hacer *correcciones de continuidad*, como se explica en [@Chihara], 4.3.2. 
+conviene hacer *correcciones de continuidad*, como se explica en [@Chihara], 4.3.2.
 
+<!-- Hayek: https://www.kybernetika.cz/content/1995/3/251/paper.pdf -->
+<!-- Lehman: https://www.datascienceassn.org/sites/default/files/Elements%20of%20Large-Sample%20Theory%20-%20Lehmann.pdf -->
 
 
 

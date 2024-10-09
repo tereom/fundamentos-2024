@@ -584,8 +584,8 @@ muestreo</strong>:</p>
 <ul>
 <li><em>Si tenemos la población</em>, podemos <em>calcular</em> la distribución de muestreo de
 nuestro estimador tomando muchas muestras de la <em>población</em>.</li>
-<li>Estimamos la <em>poblacion</em> con la <em>muestra</em> y enchufamos en la frase anterior:</li>
-<li>Podemos <em>estimar</em> la distribución de muestreo de nuestro estimador
+<li>Estimamos la <em>poblacion</em> con la <em>muestra</em> y enchufamos en la frase anterior:
+<em>estimamos</em> la distribución de muestreo de nuestro estimador
 tomando muchas muestras de la <em>muestra</em>.</li>
 </ul>
 <p>Nótese que el proceso de muestreo en el último paso <strong>debe ser el mismo</strong> que
@@ -618,8 +618,7 @@ entre las observaciones de la remuestra, y cómo serían las remuestras sin reem
 </ul>
 <p><strong>Observación 2</strong>. Estos argumentos se pueden escribir con fórmulas usando por
 ejemplo la función de distribución acumulada <span class="math inline">\(F\)</span> de la población y su estimador,
-que es la función empírica <span class="math inline">\(\hat{F}\)</span>, como en <span class="citation">Efron and Tibshirani (<a href="#ref-Efron" role="doc-biblioref">1993</a>)</span>.
-Si <span class="math inline">\(\theta = t(F)\)</span> es una
+que es la función empírica <span class="math inline">\(\hat{F}\)</span>. Si <span class="math inline">\(\theta = t(F)\)</span> es una
 cantidad poblacional que queremos estimar, su estimador plug-in es
 <span class="math inline">\(\hat{\theta} = t(\hat{F})\)</span>.</p>
 <p><strong>Observación 3</strong>: La distribución empírica <span class="math inline">\(\hat{F}\)</span> es un estimador “razonable” de
@@ -682,6 +681,18 @@ qué tan dispersa es la distribución bootstrap:</p>
 ## 2 ee         0.025
 ## 3 cuantil_75 0.263
 ## 4 cuantil_25 0.23</code></pre>
+<!-- <!-- comentar -->
+<p>–&gt;
+<!-- agregar entre cambio de clase -->
+<!-- ### Resumen --></p>
+<!-- * La idea detrás del bootstrap (no paramétrico) es que la muestra original es -->
+<!-- representativa de la población. Entonces las remuestras de la muestra aproximan lo que obtendríamos si tomáramos muestras de la población. -->
+<!-- * Es así que la distribución bootstrap de una estadística, basada en un número grande -->
+<!-- de remuestras, aproxima la distribución muestral de la estadística. -->
+<!-- * Para un gran número de estadísiticas, la distribuciones bootstrap aproximan la dispersón,  -->
+<!-- sesgo y forma de la distribución muestral. -->
+<!-- <!-- comentar -->
+<p>–&gt;</p>
 </div>
 </div>
 <div id="discusión-propiedades-de-la-distribución-bootstrap" class="section level2 unnumbered hasAnchor">
@@ -693,8 +704,8 @@ que no la usamos, por ejemplo, para saber dónde está centrada la distribución
 de muestreo, o para “mejorar” la estimación remuestreando.</p>
 <div id="ejemplo-7" class="section level3 unnumbered hasAnchor">
 <h3>Ejemplo<a href="intervalos-de-confianza-y-remuestreo.html#ejemplo-7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>En nuestro ejemplo, podemos ver varias muestras (por ejemplo 20) de tamaño 200, y
-vemos cómo se ve la aproximación a la distribución de la población:</p>
+<p>En este ejemplo, vemos 20 muestras de tamaño 200, y
+evaluamos cómo se ve la aproximación a la distribución de la población (rojo):</p>
 <p><img src="05-remuestreo_files/figure-html/unnamed-chunk-19-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>Podemos calcular las distribuciones de remuestreo (bootstrap) para cada muestra,
 y compararlas con la distribución de muestreo real.</p>
@@ -816,7 +827,7 @@ que es la desviación estándar de la <strong>distribución bootsrap</strong>.</
 <p><strong>Definición.</strong> El <strong>error estándar bootstrap</strong> <span class="math inline">\(\hat{\mathsf{ee}}_{\textrm{boot}}(\hat{\theta})\)</span> se
 define como la desviación estándar de la distribución bootstrap de <span class="math inline">\(\theta\)</span>.</p>
 El <strong>intervalo de confianza normal bootstrap</strong> al 95% está dado por
-<span class="math display">\[[\hat{\theta} - 2\mathsf{ee}(\hat{\theta}), \hat{\theta} + 2\mathsf{ee}(\hat{\theta})].\]</span>
+<span class="math display">\[[\hat{\theta} - 2\hat{\mathsf{ee}}_{\textrm{boot}}(\hat{\theta}), \hat{\theta} + 2\hat{\mathsf{ee}}_{\textrm{boot}}(\hat{\theta})].\]</span>
 </div>
 <p>Nótese que hay varias cosas qué revisar aquí: que el teorema central del límite aplica y
 que la distribución de muestreo de nuestro estimador está centrado en el valor verdadero.
@@ -1357,7 +1368,7 @@ estadística:</p>
 <span id="cb219-5"><a href="intervalos-de-confianza-y-remuestreo.html#cb219-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">y =</span> precio_m2_miles), <span class="at">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="at">span =</span> <span class="fl">0.7</span>, </span>
 <span id="cb219-6"><a href="intervalos-de-confianza-y-remuestreo.html#cb219-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">degree =</span> <span class="dv">1</span>, <span class="at">family =</span> <span class="st">&quot;symmetric&quot;</span>))     </span>
 <span id="cb219-7"><a href="intervalos-de-confianza-y-remuestreo.html#cb219-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb219-8"><a href="intervalos-de-confianza-y-remuestreo.html#cb219-8" aria-hidden="true" tabindex="-1"></a><span class="fu">graf_casas</span>(muestra_casas)</span></code></pre></div>
+<span id="cb219-8"><a href="intervalos-de-confianza-y-remuestreo.html#cb219-8" aria-hidden="true" tabindex="-1"></a><span class="fu">graf_casas</span>(casas_muestra)</span></code></pre></div>
 <p><img src="05-remuestreo_files/figure-html/unnamed-chunk-61-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Podemos hacer bootstrap para juzgar la estabilidad del suavizador:</p>
 <div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="intervalos-de-confianza-y-remuestreo.html#cb220-1" aria-hidden="true" tabindex="-1"></a>suaviza_boot <span class="ot">&lt;-</span> <span class="cf">function</span>(x, data){</span>
@@ -1994,7 +2005,7 @@ el uso de memoria.</p>
 <div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="intervalos-de-confianza-y-remuestreo.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tamaño por muestra</span></span>
 <span id="cb273-2"><a href="intervalos-de-confianza-y-remuestreo.html#cb273-2" aria-hidden="true" tabindex="-1"></a><span class="fu">object_size</span>(computos_boot)<span class="sc">/</span><span class="fu">nrow</span>(computos_boot)</span></code></pre></div>
 <pre><code>## 54.92 kB</code></pre>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="intervalos-de-confianza-y-remuestreo.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="co"># el incremento en tamaño es &lt;&lt; 100</span></span>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="intervalos-de-confianza-y-remuestreo.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="co"># el incremento en tamaño es &lt;&lt; 1000</span></span>
 <span id="cb275-2"><a href="intervalos-de-confianza-y-remuestreo.html#cb275-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(<span class="fu">object_size</span>(computos_boot)<span class="sc">/</span><span class="fu">object_size</span>(muestra_computos))</span></code></pre></div>
 <pre><code>## [1] 3.895024</code></pre>
 <p>Adicionalmente incluye funciones para el cálculo de intervalos bootstrap:</p>

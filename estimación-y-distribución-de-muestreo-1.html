@@ -349,7 +349,7 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="estimación-y-distribución-de-muestreo-1" class="section level1 hasAnchor" number="4">
 <h1><span class="header-section-number">Sección 4</span> Estimación y distribución de muestreo<a href="estimación-y-distribución-de-muestreo-1.html#estimación-y-distribución-de-muestreo-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>En esta sección discutiremos cuál el objetivo general del proceso de estimación.
+<p>En esta sección discutiremos cuál el objetivo general del proceso de estimación,
 y cómo entender y manejar la variabilidad que se produce cuando aleatorizamos
 la selección de las muestras que utilizamos para hacer análisis.</p>
 <p>A diferencia de las pruebas de permutación, donde evaluábamos como cambiaría una
@@ -413,7 +413,7 @@ poblacional <span class="math inline">\(t\)</span> es</p>
 <p>Sin embargo, si hubiéramos obtenido otra muestra, hubiéramos obtenido otra
 estimación diferente. Por ejemplo:</p>
 <div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="estimación-y-distribución-de-muestreo-1.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">estimar_total</span>(<span class="fu">sample_n</span>(marco_casas, <span class="dv">100</span>), N) <span class="sc">|&gt;</span></span>
-<span id="cb103-2"><a href="estimación-y-distribución-de-muestreo-1.html#cb103-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), round, <span class="dv">2</span>))</span></code></pre></div>
+<span id="cb103-2"><a href="estimación-y-distribución-de-muestreo-1.html#cb103-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), \(x) <span class="fu">round</span>(x, <span class="dv">2</span>)))</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 3
 ##   total_muestra factor_exp est_total_millones
 ##           &lt;dbl&gt;      &lt;dbl&gt;              &lt;dbl&gt;
@@ -867,13 +867,13 @@ muestra de tamaño <span class="math inline">\(n=15\)</span> con <span class="ma
 <span id="cb127-2"><a href="estimación-y-distribución-de-muestreo-1.html#cb127-2" aria-hidden="true" tabindex="-1"></a>  valores_est <span class="ot">&lt;-</span> <span class="fu">map_dbl</span>(<span class="dv">1</span><span class="sc">:</span>m, <span class="sc">~</span> <span class="fu">est</span>(<span class="fu">rexp</span>(n, lambda)))</span>
 <span id="cb127-3"><a href="estimación-y-distribución-de-muestreo-1.html#cb127-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">id_muestra =</span> <span class="dv">1</span><span class="sc">:</span>m, <span class="at">estimacion =</span> valores_est)</span>
 <span id="cb127-4"><a href="estimación-y-distribución-de-muestreo-1.html#cb127-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb127-5"><a href="estimación-y-distribución-de-muestreo-1.html#cb127-5" aria-hidden="true" tabindex="-1"></a>sim_estimador_1 <span class="ot">&lt;-</span> <span class="fu">replicar_muestreo_exp</span>(sum, <span class="dv">4000</span>, <span class="at">n =</span> <span class="dv">150</span>)</span>
+<span id="cb127-5"><a href="estimación-y-distribución-de-muestreo-1.html#cb127-5" aria-hidden="true" tabindex="-1"></a>sim_estimador_1 <span class="ot">&lt;-</span> <span class="fu">replicar_muestreo_exp</span>(sum, <span class="dv">4000</span>, <span class="at">n =</span> <span class="dv">15</span>)</span>
 <span id="cb127-6"><a href="estimación-y-distribución-de-muestreo-1.html#cb127-6" aria-hidden="true" tabindex="-1"></a>teorica <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">35</span>, <span class="fl">0.001</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb127-7"><a href="estimación-y-distribución-de-muestreo-1.html#cb127-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">f_dens =</span> <span class="fu">dgamma</span>(x, <span class="at">shape =</span> <span class="dv">150</span>, <span class="at">rate =</span> <span class="dv">1</span>))</span>
+<span id="cb127-7"><a href="estimación-y-distribución-de-muestreo-1.html#cb127-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">f_dens =</span> <span class="fu">dgamma</span>(x, <span class="at">shape =</span> <span class="dv">15</span>, <span class="at">rate =</span> <span class="dv">1</span>))</span>
 <span id="cb127-8"><a href="estimación-y-distribución-de-muestreo-1.html#cb127-8" aria-hidden="true" tabindex="-1"></a><span class="co"># graficar aprox de distribución de muestreo</span></span>
 <span id="cb127-9"><a href="estimación-y-distribución-de-muestreo-1.html#cb127-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sim_estimador_1) <span class="sc">+</span></span>
-<span id="cb127-10"><a href="estimación-y-distribución-de-muestreo-1.html#cb127-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> estimacion, <span class="at">y =</span> ..density..), <span class="at">bins =</span> <span class="dv">35</span>) <span class="sc">+</span></span>
-<span id="cb127-11"><a href="estimación-y-distribución-de-muestreo-1.html#cb127-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> teorica, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> f_dens), <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="fl">1.2</span>)</span></code></pre></div>
+<span id="cb127-10"><a href="estimación-y-distribución-de-muestreo-1.html#cb127-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> estimacion, <span class="at">y =</span> <span class="fu">after_stat</span>(density)), <span class="at">bins =</span> <span class="dv">35</span>) <span class="sc">+</span></span>
+<span id="cb127-11"><a href="estimación-y-distribución-de-muestreo-1.html#cb127-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> teorica, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> f_dens), <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>)</span></code></pre></div>
 <p><img src="04-distribucion-muestreo_files/figure-html/unnamed-chunk-26-1.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
 </div>
@@ -1072,8 +1072,8 @@ meustreo de esta estadística (<span class="math inline">\(n=250\)</span>):</p>
 <div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="estimación-y-distribución-de-muestreo-1.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(replicaciones_2, <span class="fu">aes</span>(<span class="at">sample =</span> est_total_millones)) <span class="sc">+</span></span>
 <span id="cb138-2"><a href="estimación-y-distribución-de-muestreo-1.html#cb138-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span> </span>
 <span id="cb138-3"><a href="estimación-y-distribución-de-muestreo-1.html#cb138-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq_line</span>(<span class="at">colour =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="04-distribucion-muestreo_files/figure-html/unnamed-chunk-37-1.png" width="384" style="display: block; margin: auto;" />
-Y vemos que en efecto el TCL aplica en este ejemplo, y la aproximación es buena.
+<p><img src="04-distribucion-muestreo_files/figure-html/unnamed-chunk-37-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p>Y vemos que en efecto el TCL aplica en este ejemplo, y la aproximación es buena.
 Aunque la población original es sesgada, la descripción de la distribución de
 muestreo es sorprendemente compacta:</p>
 <ul>
@@ -1126,18 +1126,27 @@ que <span class="math inline">\(n\)</span> sea muy grande para que la aproximaci
 promedio o la suma. Por ejemplo, si tomamos una gamma con parámetro de forma chico,
 <span class="math inline">\(n = 30\)</span> no es suficientemente bueno, especialmente si quisiéramos
 aproximar probabilidades en las colas de la distribución:</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="estimación-y-distribución-de-muestreo-1.html#cb145-1" aria-hidden="true" tabindex="-1"></a>sims_gamma <span class="ot">&lt;-</span> <span class="fu">map_df</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2000</span>, <span class="sc">~</span> <span class="fu">tibble</span>(<span class="at">suma =</span> <span class="fu">mean</span>(<span class="fu">rgamma</span>(<span class="dv">30</span>, <span class="fl">0.1</span>, <span class="dv">1</span>))), </span>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="estimación-y-distribución-de-muestreo-1.html#cb145-1" aria-hidden="true" tabindex="-1"></a>sims_gamma <span class="ot">&lt;-</span> <span class="fu">map_df</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2000</span>, <span class="sc">~</span> <span class="fu">tibble</span>(<span class="at">suma =</span> <span class="fu">sum</span>(<span class="fu">rgamma</span>(<span class="dv">30</span>, <span class="fl">0.1</span>, <span class="dv">1</span>))), </span>
 <span id="cb145-2"><a href="estimación-y-distribución-de-muestreo-1.html#cb145-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">.id =</span> <span class="st">&quot;n_sim&quot;</span>)</span>
 <span id="cb145-3"><a href="estimación-y-distribución-de-muestreo-1.html#cb145-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sims_gamma, <span class="fu">aes</span>(<span class="at">x =</span> suma)) <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span></code></pre></div>
-<p><img src="04-distribucion-muestreo_files/figure-html/unnamed-chunk-42-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="04-distribucion-muestreo_files/figure-html/unnamed-chunk-43-1.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
 <div id="más-del-teorema-central-del-límite" class="section level2 unnumbered hasAnchor">
 <h2>Más del Teorema central del límite<a href="estimación-y-distribución-de-muestreo-1.html#más-del-teorema-central-del-límite" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li><p>El teorema central del límite aplica a situaciones más generales que
-las del enunciado del teorema básico. Por ejemplo, aplica a poblaciones
-finitas (como vimos en el ejemplo de las casas) bajo muestreo sin
-reemplazo, y aplica también a otras estadísticas como los cuantiles muestrales.</p></li>
+<li>El teorema central del límite aplica a situaciones más generales que
+las del enunciado del teorema básico. Por ejemplo,
+<ul>
+<li>aplica a poblaciones finitas (como vimos en el ejemplo de las casas), en 1960
+Jaroslav Hajek demostró una versión del TCL bajo muestreo sin
+reemplazo.</li>
+<li>Mas allá de la media muestral, el TCL se puede utilizar para más estadísticas ya que muchas
+pueden verse como promedios, como totales o errores estándar. El TLC se ha generalizado incluso para cuantiles muestrales.</li>
+</ul></li>
+</ul>
+<p><!-- Loosely speaking, a consequence of the CLT for sample quantiles is that the 100𝑝% sample quantile of a large number of identically distributed random variables, each with probability density function 𝑓 -->
+<!-- and 100𝑝% quantile 𝜉(𝑝), has approximately a normal distribution. See, for example, Lehmann (1999) for a precise statement and conditions. --></p>
+<ul>
 <li><p>Es importante notar que la calidad de la aproximación del TCL depende de características
 de la población y también del tamaño de muestra <span class="math inline">\(n\)</span>. Para ver si el TCL aplica, podemos hacer ejercicios de simulación bajo diferentes supuestos acerca de la población.
 También veremos más adelante, con remuestreo, maneras de checar si es factible el TCL dependiendo del análisis de una muestra dada que tengamos.</p></li>
@@ -1149,6 +1158,8 @@ exactas, particularmente en la construcción de intervalos de confianza, por eje
 <li><p>Cuando aproximamos una distribución discreta mediante la distribución normal,
 conviene hacer <em>correcciones de continuidad</em>, como se explica en <span class="citation">(<a href="#ref-Chihara" role="doc-biblioref">Chihara and Hesterberg 2018</a>)</span>, 4.3.2.</p></li>
 </ul>
+<!-- Hayek: https://www.kybernetika.cz/content/1995/3/251/paper.pdf -->
+<!-- Lehman: https://www.datascienceassn.org/sites/default/files/Elements%20of%20Large-Sample%20Theory%20-%20Lehmann.pdf -->
 
 </div>
 </div>
