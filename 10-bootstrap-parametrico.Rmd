@@ -55,7 +55,7 @@ log_p <- crear_log_p(muestra)
 ```
 
 
-Ahora optimizamos (checa que el método converge):
+Ahora optimizamos (revisa que el método converge):
 
 ```{r}
 res <- optim(c(0, 0.5), log_p, control = list(fnscale = -1, maxit = 1000), method = "Nelder-Mead")
@@ -106,7 +106,7 @@ del modelo que suponemos es el correcto, es decir, estamos usando información a
 que no teníamos en el *bootstrap* no paramétrico. Ahora es necesario repetir un 
 número grande de veces.
 
-Nótese que esta función solo envuelve el proceso de remuestreo,
+Nótese que esta función envuelve el proceso de remuestreo,
 cálculo de la función de verosimilitud y optimización:
 
 ```{r, cache = TRUE}
@@ -147,7 +147,7 @@ calcula los errores estándar esta rutina ---no es con bootstrap):
 broom::tidy(MASS::fitdistr(muestra, "normal"))
 ```
 
-Podemos checar también la normalidad aproximada de las distribuciones
+Podemos revisar también la normalidad aproximada de las distribuciones
 bootstrap para construir nuestros intervalos:
 
 ```{r}
@@ -190,7 +190,7 @@ ggplot(reps_boot, aes(x = estimador_boot)) +
   geom_histogram() +facet_wrap(~parametro)
 ```
 
-Donde vemos que la distribución de $\sigma$ tienen sesgo a la derecha, pues en algunos
+Donde vemos que la distribución de $\sigma$ es asimétrica pues en algunos
 casos obtenemos estimaciones muy cercanas a cero. Podemos
 usar intervalos de percentiles.
 
@@ -243,7 +243,7 @@ no-paramétrico.
 
 ## Verificando los supuestos distribucionales {-}
 
-Como hemos discutido antes, podemos hacer pruebas de hipótesis para checar si una muestra
+Como hemos discutido antes, podemos hacer pruebas de hipótesis para revisar si una muestra
 dada proviene de una distribución conocida. Sin embargo, la herramienta más común es
 la de los qq-plots, donde podemos juzgar fácilmente el tamaño de las desviaciones
 y si estas tienen implicaciones prácticas importantes.
@@ -339,7 +339,7 @@ g_2 <- ggplot(propinas %>% filter(momento == "Comida"), aes(sample = cuenta_pers
   geom_abline() + labs(subtitle = "Comida")
 g_1 + g_2
 ```
-El ajuste es bueno, aunque podríamos checar la cola de la derecha en la Comida:
+El ajuste es bueno, aunque podríamos revisar la cola de la derecha en la Comida:
 ¿por qué existen esos valores relativamente grandes (alrededor de 25% más altos
 de lo que esperaríamos). 
 
