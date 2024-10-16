@@ -49,7 +49,7 @@ log_p <- crear_log_p(muestra)
 ```
 
 
-Ahora optimizamos (checa que el método converge):
+Ahora optimizamos (revisa que el método converge):
 
 
 ``` r
@@ -134,7 +134,7 @@ del modelo que suponemos es el correcto, es decir, estamos usando información a
 que no teníamos en el *bootstrap* no paramétrico. Ahora es necesario repetir un 
 número grande de veces.
 
-Nótese que esta función solo envuelve el proceso de remuestreo,
+Nótese que esta función envuelve el proceso de remuestreo,
 cálculo de la función de verosimilitud y optimización:
 
 
@@ -218,7 +218,7 @@ broom::tidy(MASS::fitdistr(muestra, "normal"))
 ## 2 sd        1.84     0.106
 ```
 
-Podemos checar también la normalidad aproximada de las distribuciones
+Podemos revisar también la normalidad aproximada de las distribuciones
 bootstrap para construir nuestros intervalos:
 
 
@@ -304,7 +304,7 @@ ggplot(reps_boot, aes(x = estimador_boot)) +
 
 <img src="10-bootstrap-parametrico_files/figure-html/unnamed-chunk-14-2.png" width="480" style="display: block; margin: auto;" />
 
-Donde vemos que la distribución de $\sigma$ tienen sesgo a la derecha, pues en algunos
+Donde vemos que la distribución de $\sigma$ es asimétrica pues en algunos
 casos obtenemos estimaciones muy cercanas a cero. Podemos
 usar intervalos de percentiles.
 
@@ -371,7 +371,7 @@ no-paramétrico.
 
 ## Verificando los supuestos distribucionales {-}
 
-Como hemos discutido antes, podemos hacer pruebas de hipótesis para checar si una muestra
+Como hemos discutido antes, podemos hacer pruebas de hipótesis para revisar si una muestra
 dada proviene de una distribución conocida. Sin embargo, la herramienta más común es
 la de los qq-plots, donde podemos juzgar fácilmente el tamaño de las desviaciones
 y si estas tienen implicaciones prácticas importantes.
@@ -496,7 +496,7 @@ g_1 + g_2
 ```
 
 <img src="10-bootstrap-parametrico_files/figure-html/unnamed-chunk-22-1.png" width="480" style="display: block; margin: auto;" />
-El ajuste es bueno, aunque podríamos checar la cola de la derecha en la Comida:
+El ajuste es bueno, aunque podríamos revisar la cola de la derecha en la Comida:
 ¿por qué existen esos valores relativamente grandes (alrededor de 25% más altos
 de lo que esperaríamos). 
 

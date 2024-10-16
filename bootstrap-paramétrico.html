@@ -392,7 +392,7 @@ para nuestra muestra:</p>
 <span id="cb318-10"><a href="bootstrap-paramétrico.html#cb318-10" aria-hidden="true" tabindex="-1"></a>  log_p</span>
 <span id="cb318-11"><a href="bootstrap-paramétrico.html#cb318-11" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb318-12"><a href="bootstrap-paramétrico.html#cb318-12" aria-hidden="true" tabindex="-1"></a>log_p <span class="ot">&lt;-</span> <span class="fu">crear_log_p</span>(muestra)</span></code></pre></div>
-<p>Ahora optimizamos (checa que el método converge):</p>
+<p>Ahora optimizamos (revisa que el método converge):</p>
 <div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="bootstrap-paramétrico.html#cb319-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">optim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>), log_p, <span class="at">control =</span> <span class="fu">list</span>(<span class="at">fnscale =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">maxit =</span> <span class="dv">1000</span>), <span class="at">method =</span> <span class="st">&quot;Nelder-Mead&quot;</span>)</span>
 <span id="cb319-2"><a href="bootstrap-paramétrico.html#cb319-2" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>convergence</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
@@ -433,7 +433,7 @@ verosimlitud. Esto se hace optimizando:</p>
 del modelo que suponemos es el correcto, es decir, estamos usando información adicional
 que no teníamos en el <em>bootstrap</em> no paramétrico. Ahora es necesario repetir un
 número grande de veces.</p>
-<p>Nótese que esta función solo envuelve el proceso de remuestreo,
+<p>Nótese que esta función envuelve el proceso de remuestreo,
 cálculo de la función de verosimilitud y optimización:</p>
 <div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="bootstrap-paramétrico.html#cb330-1" aria-hidden="true" tabindex="-1"></a>rep_boot <span class="ot">&lt;-</span> <span class="cf">function</span>(rep, crear_log_p, est_mle, n){</span>
 <span id="cb330-2"><a href="bootstrap-paramétrico.html#cb330-2" aria-hidden="true" tabindex="-1"></a>  muestra_bootstrap <span class="ot">&lt;-</span> <span class="fu">simular_modelo</span>(<span class="fu">length</span>(muestra), </span>
@@ -487,7 +487,7 @@ calcula los errores estándar esta rutina —no es con bootstrap):</p>
 ##   &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;
 ## 1 mean      1.14     0.150
 ## 2 sd        1.84     0.106</code></pre>
-<p>Podemos checar también la normalidad aproximada de las distribuciones
+<p>Podemos revisar también la normalidad aproximada de las distribuciones
 bootstrap para construir nuestros intervalos:</p>
 <div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="bootstrap-paramétrico.html#cb338-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(reps_boot, <span class="fu">aes</span>(<span class="at">sample =</span> estimador_boot)) <span class="sc">+</span> </span>
 <span id="cb338-2"><a href="bootstrap-paramétrico.html#cb338-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq</span>() <span class="sc">+</span> <span class="fu">geom_qq_line</span>(<span class="at">colour =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
@@ -535,7 +535,7 @@ para asegurarte que entiendes el procedimiento:</p>
 <div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="bootstrap-paramétrico.html#cb346-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(reps_boot, <span class="fu">aes</span>(<span class="at">x =</span> estimador_boot)) <span class="sc">+</span></span>
 <span id="cb346-2"><a href="bootstrap-paramétrico.html#cb346-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span><span class="fu">facet_wrap</span>(<span class="sc">~</span>parametro)</span></code></pre></div>
 <p><img src="10-bootstrap-parametrico_files/figure-html/unnamed-chunk-14-2.png" width="480" style="display: block; margin: auto;" /></p>
-<p>Donde vemos que la distribución de <span class="math inline">\(\sigma\)</span> tienen sesgo a la derecha, pues en algunos
+<p>Donde vemos que la distribución de <span class="math inline">\(\sigma\)</span> es asimétrica pues en algunos
 casos obtenemos estimaciones muy cercanas a cero. Podemos
 usar intervalos de percentiles.</p>
 <p><strong>Ejercicio (extra)</strong>. Con más de un parámetro, podemos preguntarnos cómo dependen
@@ -595,7 +595,7 @@ no-paramétrico.</p></li>
 </div>
 <div id="verificando-los-supuestos-distribucionales" class="section level2 unnumbered hasAnchor">
 <h2>Verificando los supuestos distribucionales<a href="bootstrap-paramétrico.html#verificando-los-supuestos-distribucionales" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Como hemos discutido antes, podemos hacer pruebas de hipótesis para checar si una muestra
+<p>Como hemos discutido antes, podemos hacer pruebas de hipótesis para revisar si una muestra
 dada proviene de una distribución conocida. Sin embargo, la herramienta más común es
 la de los qq-plots, donde podemos juzgar fácilmente el tamaño de las desviaciones
 y si estas tienen implicaciones prácticas importantes.</p>
@@ -678,7 +678,7 @@ Ahora verificamos el ajuste:</p>
 <span id="cb355-8"><a href="bootstrap-paramétrico.html#cb355-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">&quot;Comida&quot;</span>)</span>
 <span id="cb355-9"><a href="bootstrap-paramétrico.html#cb355-9" aria-hidden="true" tabindex="-1"></a>g_1 <span class="sc">+</span> g_2</span></code></pre></div>
 <p><img src="10-bootstrap-parametrico_files/figure-html/unnamed-chunk-22-1.png" width="480" style="display: block; margin: auto;" />
-El ajuste es bueno, aunque podríamos checar la cola de la derecha en la Comida:
+El ajuste es bueno, aunque podríamos revisar la cola de la derecha en la Comida:
 ¿por qué existen esos valores relativamente grandes (alrededor de 25% más altos
 de lo que esperaríamos).</p>
 <div class="ejercicio">
