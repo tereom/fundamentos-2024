@@ -1830,19 +1830,20 @@ ponderador podría tomar valores negativos.
 
 Implementemos el bootstrap de Rao y Wu a la ENIGH, usaremos $m_h=n_h-1$
 
-```{r funcion_boot, cache = TRUE, message=FALSE}
+```{r funcion_boot, cache = TRUE, message=FALSE, warning=FALSE}
 # creamos una tabla con los estratos y upms
 est_upm <- hogar %>% 
   distinct(est_dis, upm, n) %>% 
-  arrange(upm)
+  arrange(est_dis, upm)
 
 hogar_factor <- est_upm %>% 
   group_by(est_dis) %>% # dentro de cada estrato tomamos muestra (n_h-1)
   sample_n(size = first(n) - 1, replace = TRUE) %>% 
   add_count(est_dis, upm, name = "m_hi") %>% # calculamos m_hi*
-  left_join(hogar, by = c("est_dis", "upm", "n")) %>% 
+  left_join(hogar, by = c("est_dis", "upm", "n")) |> 
   mutate(factor_b = factor * m_hi * n / (n - 1))
 
+  
 # unimos los pasos anteriores en una función para replicar en cada muestra bootstrap
 svy_boot <- function(est_upm, hogar){
   m_hi <- est_upm %>% 
@@ -1879,7 +1880,6 @@ map_dbl(boot_rep, ~wtd_mean(w = .$factor_b, x = .$ing_cor)) %>%
 rm(boot_rep)
 ```
 
-
 El método bootstrap está implementado en el paquete `survey` y más recientemente 
 en `srvyr` que es una versión *tidy* que utiliza las funciones en `survey`.
 
@@ -1896,7 +1896,7 @@ enigh_design <- hogar %>%
 # 2. Elegimos bootstrap como el método para el cálculo de errores estándar
 set.seed(7398731)
 enigh_boot <- enigh_design %>% 
-  as_survey_rep(type = "subbootstrap", replicates = 500)
+  as_survey_rep(type = "bootstrap", replicates = 500)
 
 # 3. Así calculamos la media
 enigh_boot %>% 
