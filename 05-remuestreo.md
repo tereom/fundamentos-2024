@@ -1938,15 +1938,16 @@ Implementemos el bootstrap de Rao y Wu a la ENIGH, usaremos $m_h=n_h-1$
 # creamos una tabla con los estratos y upms
 est_upm <- hogar %>% 
   distinct(est_dis, upm, n) %>% 
-  arrange(upm)
+  arrange(est_dis, upm)
 
 hogar_factor <- est_upm %>% 
   group_by(est_dis) %>% # dentro de cada estrato tomamos muestra (n_h-1)
   sample_n(size = first(n) - 1, replace = TRUE) %>% 
   add_count(est_dis, upm, name = "m_hi") %>% # calculamos m_hi*
-  left_join(hogar, by = c("est_dis", "upm", "n")) %>% 
+  left_join(hogar, by = c("est_dis", "upm", "n")) |> 
   mutate(factor_b = factor * m_hi * n / (n - 1))
 
+  
 # unimos los pasos anteriores en una función para replicar en cada muestra bootstrap
 svy_boot <- function(est_upm, hogar){
   m_hi <- est_upm %>% 
@@ -1994,7 +1995,6 @@ map_dbl(boot_rep, ~wtd_mean(w = .$factor_b, x = .$ing_cor)) %>%
 
 
 
-
 El método bootstrap está implementado en el paquete `survey` y más recientemente 
 en `srvyr` que es una versión *tidy* que utiliza las funciones en `survey`.
 
@@ -2012,7 +2012,7 @@ enigh_design <- hogar %>%
 # 2. Elegimos bootstrap como el método para el cálculo de errores estándar
 set.seed(7398731)
 enigh_boot <- enigh_design %>% 
-  as_survey_rep(type = "subbootstrap", replicates = 500)
+  as_survey_rep(type = "bootstrap", replicates = 500)
 
 # 3. Así calculamos la media
 enigh_boot %>% 
@@ -2023,7 +2023,7 @@ enigh_boot %>%
 ## # A tibble: 1 × 2
 ##   mean_ingcor mean_ingcor_se
 ##         <dbl>          <dbl>
-## 1      49610.           459.
+## 1      49610.           468.
 ```
 
 ``` r
@@ -2035,7 +2035,7 @@ enigh_boot %>%
 ## # A tibble: 1 × 3
 ##   mean_ingcor mean_ingcor_low mean_ingcor_upp
 ##         <dbl>           <dbl>           <dbl>
-## 1      49610.          48709.          50512.
+## 1      49610.          48690.          50530.
 ```
 
 ``` r
@@ -2049,16 +2049,16 @@ enigh_boot %>%
 ## # A tibble: 30 × 3
 ##    edo   mean_ingcor mean_ingcor_se
 ##    <chr>       <dbl>          <dbl>
-##  1 10         50161.           942.
-##  2 11         46142.          1252.
-##  3 12         29334.          1067.
-##  4 13         38783.           933.
-##  5 14         60541.          1873.
-##  6 15         48013.          1245.
-##  7 16         42653.          1239.
-##  8 17         42973.          1675.
-##  9 18         48148.          1822.
-## 10 19         68959.          3625.
+##  1 10         50161.           995.
+##  2 11         46142.          1241.
+##  3 12         29334.          1063.
+##  4 13         38783.          1019.
+##  5 14         60541.          1924.
+##  6 15         48013.          1359.
+##  7 16         42653.          1393.
+##  8 17         42973.          1601.
+##  9 18         48148.          1967.
+## 10 19         68959.          4062.
 ## # ℹ 20 more rows
 ```
 
