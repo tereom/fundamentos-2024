@@ -2098,18 +2098,18 @@ muestra_computos
 
 ```
 ## # A tibble: 10,000 × 23
-##    state_code state_name   state_abbr district_loc_17 district_fed_17 polling_id
-##    <chr>      <chr>        <chr>                <int>           <int>      <int>
-##  1 15         México       MEX                     45              40      77364
-##  2 28         Tamaulipas   TAM                      6               9     126685
-##  3 18         Nayarit      NAY                      7               2      86587
-##  4 09         Ciudad de M… CDMX                     1               1      22214
-##  5 29         Tlaxcala     TLAX                    10               1     127221
-##  6 13         Hidalgo      HGO                      5               2      49224
-##  7 07         Chiapas      CHPS                    15              10      13835
-##  8 19         Nuevo León   NL                       3               6      90042
-##  9 25         Sinaloa      SIN                      6               3     113407
-## 10 15         México       MEX                     22              17      67597
+##    state_code state_name state_abbr district_loc_17 district_fed_17 polling_id
+##    <chr>      <chr>      <chr>                <int>           <int>      <int>
+##  1 18         Nayarit    NAY                     11               2      86709
+##  2 27         Tabasco    TAB                     17               5     122035
+##  3 15         México     MEX                      7              35      75477
+##  4 27         Tabasco    TAB                     19               5     122262
+##  5 17         Morelos    MOR                      6               2      84733
+##  6 07         Chiapas    CHPS                    22               5      15376
+##  7 14         Jalisco    JAL                      2               2      52634
+##  8 08         Chihuahua  CHIH                     7               4      19097
+##  9 14         Jalisco    JAL                     20              20      60549
+## 10 13         Hidalgo    HGO                     11               4      50221
 ## # ℹ 9,990 more rows
 ## # ℹ 17 more variables: section <int>, region <chr>, polling_type <chr>,
 ## #   section_type <chr>, pri_pvem <int>, pan <int>, panal <int>,
@@ -2173,16 +2173,16 @@ as.data.frame(first_computos_boot)
 ## # A tibble: 10,000 × 23
 ##    state_code state_name   state_abbr district_loc_17 district_fed_17 polling_id
 ##    <chr>      <chr>        <chr>                <int>           <int>      <int>
-##  1 14         Jalisco      JAL                     14              14      57620
-##  2 31         Yucatán      YUC                      7               3     139226
-##  3 14         Jalisco      JAL                     14              14      57998
-##  4 16         Michoacán    MICH                    13               3      79390
-##  5 21         Puebla       PUE                     13               7     101237
-##  6 14         Jalisco      JAL                     12              12      57145
-##  7 10         Durango      DGO                      4               1      34549
-##  8 11         Guanajuato   GTO                     20              10      42863
-##  9 03         Baja Califo… BCS                      9               1       5541
-## 10 14         Jalisco      JAL                     16              16      58584
+##  1 07         Chiapas      CHPS                    13               9      13397
+##  2 14         Jalisco      JAL                     15              15      58404
+##  3 09         Ciudad de M… CDMX                    11              13      26471
+##  4 17         Morelos      MOR                      7               3      84909
+##  5 25         Sinaloa      SIN                     11               3     114038
+##  6 11         Guanajuato   GTO                     16              12      41506
+##  7 29         Tlaxcala     TLAX                     6               3     128006
+##  8 02         Baja Califo… BC                       8               5       3901
+##  9 02         Baja Califo… BC                       9               5       3779
+## 10 08         Chihuahua    CHIH                    19               5      19536
 ## # ℹ 9,990 more rows
 ## # ℹ 17 more variables: section <int>, region <chr>, polling_type <chr>,
 ## #   section_type <chr>, pri_pvem <int>, pan <int>, panal <int>,

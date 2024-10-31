@@ -253,6 +253,23 @@ estas probabilidades para cada observación $r_1$:
 
 
 ``` r
+# creamos la función de verosimilitud con los datos observados como dados
+verosim <- function(p) {
+  r <- c(1, 2, 0, 3, 0, 0, 0, 2, 1, 0, 3)
+  q_func <- 0.03^r*(0.97)^(10-r)
+  q_falla <- 0.2^r*(0.8)^(10-r)
+  prod(p * q_func + (1 - p) * q_falla)
+}
+
+verosim(0.1)
+```
+
+
+``` r
+# Una alternativa que nos da más flexibilidad para generar la función de 
+# verosimilitud, es crear una función que recibe los datos observados y nos 
+# regresa la función de verosimilitud correspondiente
+# Entonces, cal_verosim es una función que regresa una función 
 calc_verosim <- function(r){
   q_func <- 0.03 ^ r * (0.97) ^ (10 - r)
   q_falla <- 0.2 ^ r * (0.8) ^ (10 - r)
@@ -271,6 +288,7 @@ verosim(0.1)
 ```
 
 
+
 ``` r
 dat_verosim <- tibble(x = seq(0, 1, 0.001)) %>% 
   mutate(prob = map_dbl(x, verosim))
@@ -279,7 +297,7 @@ ggplot(dat_verosim, aes(x = x, y = prob)) + geom_line() +
   xlab("prop funcionado")
 ```
 
-<img src="06-max-verosimilitud_files/figure-html/unnamed-chunk-5-1.png" width="480" style="display: block; margin: auto;" />
+<img src="06-max-verosimilitud_files/figure-html/unnamed-chunk-6-1.png" width="480" style="display: block; margin: auto;" />
 
 Y nuestra estimación puntual sería de alrededor de 80%.
 
@@ -391,13 +409,14 @@ ggplot(dat_verosim, aes(x = x, y = log_prob)) + geom_line() +
   xlab("p")
 ```
 
-<img src="06-max-verosimilitud_files/figure-html/unnamed-chunk-8-1.png" width="480" style="display: block; margin: auto;" />
+<img src="06-max-verosimilitud_files/figure-html/unnamed-chunk-9-1.png" width="480" style="display: block; margin: auto;" />
 
 Obtenemos el mismo máximo. Podemos incluso resolver numéricamente:
 
 
 ``` r
-solucion <- optim(p = 0.5, log_verosimilitud, control = list(fnscale = -1))
+solucion <- optim(p = 0.5, log_verosimilitud, control = list(fnscale = -1), 
+                  method = "Brent", lower = 0, upper = 1)
 solucion$par
 ```
 
@@ -426,6 +445,24 @@ log_verosim(0.1)
 ## [1] -31.24587
 ```
 
+``` r
+solucion <- optim(p = 0.2, log_verosim, control = list(fnscale = -1), 
+                  method = "Brent", lower = 0, upper = 1)
+solucion$par
+```
+
+```
+## [1] 0.7733766
+```
+
+``` r
+solucion$convergence
+```
+
+```
+## [1] 0
+```
+
 
 ``` r
 dat_verosim <- tibble(x = seq(0,1, 0.001)) %>% mutate(log_verosimilitud = map_dbl(x, log_verosim))
@@ -434,7 +471,7 @@ ggplot(dat_verosim, aes(x = x, y = log_verosimilitud)) + geom_line() +
   xlab("prop funcionado")
 ```
 
-<img src="06-max-verosimilitud_files/figure-html/unnamed-chunk-11-1.png" width="480" style="display: block; margin: auto;" />
+<img src="06-max-verosimilitud_files/figure-html/unnamed-chunk-12-1.png" width="480" style="display: block; margin: auto;" />
 
 Nótese que la verosimilitud la consideramos **función de los parámetros**,
 donde **los datos están fijos**.
@@ -475,12 +512,12 @@ tibble(x = seq(0,1,0.001)) %>%
     geom_vline(xintercept = 0.5, color = 'red')
 ```
 
-<img src="06-max-verosimilitud_files/figure-html/unnamed-chunk-14-1.png" width="480" style="display: block; margin: auto;" />
+<img src="06-max-verosimilitud_files/figure-html/unnamed-chunk-15-1.png" width="480" style="display: block; margin: auto;" />
 
 **Ejemplo.** Supongamos que en una población de transacciones hay un porcentaje $p$ (desconocido) 
 que son fraudulentas. Tenemos un sistema de clasificación humana que que marca transacciones como sospechosas. 
 Con este sistema hemos medido que la proporción de transacciones normales que son marcadas como sospechosas es de 0.1%, y que la proporción de transacciones fraudulentas que son marcadas
-como sospechosas es de 98%. Supongamos que extraemos una muestra de 2000 transacciones, de manera que todas ellas tiene la misma probabilidad de ser fraudulentas. El sistema de clasificación marca 4 transacciones como fraudulentas. ¿Cómo estimamos la proporción de transacciones fraudulentas en la población?
+como sospechosas es de 98%. Supongamos que extraemos una muestra de 2000 transacciones, de manera que todas ellas tiene la misma probabilidad de ser fraudulentas. El sistema de clasificación marca 4 transacciones como sospechosas ¿Cómo estimamos la proporción de transacciones fraudulentas en la población?
 
 Solución: sea $p$ la proporción de transacciones fraudulentas. Entonces la probabilidad
 de que una transacción sea marcada como sospechosa es (proba total):
@@ -515,12 +552,12 @@ log_verosim <- crear_log_verosim(n = 2000, n_sosp = 4)
 
 A continuación la mostramos de manera gráfica.
 
-<img src="06-max-verosimilitud_files/figure-html/unnamed-chunk-17-1.png" width="480" style="display: block; margin: auto;" />
+<img src="06-max-verosimilitud_files/figure-html/unnamed-chunk-18-1.png" width="480" style="display: block; margin: auto;" />
 
 No se ve muy claro dónde ocurre el máximo, pero podemos ampliar cerca de cero la 
 misma gráfica:
 
-<img src="06-max-verosimilitud_files/figure-html/unnamed-chunk-18-1.png" width="480" style="display: block; margin: auto;" />
+<img src="06-max-verosimilitud_files/figure-html/unnamed-chunk-19-1.png" width="480" style="display: block; margin: auto;" />
 
 
 
@@ -600,7 +637,7 @@ ggplot() +
   geom_rug(data = tibble(x = x), aes(x = x), colour = "red")
 ```
 
-<img src="06-max-verosimilitud_files/figure-html/unnamed-chunk-22-1.png" width="480" style="display: block; margin: auto;" />
+<img src="06-max-verosimilitud_files/figure-html/unnamed-chunk-23-1.png" width="480" style="display: block; margin: auto;" />
 
 Podemos escribir en una fórmula como:
 
@@ -691,7 +728,8 @@ Ahora optimizamos:
 
 
 ``` r
-res <- optim(c(0, 0.5), log_p, control = list(fnscale = -1, maxit = 1000), method = "Nelder-Mead")
+res <- optim(c(0, 0.5), log_p, control = list(fnscale = -1, maxit = 1000), 
+             method = "Nelder-Mead")
 res$convergence
 ```
 
@@ -717,7 +755,7 @@ es el que esperábamos (y que puedes derivar analíticamente):
 
 ``` r
 n <- length(muestra)
-sd_n <- function(x) sqrt( mean((x - mean(x))^2))
+sd_n <- function(x) sqrt(mean((x - mean(x))^2))
 c(media = mean(muestra), sigma = sd_n(muestra)) %>% round(4)
 ```
 
@@ -757,7 +795,7 @@ muestra <- map_dbl(1:200, ~ sim_formas(0.3, 0.75))
 qplot(muestra)
 ```
 
-<img src="06-max-verosimilitud_files/figure-html/unnamed-chunk-29-1.png" width="480" style="display: block; margin: auto;" />
+<img src="06-max-verosimilitud_files/figure-html/unnamed-chunk-30-1.png" width="480" style="display: block; margin: auto;" />
 
 Supongamos que no conocemos la probabildad de contestar correctamente  ni la
 proporción de estudiantes que contestó al azar. ¿Como estimamos estas dos cantidades?
