@@ -237,7 +237,23 @@ y es como si el proceso comenzara otra vez). Entonces tenemos que multiplicar
 estas probabilidades para cada observación $r_1$:
 
 
+```{r, eval = FALSE}
+# creamos la función de verosimilitud con los datos observados como dados
+verosim <- function(p) {
+  r <- c(1, 2, 0, 3, 0, 0, 0, 2, 1, 0, 3)
+  q_func <- 0.03^r*(0.97)^(10-r)
+  q_falla <- 0.2^r*(0.8)^(10-r)
+  prod(p * q_func + (1 - p) * q_falla)
+}
+
+verosim(0.1)
+```
+
 ```{r}
+# Una alternativa que nos da más flexibilidad para generar la función de 
+# verosimilitud, es crear una función que recibe los datos observados y nos 
+# regresa la función de verosimilitud correspondiente
+# Entonces, cal_verosim es una función que regresa una función 
 calc_verosim <- function(r){
   q_func <- 0.03 ^ r * (0.97) ^ (10 - r)
   q_falla <- 0.2 ^ r * (0.8) ^ (10 - r)
@@ -250,6 +266,7 @@ calc_verosim <- function(r){
 verosim <- calc_verosim(r = c(1, 0, 0, 3, 0, 0, 0, 2, 1, 0, 0))
 verosim(0.1)
 ```
+
 
 ```{r}
 dat_verosim <- tibble(x = seq(0, 1, 0.001)) %>% 
@@ -360,7 +377,8 @@ ggplot(dat_verosim, aes(x = x, y = log_prob)) + geom_line() +
 Obtenemos el mismo máximo. Podemos incluso resolver numéricamente:
 
 ```{r, warning = FALSE}
-solucion <- optim(p = 0.5, log_verosimilitud, control = list(fnscale = -1))
+solucion <- optim(p = 0.5, log_verosimilitud, control = list(fnscale = -1), 
+                  method = "Brent", lower = 0, upper = 1)
 solucion$par
 ```
 
@@ -378,6 +396,13 @@ calc_log_verosim <- function(r){
 }
 log_verosim <- calc_log_verosim(c(1, 0, 0, 3, 0, 0, 0, 2, 1, 0, 0))
 log_verosim(0.1)
+
+
+solucion <- optim(p = 0.2, log_verosim, control = list(fnscale = -1), 
+                  method = "Brent", lower = 0, upper = 1)
+solucion$par
+solucion$convergence
+
 ```
 
 ```{r}
@@ -426,7 +451,7 @@ tibble(x = seq(0,1,0.001)) %>%
 **Ejemplo.** Supongamos que en una población de transacciones hay un porcentaje $p$ (desconocido) 
 que son fraudulentas. Tenemos un sistema de clasificación humana que que marca transacciones como sospechosas. 
 Con este sistema hemos medido que la proporción de transacciones normales que son marcadas como sospechosas es de 0.1%, y que la proporción de transacciones fraudulentas que son marcadas
-como sospechosas es de 98%. Supongamos que extraemos una muestra de 2000 transacciones, de manera que todas ellas tiene la misma probabilidad de ser fraudulentas. El sistema de clasificación marca 4 transacciones como fraudulentas. ¿Cómo estimamos la proporción de transacciones fraudulentas en la población?
+como sospechosas es de 98%. Supongamos que extraemos una muestra de 2000 transacciones, de manera que todas ellas tiene la misma probabilidad de ser fraudulentas. El sistema de clasificación marca 4 transacciones como sospechosas ¿Cómo estimamos la proporción de transacciones fraudulentas en la población?
 
 Solución: sea $p$ la proporción de transacciones fraudulentas. Entonces la probabilidad
 de que una transacción sea marcada como sospechosa es (proba total):
@@ -632,7 +657,8 @@ log_p <- crear_log_p(muestra)
 Ahora optimizamos:
 
 ```{r}
-res <- optim(c(0, 0.5), log_p, control = list(fnscale = -1, maxit = 1000), method = "Nelder-Mead")
+res <- optim(c(0, 0.5), log_p, control = list(fnscale = -1, maxit = 1000), 
+             method = "Nelder-Mead")
 res$convergence
 est_mv <- tibble(parametro = c("media", "sigma"), estimador = res$par) %>% 
   column_to_rownames(var = "parametro")
@@ -644,7 +670,7 @@ es el que esperábamos (y que puedes derivar analíticamente):
 
 ```{r}
 n <- length(muestra)
-sd_n <- function(x) sqrt( mean((x - mean(x))^2))
+sd_n <- function(x) sqrt(mean((x - mean(x))^2))
 c(media = mean(muestra), sigma = sd_n(muestra)) %>% round(4)
 ```
 
