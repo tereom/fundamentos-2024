@@ -682,10 +682,43 @@ Para estimar el momio, <span class="math inline">\(\theta,\)</span> el cálculo 
 de manera analítica la varianza de un cociente
 <span class="math display">\[\textsf{ee}_\theta^2 = \mathbb{V}\left( \frac{\hat p_n}{1-\hat p_n}\right).\]</span>
 Utilizando la distirbución asintótica, el error estándar se puede calcular mediante
-<span class="math display">\[\textsf{ee}_\theta^2 \approx \sqrt{\frac{1}{I_n(\theta^*)}} = \sqrt{\frac{\theta (1 + \theta)^2 }{n}}.\]</span>
+<span class="math display">\[\textsf{ee}_\theta \approx \sqrt{\frac{1}{I_n(\theta^*)}} = \sqrt{\frac{\theta (1 + \theta)^2 }{n}}.\]</span>
 A continuación mostramos los errores estándar para nuestro ejemplo utilizando
 la distribución asintótica y por medio de la distribución de <em>bootstrap.</em>
 Como es de esperarse, ambos coinciden para muestras relativamente grandes.</p>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="propiedades-teóricas-de-mle.html#cb372-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Genero muestra </span></span>
+<span id="cb372-2"><a href="propiedades-teóricas-de-mle.html#cb372-2" aria-hidden="true" tabindex="-1"></a>muestras <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">tamanos =</span> <span class="dv">2</span><span class="sc">**</span><span class="fu">seq</span>(<span class="dv">4</span>,<span class="dv">7</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb372-3"><a href="propiedades-teóricas-de-mle.html#cb372-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">obs =</span> <span class="fu">map</span>(tamanos, <span class="sc">~</span><span class="fu">rbernoulli</span>(., <span class="at">p =</span> p_true)))</span>
+<span id="cb372-4"><a href="propiedades-teóricas-de-mle.html#cb372-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb372-5"><a href="propiedades-teóricas-de-mle.html#cb372-5" aria-hidden="true" tabindex="-1"></a>calcula_momio <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb372-6"><a href="propiedades-teóricas-de-mle.html#cb372-6" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> x)</span>
+<span id="cb372-7"><a href="propiedades-teóricas-de-mle.html#cb372-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb372-8"><a href="propiedades-teóricas-de-mle.html#cb372-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb372-9"><a href="propiedades-teóricas-de-mle.html#cb372-9" aria-hidden="true" tabindex="-1"></a>calcula_ee_momio <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb372-10"><a href="propiedades-teóricas-de-mle.html#cb372-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(((<span class="dv">1</span><span class="sc">+</span>x)<span class="sc">**</span><span class="dv">2</span>) <span class="sc">*</span> x)</span>
+<span id="cb372-11"><a href="propiedades-teóricas-de-mle.html#cb372-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb372-12"><a href="propiedades-teóricas-de-mle.html#cb372-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb372-13"><a href="propiedades-teóricas-de-mle.html#cb372-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculo MLE</span></span>
+<span id="cb372-14"><a href="propiedades-teóricas-de-mle.html#cb372-14" aria-hidden="true" tabindex="-1"></a>muestras_est <span class="ot">&lt;-</span> muestras <span class="sc">%&gt;%</span> </span>
+<span id="cb372-15"><a href="propiedades-teóricas-de-mle.html#cb372-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(tamanos) <span class="sc">%&gt;%</span> </span>
+<span id="cb372-16"><a href="propiedades-teóricas-de-mle.html#cb372-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">media_hat =</span> <span class="fu">map_dbl</span>(obs, mean), </span>
+<span id="cb372-17"><a href="propiedades-teóricas-de-mle.html#cb372-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">media_ee  =</span> <span class="fu">sqrt</span>(media_hat <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> media_hat)<span class="sc">/</span>tamanos),</span>
+<span id="cb372-18"><a href="propiedades-teóricas-de-mle.html#cb372-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">momio_hat =</span> <span class="fu">calcula_momio</span>(media_hat), </span>
+<span id="cb372-19"><a href="propiedades-teóricas-de-mle.html#cb372-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">momio_ee  =</span> <span class="fu">calcula_ee_momio</span>(momio_hat)<span class="sc">/</span><span class="fu">sqrt</span>(tamanos))</span>
+<span id="cb372-20"><a href="propiedades-teóricas-de-mle.html#cb372-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb372-21"><a href="propiedades-teóricas-de-mle.html#cb372-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb372-22"><a href="propiedades-teóricas-de-mle.html#cb372-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculo por bootstrap</span></span>
+<span id="cb372-23"><a href="propiedades-teóricas-de-mle.html#cb372-23" aria-hidden="true" tabindex="-1"></a>muestras_boot <span class="ot">&lt;-</span> muestras_est <span class="sc">%&gt;%</span></span>
+<span id="cb372-24"><a href="propiedades-teóricas-de-mle.html#cb372-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(tamanos) <span class="sc">%&gt;%</span> </span>
+<span id="cb372-25"><a href="propiedades-teóricas-de-mle.html#cb372-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sims_muestras  =</span> <span class="fu">map</span>(tamanos, <span class="sc">~</span><span class="fu">rerun</span>(<span class="dv">1000</span>, <span class="fu">sample</span>(muestras <span class="sc">%&gt;%</span> <span class="fu">filter</span>(tamanos <span class="sc">==</span> ..<span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">unnest</span>(obs) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(obs), </span>
+<span id="cb372-26"><a href="propiedades-teóricas-de-mle.html#cb372-26" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">size =</span> ., <span class="at">replace =</span> <span class="cn">TRUE</span>))), </span>
+<span id="cb372-27"><a href="propiedades-teóricas-de-mle.html#cb372-27" aria-hidden="true" tabindex="-1"></a>         <span class="at">sims_medias =</span> <span class="fu">map</span>(sims_muestras, <span class="sc">~</span><span class="fu">map_dbl</span>(., mean)), </span>
+<span id="cb372-28"><a href="propiedades-teóricas-de-mle.html#cb372-28" aria-hidden="true" tabindex="-1"></a>         <span class="at">sims_momios =</span> <span class="fu">map</span>(sims_medias, <span class="sc">~</span><span class="fu">map_dbl</span>(., calcula_momio)),</span>
+<span id="cb372-29"><a href="propiedades-teóricas-de-mle.html#cb372-29" aria-hidden="true" tabindex="-1"></a>         <span class="at">media_boot    =</span> <span class="fu">map_dbl</span>(sims_medias, mean),</span>
+<span id="cb372-30"><a href="propiedades-teóricas-de-mle.html#cb372-30" aria-hidden="true" tabindex="-1"></a>         <span class="at">momio_boot    =</span> <span class="fu">map_dbl</span>(sims_momios, mean), </span>
+<span id="cb372-31"><a href="propiedades-teóricas-de-mle.html#cb372-31" aria-hidden="true" tabindex="-1"></a>         <span class="at">media_ee_boot =</span> <span class="fu">map_dbl</span>(sims_medias, sd), </span>
+<span id="cb372-32"><a href="propiedades-teóricas-de-mle.html#cb372-32" aria-hidden="true" tabindex="-1"></a>         <span class="at">momio_ee_boot =</span> <span class="fu">map_dbl</span>(sims_momios, sd)</span>
+<span id="cb372-33"><a href="propiedades-teóricas-de-mle.html#cb372-33" aria-hidden="true" tabindex="-1"></a>         )</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 5
 ## # Groups:   tamanos [4]
 ##   tamanos momio_hat momio_boot momio_ee momio_ee_boot
@@ -763,7 +796,7 @@ su varianza es menor.</p>
 <p>La mediana, en contraste, tiene una distribución asintótica
 <span class="math display">\[\sqrt{n} \left( \tilde X_n - \theta \right) \overset{d}{\rightarrow} \mathsf{N}\left( 0, \sigma^2 \frac{\pi}{2}\right),\]</span></p>
 <p>es decir tiene una varianza ligeramente mayor. Por lo tanto, decimos que la
-mediana tiene una <em>eficiencia relativa</em> con respecto a la media del <span class="math inline">\(.63 \% (\approx \pi/2)\)</span>. Es decir, la mediana sólo utliza una fracción de los datos
+mediana tiene una <em>eficiencia relativa</em> con respecto a la media del <span class="math inline">\(.63 \% (\approx 2/\pi)\)</span>. Es decir, la mediana sólo utliza una fracción de los datos
 comparado con la media.</p>
 <p>El siguiente teorema, <strong>la desigualdad de Cramer-Rao</strong>, nos permite establecer
 esta resultado de manera mas general para cualquier estimador insesgado.</p>

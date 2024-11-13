@@ -339,11 +339,47 @@ Para estimar el momio, $\theta,$ el cálculo no es tan fácil pues tendríamos q
 de manera analítica la varianza de un cociente 
 $$\textsf{ee}_\theta^2 = \mathbb{V}\left( \frac{\hat p_n}{1-\hat p_n}\right).$$
 Utilizando la distirbución asintótica, el error estándar se puede calcular mediante
-$$\textsf{ee}_\theta^2 \approx \sqrt{\frac{1}{I_n(\theta^*)}} = \sqrt{\frac{\theta (1 + \theta)^2 }{n}}.$$
+$$\textsf{ee}_\theta \approx \sqrt{\frac{1}{I_n(\theta^*)}} = \sqrt{\frac{\theta (1 + \theta)^2 }{n}}.$$
 A continuación mostramos los errores estándar para nuestro ejemplo utilizando 
 la distribución asintótica y por medio de la distribución de *bootstrap.*
 Como es de esperarse, ambos coinciden para muestras relativamente grandes. 
 
+
+``` r
+# Genero muestra 
+muestras <- tibble(tamanos = 2**seq(4,7)) %>% 
+  mutate(obs = map(tamanos, ~rbernoulli(., p = p_true)))
+
+calcula_momio <- function(x){
+  x / (1 - x)
+}
+
+calcula_ee_momio <- function(x){
+  sqrt(((1+x)**2) * x)
+}
+
+# Calculo MLE
+muestras_est <- muestras %>% 
+  group_by(tamanos) %>% 
+  mutate(media_hat = map_dbl(obs, mean), 
+         media_ee  = sqrt(media_hat * (1 - media_hat)/tamanos),
+         momio_hat = calcula_momio(media_hat), 
+         momio_ee  = calcula_ee_momio(momio_hat)/sqrt(tamanos))
+
+
+# Calculo por bootstrap
+muestras_boot <- muestras_est %>%
+  group_by(tamanos) %>% 
+  mutate(sims_muestras  = map(tamanos, ~rerun(1000, sample(muestras %>% filter(tamanos == ..1) %>% unnest(obs) %>% pull(obs), 
+                                                  size = ., replace = TRUE))), 
+         sims_medias = map(sims_muestras, ~map_dbl(., mean)), 
+         sims_momios = map(sims_medias, ~map_dbl(., calcula_momio)),
+         media_boot    = map_dbl(sims_medias, mean),
+         momio_boot    = map_dbl(sims_momios, mean), 
+         media_ee_boot = map_dbl(sims_medias, sd), 
+         momio_ee_boot = map_dbl(sims_momios, sd)
+         )
+```
 
 
 ```
@@ -436,7 +472,7 @@ $$\sqrt{n} \left( \tilde X_n - \theta \right) \overset{d}{\rightarrow} \mathsf{N
 
 es decir tiene una varianza ligeramente mayor. Por lo tanto, decimos que la
 mediana tiene una *eficiencia relativa* con respecto a la media del $.63 \%
-(\approx \pi/2)$. Es decir, la mediana sólo utliza una fracción de los datos
+(\approx 2/\pi)$. Es decir, la mediana sólo utliza una fracción de los datos
 comparado con la media.
 
 El siguiente teorema, **la desigualdad de Cramer-Rao**, nos permite establecer

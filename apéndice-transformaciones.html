@@ -408,16 +408,16 @@ De manera similar al analizar las propinas puede convenir considerar la propina 
 <li><p>En series de tiempo cuando los datos están relacionados con el tamaño de la
 población podemos ajustar a mediciones per capita (en series de tiempo PIB). También es común ajustar por inflación, o poner cantidades monetarias en valor presente.</p></li>
 </ol>
-<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="apéndice-transformaciones.html#cb439-1" aria-hidden="true" tabindex="-1"></a>mex_dat <span class="ot">&lt;-</span> global_economy <span class="sc">|&gt;</span> </span>
-<span id="cb439-2"><a href="apéndice-transformaciones.html#cb439-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Code <span class="sc">==</span> <span class="st">&quot;MEX&quot;</span>)</span>
-<span id="cb439-3"><a href="apéndice-transformaciones.html#cb439-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb439-4"><a href="apéndice-transformaciones.html#cb439-4" aria-hidden="true" tabindex="-1"></a>pib <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mex_dat, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> GDP <span class="sc">/</span> <span class="fl">1e6</span>)) <span class="sc">+</span></span>
-<span id="cb439-5"><a href="apéndice-transformaciones.html#cb439-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span>
-<span id="cb439-6"><a href="apéndice-transformaciones.html#cb439-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb439-7"><a href="apéndice-transformaciones.html#cb439-7" aria-hidden="true" tabindex="-1"></a>pib_pc <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mex_dat, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> GDP <span class="sc">/</span> Population)) <span class="sc">+</span></span>
-<span id="cb439-8"><a href="apéndice-transformaciones.html#cb439-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span>
-<span id="cb439-9"><a href="apéndice-transformaciones.html#cb439-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb439-10"><a href="apéndice-transformaciones.html#cb439-10" aria-hidden="true" tabindex="-1"></a>pib <span class="sc">/</span> pib_pc</span></code></pre></div>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="apéndice-transformaciones.html#cb440-1" aria-hidden="true" tabindex="-1"></a>mex_dat <span class="ot">&lt;-</span> global_economy <span class="sc">|&gt;</span> </span>
+<span id="cb440-2"><a href="apéndice-transformaciones.html#cb440-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Code <span class="sc">==</span> <span class="st">&quot;MEX&quot;</span>)</span>
+<span id="cb440-3"><a href="apéndice-transformaciones.html#cb440-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb440-4"><a href="apéndice-transformaciones.html#cb440-4" aria-hidden="true" tabindex="-1"></a>pib <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mex_dat, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> GDP <span class="sc">/</span> <span class="fl">1e6</span>)) <span class="sc">+</span></span>
+<span id="cb440-5"><a href="apéndice-transformaciones.html#cb440-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span>
+<span id="cb440-6"><a href="apéndice-transformaciones.html#cb440-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb440-7"><a href="apéndice-transformaciones.html#cb440-7" aria-hidden="true" tabindex="-1"></a>pib_pc <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mex_dat, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> GDP <span class="sc">/</span> Population)) <span class="sc">+</span></span>
+<span id="cb440-8"><a href="apéndice-transformaciones.html#cb440-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span>
+<span id="cb440-9"><a href="apéndice-transformaciones.html#cb440-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb440-10"><a href="apéndice-transformaciones.html#cb440-10" aria-hidden="true" tabindex="-1"></a>pib <span class="sc">/</span> pib_pc</span></code></pre></div>
 <p><img src="89-transformaciones_files/figure-html/unnamed-chunk-2-1.png" width="576" /></p>
 <p>Adicionalmente podemos recurrir a otras transformaciones matemáticas (e.g. logaritmo, raíz cuadrada) que simplifiquen
 el patrón en los datos y la interpretación.</p>
@@ -426,30 +426,30 @@ el patrón en los datos y la interpretación.</p>
 promedio para 28 especies. Buscamos entender la relación entre estas dos
 variables, e inspeccionar que especies se desvían (residuales) del esperado.
 Comenzamos con un diagrama de dispersión usando las unidades originales</p>
-<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="apéndice-transformaciones.html#cb440-1" aria-hidden="true" tabindex="-1"></a>animals_tbl <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(Animals, <span class="at">rownames =</span> <span class="st">&quot;animal&quot;</span>)</span>
-<span id="cb440-2"><a href="apéndice-transformaciones.html#cb440-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb440-3"><a href="apéndice-transformaciones.html#cb440-3" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(animals_tbl, <span class="fu">aes</span>(<span class="at">x =</span> body, <span class="at">y =</span> brain, <span class="at">label =</span> animal)) <span class="sc">+</span></span>
-<span id="cb440-4"><a href="apéndice-transformaciones.html#cb440-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb440-5"><a href="apéndice-transformaciones.html#cb440-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">&quot;Unidades originales&quot;</span>)</span>
-<span id="cb440-6"><a href="apéndice-transformaciones.html#cb440-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb440-7"><a href="apéndice-transformaciones.html#cb440-7" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(animals_tbl, <span class="fu">aes</span>(<span class="at">x =</span> body, <span class="at">y =</span> brain, <span class="at">label =</span> animal)) <span class="sc">+</span></span>
-<span id="cb440-8"><a href="apéndice-transformaciones.html#cb440-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">500</span>) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">1500</span>) <span class="sc">+</span></span>
-<span id="cb440-9"><a href="apéndice-transformaciones.html#cb440-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>() <span class="sc">+</span> </span>
-<span id="cb440-10"><a href="apéndice-transformaciones.html#cb440-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">&quot;Unidades originales, eliminando &#39;grandes&#39;&quot;</span>)</span>
-<span id="cb440-11"><a href="apéndice-transformaciones.html#cb440-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb440-12"><a href="apéndice-transformaciones.html#cb440-12" aria-hidden="true" tabindex="-1"></a>(p1 <span class="sc">+</span> p2)</span></code></pre></div>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="apéndice-transformaciones.html#cb441-1" aria-hidden="true" tabindex="-1"></a>animals_tbl <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(Animals, <span class="at">rownames =</span> <span class="st">&quot;animal&quot;</span>)</span>
+<span id="cb441-2"><a href="apéndice-transformaciones.html#cb441-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb441-3"><a href="apéndice-transformaciones.html#cb441-3" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(animals_tbl, <span class="fu">aes</span>(<span class="at">x =</span> body, <span class="at">y =</span> brain, <span class="at">label =</span> animal)) <span class="sc">+</span></span>
+<span id="cb441-4"><a href="apéndice-transformaciones.html#cb441-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb441-5"><a href="apéndice-transformaciones.html#cb441-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">&quot;Unidades originales&quot;</span>)</span>
+<span id="cb441-6"><a href="apéndice-transformaciones.html#cb441-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb441-7"><a href="apéndice-transformaciones.html#cb441-7" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(animals_tbl, <span class="fu">aes</span>(<span class="at">x =</span> body, <span class="at">y =</span> brain, <span class="at">label =</span> animal)) <span class="sc">+</span></span>
+<span id="cb441-8"><a href="apéndice-transformaciones.html#cb441-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">500</span>) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">1500</span>) <span class="sc">+</span></span>
+<span id="cb441-9"><a href="apéndice-transformaciones.html#cb441-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>() <span class="sc">+</span> </span>
+<span id="cb441-10"><a href="apéndice-transformaciones.html#cb441-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">&quot;Unidades originales, eliminando &#39;grandes&#39;&quot;</span>)</span>
+<span id="cb441-11"><a href="apéndice-transformaciones.html#cb441-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb441-12"><a href="apéndice-transformaciones.html#cb441-12" aria-hidden="true" tabindex="-1"></a>(p1 <span class="sc">+</span> p2)</span></code></pre></div>
 <p><img src="89-transformaciones_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>Incluso cuando nos limitamos a especies de menos de 500 kg de masa corporal, la
 relación no es fácil de descrubir.En la suguiente gráfica hacemos la transformación
 logaritmo y obtenemos una gráfica más fácil de
 leer, además los datos se modelarán con más facilidad.</p>
-<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="apéndice-transformaciones.html#cb441-1" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(animals_tbl, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(body), <span class="at">y =</span> <span class="fu">log</span>(brain), <span class="at">label =</span> animal)) <span class="sc">+</span></span>
-<span id="cb441-2"><a href="apéndice-transformaciones.html#cb441-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb441-3"><a href="apéndice-transformaciones.html#cb441-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb441-4"><a href="apéndice-transformaciones.html#cb441-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>()  <span class="sc">+</span> </span>
-<span id="cb441-5"><a href="apéndice-transformaciones.html#cb441-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_poly_eq</span>(<span class="fu">use_label</span>(<span class="fu">c</span>(<span class="st">&quot;eq&quot;</span>))) </span>
-<span id="cb441-6"><a href="apéndice-transformaciones.html#cb441-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb441-7"><a href="apéndice-transformaciones.html#cb441-7" aria-hidden="true" tabindex="-1"></a>p3</span></code></pre></div>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="apéndice-transformaciones.html#cb442-1" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(animals_tbl, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(body), <span class="at">y =</span> <span class="fu">log</span>(brain), <span class="at">label =</span> animal)) <span class="sc">+</span></span>
+<span id="cb442-2"><a href="apéndice-transformaciones.html#cb442-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb442-3"><a href="apéndice-transformaciones.html#cb442-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb442-4"><a href="apéndice-transformaciones.html#cb442-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>()  <span class="sc">+</span> </span>
+<span id="cb442-5"><a href="apéndice-transformaciones.html#cb442-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_poly_eq</span>(<span class="fu">use_label</span>(<span class="fu">c</span>(<span class="st">&quot;eq&quot;</span>))) </span>
+<span id="cb442-6"><a href="apéndice-transformaciones.html#cb442-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb442-7"><a href="apéndice-transformaciones.html#cb442-7" aria-hidden="true" tabindex="-1"></a>p3</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 <p><img src="89-transformaciones_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>La transformación logaritmo tiene también ventajas en interpretación, para diferencias
@@ -458,32 +458,32 @@ en la escala original, por ejempo consideremos la diferencia entre el peso en es
 log de humano y borrego: 4.13 - 4.02 = 0.11.
 Confirmamos que el humano es aproximadamente 11% más pesado que el borrego en la
 escala original: 62/55.5 - 1 = 0.12</p>
-<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="apéndice-transformaciones.html#cb443-1" aria-hidden="true" tabindex="-1"></a>animals_tbl <span class="ot">&lt;-</span> animals_tbl <span class="sc">|&gt;</span>  </span>
-<span id="cb443-2"><a href="apéndice-transformaciones.html#cb443-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">log_body =</span> <span class="fu">log</span>(body), </span>
-<span id="cb443-3"><a href="apéndice-transformaciones.html#cb443-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">log_brain =</span> <span class="fu">log</span>(brain)) </span>
-<span id="cb443-4"><a href="apéndice-transformaciones.html#cb443-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb443-5"><a href="apéndice-transformaciones.html#cb443-5" aria-hidden="true" tabindex="-1"></a>animals_tbl <span class="sc">|&gt;</span> </span>
-<span id="cb443-6"><a href="apéndice-transformaciones.html#cb443-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(animal <span class="sc">==</span> <span class="st">&quot;Human&quot;</span> <span class="sc">|</span> animal <span class="sc">==</span> <span class="st">&quot;Sheep&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb443-7"><a href="apéndice-transformaciones.html#cb443-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(body) <span class="sc">|&gt;</span> </span>
-<span id="cb443-8"><a href="apéndice-transformaciones.html#cb443-8" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb443-9"><a href="apéndice-transformaciones.html#cb443-9" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>()</span></code></pre></div>
-<div id="rbrwgkdows" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#rbrwgkdows table {
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="apéndice-transformaciones.html#cb444-1" aria-hidden="true" tabindex="-1"></a>animals_tbl <span class="ot">&lt;-</span> animals_tbl <span class="sc">|&gt;</span>  </span>
+<span id="cb444-2"><a href="apéndice-transformaciones.html#cb444-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">log_body =</span> <span class="fu">log</span>(body), </span>
+<span id="cb444-3"><a href="apéndice-transformaciones.html#cb444-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">log_brain =</span> <span class="fu">log</span>(brain)) </span>
+<span id="cb444-4"><a href="apéndice-transformaciones.html#cb444-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb444-5"><a href="apéndice-transformaciones.html#cb444-5" aria-hidden="true" tabindex="-1"></a>animals_tbl <span class="sc">|&gt;</span> </span>
+<span id="cb444-6"><a href="apéndice-transformaciones.html#cb444-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(animal <span class="sc">==</span> <span class="st">&quot;Human&quot;</span> <span class="sc">|</span> animal <span class="sc">==</span> <span class="st">&quot;Sheep&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb444-7"><a href="apéndice-transformaciones.html#cb444-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(body) <span class="sc">|&gt;</span> </span>
+<span id="cb444-8"><a href="apéndice-transformaciones.html#cb444-8" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb444-9"><a href="apéndice-transformaciones.html#cb444-9" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>()</span></code></pre></div>
+<div id="ztloadjtqp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ztloadjtqp table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#rbrwgkdows thead, #rbrwgkdows tbody, #rbrwgkdows tfoot, #rbrwgkdows tr, #rbrwgkdows td, #rbrwgkdows th {
+#ztloadjtqp thead, #ztloadjtqp tbody, #ztloadjtqp tfoot, #ztloadjtqp tr, #ztloadjtqp td, #ztloadjtqp th {
   border-style: none;
 }
 
-#rbrwgkdows p {
+#ztloadjtqp p {
   margin: 0;
   padding: 0;
 }
 
-#rbrwgkdows .gt_table {
+#ztloadjtqp .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -509,12 +509,12 @@ escala original: 62/55.5 - 1 = 0.12</p>
   border-left-color: #D3D3D3;
 }
 
-#rbrwgkdows .gt_caption {
+#ztloadjtqp .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#rbrwgkdows .gt_title {
+#ztloadjtqp .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -526,7 +526,7 @@ escala original: 62/55.5 - 1 = 0.12</p>
   border-bottom-width: 0;
 }
 
-#rbrwgkdows .gt_subtitle {
+#ztloadjtqp .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -538,7 +538,7 @@ escala original: 62/55.5 - 1 = 0.12</p>
   border-top-width: 0;
 }
 
-#rbrwgkdows .gt_heading {
+#ztloadjtqp .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -550,13 +550,13 @@ escala original: 62/55.5 - 1 = 0.12</p>
   border-right-color: #D3D3D3;
 }
 
-#rbrwgkdows .gt_bottom_border {
+#ztloadjtqp .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#rbrwgkdows .gt_col_headings {
+#ztloadjtqp .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -571,7 +571,7 @@ escala original: 62/55.5 - 1 = 0.12</p>
   border-right-color: #D3D3D3;
 }
 
-#rbrwgkdows .gt_col_heading {
+#ztloadjtqp .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -591,7 +591,7 @@ escala original: 62/55.5 - 1 = 0.12</p>
   overflow-x: hidden;
 }
 
-#rbrwgkdows .gt_column_spanner_outer {
+#ztloadjtqp .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -603,15 +603,15 @@ escala original: 62/55.5 - 1 = 0.12</p>
   padding-right: 4px;
 }
 
-#rbrwgkdows .gt_column_spanner_outer:first-child {
+#ztloadjtqp .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#rbrwgkdows .gt_column_spanner_outer:last-child {
+#ztloadjtqp .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#rbrwgkdows .gt_column_spanner {
+#ztloadjtqp .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -623,11 +623,11 @@ escala original: 62/55.5 - 1 = 0.12</p>
   width: 100%;
 }
 
-#rbrwgkdows .gt_spanner_row {
+#ztloadjtqp .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#rbrwgkdows .gt_group_heading {
+#ztloadjtqp .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -653,7 +653,7 @@ escala original: 62/55.5 - 1 = 0.12</p>
   text-align: left;
 }
 
-#rbrwgkdows .gt_empty_group_heading {
+#ztloadjtqp .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -668,15 +668,15 @@ escala original: 62/55.5 - 1 = 0.12</p>
   vertical-align: middle;
 }
 
-#rbrwgkdows .gt_from_md > :first-child {
+#ztloadjtqp .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#rbrwgkdows .gt_from_md > :last-child {
+#ztloadjtqp .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#rbrwgkdows .gt_row {
+#ztloadjtqp .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -695,7 +695,7 @@ escala original: 62/55.5 - 1 = 0.12</p>
   overflow-x: hidden;
 }
 
-#rbrwgkdows .gt_stub {
+#ztloadjtqp .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -708,7 +708,7 @@ escala original: 62/55.5 - 1 = 0.12</p>
   padding-right: 5px;
 }
 
-#rbrwgkdows .gt_stub_row_group {
+#ztloadjtqp .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -722,15 +722,15 @@ escala original: 62/55.5 - 1 = 0.12</p>
   vertical-align: top;
 }
 
-#rbrwgkdows .gt_row_group_first td {
+#ztloadjtqp .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#rbrwgkdows .gt_row_group_first th {
+#ztloadjtqp .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#rbrwgkdows .gt_summary_row {
+#ztloadjtqp .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -740,16 +740,16 @@ escala original: 62/55.5 - 1 = 0.12</p>
   padding-right: 5px;
 }
 
-#rbrwgkdows .gt_first_summary_row {
+#ztloadjtqp .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#rbrwgkdows .gt_first_summary_row.thick {
+#ztloadjtqp .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#rbrwgkdows .gt_last_summary_row {
+#ztloadjtqp .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -759,7 +759,7 @@ escala original: 62/55.5 - 1 = 0.12</p>
   border-bottom-color: #D3D3D3;
 }
 
-#rbrwgkdows .gt_grand_summary_row {
+#ztloadjtqp .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -769,7 +769,7 @@ escala original: 62/55.5 - 1 = 0.12</p>
   padding-right: 5px;
 }
 
-#rbrwgkdows .gt_first_grand_summary_row {
+#ztloadjtqp .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -779,7 +779,7 @@ escala original: 62/55.5 - 1 = 0.12</p>
   border-top-color: #D3D3D3;
 }
 
-#rbrwgkdows .gt_last_grand_summary_row_top {
+#ztloadjtqp .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -789,11 +789,11 @@ escala original: 62/55.5 - 1 = 0.12</p>
   border-bottom-color: #D3D3D3;
 }
 
-#rbrwgkdows .gt_striped {
+#ztloadjtqp .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#rbrwgkdows .gt_table_body {
+#ztloadjtqp .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -802,7 +802,7 @@ escala original: 62/55.5 - 1 = 0.12</p>
   border-bottom-color: #D3D3D3;
 }
 
-#rbrwgkdows .gt_footnotes {
+#ztloadjtqp .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -816,7 +816,7 @@ escala original: 62/55.5 - 1 = 0.12</p>
   border-right-color: #D3D3D3;
 }
 
-#rbrwgkdows .gt_footnote {
+#ztloadjtqp .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -825,7 +825,7 @@ escala original: 62/55.5 - 1 = 0.12</p>
   padding-right: 5px;
 }
 
-#rbrwgkdows .gt_sourcenotes {
+#ztloadjtqp .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -839,7 +839,7 @@ escala original: 62/55.5 - 1 = 0.12</p>
   border-right-color: #D3D3D3;
 }
 
-#rbrwgkdows .gt_sourcenote {
+#ztloadjtqp .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -847,72 +847,72 @@ escala original: 62/55.5 - 1 = 0.12</p>
   padding-right: 5px;
 }
 
-#rbrwgkdows .gt_left {
+#ztloadjtqp .gt_left {
   text-align: left;
 }
 
-#rbrwgkdows .gt_center {
+#ztloadjtqp .gt_center {
   text-align: center;
 }
 
-#rbrwgkdows .gt_right {
+#ztloadjtqp .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#rbrwgkdows .gt_font_normal {
+#ztloadjtqp .gt_font_normal {
   font-weight: normal;
 }
 
-#rbrwgkdows .gt_font_bold {
+#ztloadjtqp .gt_font_bold {
   font-weight: bold;
 }
 
-#rbrwgkdows .gt_font_italic {
+#ztloadjtqp .gt_font_italic {
   font-style: italic;
 }
 
-#rbrwgkdows .gt_super {
+#ztloadjtqp .gt_super {
   font-size: 65%;
 }
 
-#rbrwgkdows .gt_footnote_marks {
+#ztloadjtqp .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#rbrwgkdows .gt_asterisk {
+#ztloadjtqp .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#rbrwgkdows .gt_indent_1 {
+#ztloadjtqp .gt_indent_1 {
   text-indent: 5px;
 }
 
-#rbrwgkdows .gt_indent_2 {
+#ztloadjtqp .gt_indent_2 {
   text-indent: 10px;
 }
 
-#rbrwgkdows .gt_indent_3 {
+#ztloadjtqp .gt_indent_3 {
   text-indent: 15px;
 }
 
-#rbrwgkdows .gt_indent_4 {
+#ztloadjtqp .gt_indent_4 {
   text-indent: 20px;
 }
 
-#rbrwgkdows .gt_indent_5 {
+#ztloadjtqp .gt_indent_5 {
   text-indent: 25px;
 }
 
-#rbrwgkdows .katex-display {
+#ztloadjtqp .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#rbrwgkdows div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ztloadjtqp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -957,12 +957,12 @@ exponencial el <span class="math inline">\(k\)</span>-ésimo polinomio de Taylor
 <p>y si <span class="math inline">\(\delta\)</span> es chica (digamos menor a 0.15), entonces la aproximación de primer grado es
 razonable y tenemos:</p>
 <p><span class="math display">\[Ae^{\delta} \approx A(1+\delta)\]</span></p>
-<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="apéndice-transformaciones.html#cb444-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">delta =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.01</span>), <span class="at">exp_delta =</span> <span class="fu">exp</span>(delta), <span class="at">uno_mas_delta =</span> <span class="dv">1</span> <span class="sc">+</span> delta)</span>
-<span id="cb444-2"><a href="apéndice-transformaciones.html#cb444-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb444-3"><a href="apéndice-transformaciones.html#cb444-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(<span class="at">x =</span> uno_mas_delta, <span class="at">y =</span> exp_delta)) <span class="sc">+</span></span>
-<span id="cb444-4"><a href="apéndice-transformaciones.html#cb444-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb444-5"><a href="apéndice-transformaciones.html#cb444-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb444-6"><a href="apéndice-transformaciones.html#cb444-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="fl">1.20</span>, <span class="at">y =</span> <span class="fl">1.18</span>, <span class="at">label =</span> <span class="st">&quot;y = x&quot;</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="apéndice-transformaciones.html#cb445-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">delta =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.01</span>), <span class="at">exp_delta =</span> <span class="fu">exp</span>(delta), <span class="at">uno_mas_delta =</span> <span class="dv">1</span> <span class="sc">+</span> delta)</span>
+<span id="cb445-2"><a href="apéndice-transformaciones.html#cb445-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb445-3"><a href="apéndice-transformaciones.html#cb445-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(<span class="at">x =</span> uno_mas_delta, <span class="at">y =</span> exp_delta)) <span class="sc">+</span></span>
+<span id="cb445-4"><a href="apéndice-transformaciones.html#cb445-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb445-5"><a href="apéndice-transformaciones.html#cb445-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb445-6"><a href="apéndice-transformaciones.html#cb445-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="fl">1.20</span>, <span class="at">y =</span> <span class="fl">1.18</span>, <span class="at">label =</span> <span class="st">&quot;y = x&quot;</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">6</span>)</span></code></pre></div>
 <p><img src="89-transformaciones_files/figure-html/unnamed-chunk-7-1.png" width="432" /></p>
 
 </div>
