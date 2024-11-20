@@ -60,7 +60,7 @@ Ahora optimizamos (revisa que el método converge):
 ```{r}
 res <- optim(c(0, 0.5), log_p, control = list(fnscale = -1, maxit = 1000), method = "Nelder-Mead")
 res$convergence
-est_mle <- tibble(parametro = c("media", "sigma"), estimador = res$par) %>% 
+est_mle <- tibble(parametro = c("media", "sigma"), estimador = res$par) |> 
   column_to_rownames(var = "parametro")
 ```
 
@@ -94,7 +94,7 @@ log_p_boot <- crear_log_p(muestra_bootstrap)
 res_boot <- optim(c(0, 0.5), log_p_boot, 
   control = list(fnscale = -1, maxit = 1000), method = "Nelder-Mead")
 res_boot$convergence
-est_mle_boot <- tibble(parametro = c("media", "sigma"), estimador = res_boot$par) %>% 
+est_mle_boot <- tibble(parametro = c("media", "sigma"), estimador = res_boot$par) |> 
   column_to_rownames(var = "parametro")
 est_mle_boot
 ```
@@ -129,15 +129,15 @@ reps_boot
 Ya ahora podemos estimar error estándar:
 
 ```{r}
-error_est <- reps_boot %>% group_by(parametro) %>% 
+error_est <- reps_boot |> group_by(parametro) |> 
   summarise(ee_boot = sd(estimador_boot)) 
 error_est
 ```
 Así que nuestra estimación final sería:
 
 ```{r}
-bind_cols(est_mle, error_est) %>% 
-  mutate(across(where(is.numeric), round, 3)) %>% 
+bind_cols(est_mle, error_est) |> 
+  mutate(across(where(is.numeric), round, 3)) |> 
   select(parametro, estimador, ee_boot)
 ```
 Si usamos la rutina estándar de `R` (dejaremos para después explicar cómo
@@ -170,7 +170,7 @@ log_p <- crear_log_p(muestra)
 # máxima verosimilitud
 res <- optim(c(0, 0.5), log_p, control = list(fnscale = -1, maxit = 1000), method = "Nelder-Mead")
 res$convergence
-est_mle <- tibble(parametro = c("media", "sigma"), estimador = res$par) %>% 
+est_mle <- tibble(parametro = c("media", "sigma"), estimador = res$par) |> 
   column_to_rownames(var = "parametro")
 est_mle
 ```
@@ -199,7 +199,7 @@ las estimaciones individuales - en algunos casos pueden estar correlacionadas. P
 examinar este comportamiendo visualizando las replicaciones bootstrap
 
 ```{r}
-ggplot(reps_boot %>% pivot_wider(names_from = parametro, values_from = estimador_boot),
+ggplot(reps_boot |> pivot_wider(names_from = parametro, values_from = estimador_boot),
        aes(x = media, y = sigma)) + geom_point(alpha = 0.5) + coord_equal()
   
 ```
@@ -315,11 +315,11 @@ Separamos por Cena y Comida, dividimos entre número de personas y probamos
 ajustando un modelo para cada horario:
 
 ```{r}
-propinas <- read_csv("data/propinas.csv") %>% 
+propinas <- read_csv("data/propinas.csv") |> 
     mutate(cuenta_persona = cuenta_total / num_personas)
-propinas_mle <- propinas %>% 
-  group_by(momento) %>% 
-  summarise(est_mle = list(tidy(MASS::fitdistr(cuenta_persona, "lognormal"))))  %>% 
+propinas_mle <- propinas |> 
+  group_by(momento) |> 
+  summarise(est_mle = list(tidy(MASS::fitdistr(cuenta_persona, "lognormal"))))  |> 
   unnest(est_mle)
 propinas_mle 
 ```
@@ -329,11 +329,11 @@ para ver cómo calcular media y desviación estándar de las distribuciones orig
 Ahora verificamos el ajuste:
 
 ```{r}
-g_1 <- ggplot(propinas %>% filter(momento == "Cena"), aes(sample = cuenta_persona)) +
+g_1 <- ggplot(propinas |> filter(momento == "Cena"), aes(sample = cuenta_persona)) +
   geom_qq(dparams = list(mean = propinas_mle$estimate[1], sd = propinas_mle$estimate[2]),
           distribution = stats::qlnorm) + ylim(c(0, 20)) +
   geom_abline() + labs(subtitle = "Cena")
-g_2 <- ggplot(propinas %>% filter(momento == "Comida"), aes(sample = cuenta_persona)) +
+g_2 <- ggplot(propinas |> filter(momento == "Comida"), aes(sample = cuenta_persona)) +
   geom_qq(dparams = list(mean = propinas_mle$estimate[3], sd = propinas_mle$estimate[4]),
           distribution = stats::qlnorm) + ylim(c(0, 20)) +
   geom_abline() + labs(subtitle = "Comida")
@@ -447,9 +447,9 @@ rep_boot <- function(rep, simular, crear_log_p, pars, n){
 }
 set.seed(8934)
 reps_boot <- map(1:500, ~ rep_boot(.x, simular_modelo, crear_log_p, est_mle, 
-                                   n = length(muestra))) %>% 
+                                   n = length(muestra))) |> 
   bind_rows
-reps_boot %>% mutate(across(everything(), round, 2)) %>% head()
+reps_boot |> mutate(across(everything(), round, 2)) |> head()
 ```
 
 El optimizador encontró resultados que no tienen sentido:

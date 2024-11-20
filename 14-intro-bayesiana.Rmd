@@ -101,10 +101,10 @@ Este es un ejemplo completo, aunque muy simple, de inferencia bayesiana. La
 estrategia de **inferencia bayesiana implica tomar decisiones basadas en las
 probabilidades posteriores.**
 
-```{block, type='ejercicio'}
-¿Cuál sería la estimación de máxima verosimilitud para este problema? ¿Cómo
-cuantificaríamos la incertidumbre en la estimación de máxima verosimilitud?
-```
+<!-- ```{block, type='ejercicio'} -->
+<!-- ¿Cuál sería la estimación de máxima verosimilitud para este problema? ¿Cómo -->
+<!-- cuantificaríamos la incertidumbre en la estimación de máxima verosimilitud? -->
+<!-- ``` -->
 
 Finalmente, podríamos hacer predicciones usando la **posterior predictiva**.
 Si ${X}_{nv}$ es una nueva tirada adicional de la moneda que estamos usando, nos
