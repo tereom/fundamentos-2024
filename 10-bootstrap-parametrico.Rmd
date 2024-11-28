@@ -448,7 +448,7 @@ rep_boot <- function(rep, simular, crear_log_p, pars, n){
 set.seed(8934)
 reps_boot <- map(1:500, ~ rep_boot(.x, simular_modelo, crear_log_p, est_mle, 
                                    n = length(muestra))) |> 
-  bind_rows
+  bind_rows()
 reps_boot |> mutate(across(everything(), round, 2)) |> head()
 ```
 
