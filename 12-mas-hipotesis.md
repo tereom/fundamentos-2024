@@ -77,11 +77,11 @@ Obtenemos:
 
 ``` r
 set.seed(29)
-muestra_edomex <- read_csv("data/enlace.csv") %>% 
-  filter(estado == "ESTADO DE MEXICO") %>% 
+muestra_edomex <- read_csv("data/enlace.csv") |> 
+  filter(estado == "ESTADO DE MEXICO") |> 
   sample_n(180)
-resumen <- muestra_edomex %>% 
-  summarise(media = mean(mate_6), s = sd(mate_6), n = n()) %>% 
+resumen <- muestra_edomex |> 
+  summarise(media = mean(mate_6), s = sd(mate_6), n = n()) |> 
   mutate(ee = s / sqrt(n))
 resumen
 ```
@@ -98,15 +98,16 @@ es igual a 454. Calculamos el valor-$p$ usando la prueba de Wald:
 
 
 ``` r
-dif <- (resumen %>% pull(media)) - 454
-ee <- resumen %>% pull(ee)
+dif <- (resumen |> pull(media)) - 454
+ee <- resumen |> pull(ee)
 w <- dif / ee
-p <- 2 * (1 - pnorm(abs(w)))
+
+p <- 2 * (1 - pt(abs(w), 179))
 p
 ```
 
 ```
-## [1] 0.8410806
+## [1] 0.8413082
 ```
 y vemos que esta muestra es consistente con la media nacional. No tenemos
 evidencia en contra de que la media del estado de México es muy similar 
@@ -347,7 +348,7 @@ Supongamos por ejemplo que los datos que obtenemos son:
 
 
 ``` r
-datos_clasif %>% head
+datos_clasif |> head()
 ```
 
 ```
@@ -366,9 +367,9 @@ Como explicamos arriba, nos interesa la diferencia. Calculamos $d$:
 
 
 ``` r
-datos_clasif <- datos_clasif %>% 
+datos_clasif <- datos_clasif |> 
   mutate(d = x - y)
-datos_clasif %>% head
+datos_clasif |> head()
 ```
 
 ```
@@ -382,12 +383,26 @@ datos_clasif %>% head
 ## 5 5         0     1    -1
 ## 6 6         1     0     1
 ```
+
+``` r
+datos_clasif |> 
+  summarise(sd_x = sd(x), 
+            sd_y = sd(y), 
+            sd_d = sd(d))
+```
+
+```
+## # A tibble: 1 × 3
+##    sd_x  sd_y  sd_d
+##   <dbl> <dbl> <dbl>
+## 1 0.393 0.309 0.539
+```
 Y ahora calculamos la media de $d$ (y tasa de correctos de cada clasificador:)
 
 
 ``` r
 medias_tbl <- 
-  datos_clasif %>% summarise(across(where(is.numeric), mean, .names = "{col}_hat"))
+  datos_clasif |> summarise(across(where(is.numeric), mean, .names = "{col}_hat"))
 d_hat <- pull(medias_tbl, d_hat)
 medias_tbl
 ```
@@ -402,10 +417,10 @@ Ahora necesitamos calcular el error estándar. Como explicamos arriba, hacemos
 
 
 ``` r
-ee <- datos_clasif %>% 
-  mutate(d_hat = mean(d)) %>% 
-  mutate(dif_2 = (d - d_hat)) %>% 
-  summarise(ee = sd(dif_2) / sqrt(n())) %>% 
+ee <- datos_clasif |> 
+  mutate(d_hat = mean(d)) |> 
+  mutate(dif_2 = (d - d_hat)) |> 
+  summarise(ee = sd(dif_2) / sqrt(n())) |> 
   pull(ee)
 ee  
 ```
@@ -420,7 +435,7 @@ Y ahora podemos calcular la estadística $W$ y el valor p correspondiente:
 ``` r
 w <- d_hat / ee
 valor_p <- 2 * (1 - pnorm(abs(w)))
-c(w = w, valor_p = valor_p) %>% round(3)
+c(w = w, valor_p = valor_p) |> round(3)
 ```
 
 ```
@@ -483,7 +498,7 @@ hipótesis nula. Esto se explica en la siguiente gráfica:
 log_verosim <- function(p){
   75 * log(p) + (120 - 75) * log(1 - p)
 }
-verosim_tbl <- tibble(p = seq(0.4, 0.7, 0.01)) %>% 
+verosim_tbl <- tibble(p = seq(0.4, 0.7, 0.01)) |> 
   mutate(log_verosim = log_verosim(p))
 ggplot(verosim_tbl, aes(x = p, y = log_verosim)) +
   geom_line() +
@@ -540,7 +555,7 @@ lambda <- function(n, x, p_0 = 0.5){
   lambda
 }
 lambda_obs <- lambda(n_volados, 75, 0.5)
-sims_tbl <- tibble(sim_x = simulados_nula) %>% 
+sims_tbl <- tibble(sim_x = simulados_nula) |> 
   mutate(lambda = map_dbl(sim_x, ~ lambda(n_volados, .x, p_0 = 0.5)))
 ggplot(sims_tbl, aes(x = lambda)) + 
   geom_histogram(binwidth = 0.7) +
@@ -584,7 +599,7 @@ crear_log_p <- function(x){
   # crear log verosim para dos muestras normales independientes.
   log_p <- function(params){
     mu <- params[1]
-    log_vero <- dnorm(x, mean = mu, sd = 1, log = TRUE) %>% sum
+    log_vero <- dnorm(x, mean = mu, sd = 1, log = TRUE) |> sum()
     log_vero
   }
 }
@@ -611,7 +626,7 @@ bajo la nula
 ``` r
 sims_nula <- map(1:10000, ~ rnorm(n_muestra, 8, 1))
 lambda_nula_sim <- map_dbl(sims_nula, ~ lambda_calc(.x, crear_log_p))
-tibble(lambda = lambda_nula_sim) %>% 
+tibble(lambda = lambda_nula_sim) |> 
   ggplot(aes(x = lambda)) + geom_histogram() +
   geom_vline(xintercept = lambda, colour = "red") 
 ```
@@ -636,9 +651,9 @@ checar para el último ejemplo:
 
 
 ``` r
-teorica <- tibble(x = seq(0.1, 10, 0.01)) %>% 
+teorica <- tibble(x = seq(0.1, 10, 0.01)) |> 
   mutate(f_chi_1 = dchisq(x, df = 1))
-tibble(lambda = lambda_nula_sim) %>% 
+tibble(lambda = lambda_nula_sim) |> 
   ggplot() + geom_histogram(aes(x = lambda, y = ..density..), binwidth = 0.1) +
   geom_line(data = teorica, aes(x = x, y = f_chi_1), colour = "red") 
 ```
@@ -650,7 +665,7 @@ la téorica:
 
 
 ``` r
-tibble(lambda = lambda_nula_sim) %>% 
+tibble(lambda = lambda_nula_sim) |> 
   ggplot(aes(sample = lambda)) +
   geom_qq(distribution = stats::qchisq, dparams = list(df = 1)) +
   geom_qq_line(distribution = stats::qchisq, dparams = list(df = 1)) 
@@ -696,8 +711,8 @@ crear_log_p <- function(x, y){
     mu_2 <- params[2]
     sigma_1 <- params[3]
     sigma_2 <- params[4]
-    log_vero_1 <- dnorm(x, mean = mu_1, sd = sigma_1, log = TRUE) %>% sum
-    log_vero_2 <- dnorm(y, mean = mu_2, sd = sigma_2, log = TRUE) %>% sum
+    log_vero_1 <- dnorm(x, mean = mu_1, sd = sigma_1, log = TRUE) |> sum()
+    log_vero_2 <- dnorm(y, mean = mu_2, sd = sigma_2, log = TRUE) |> sum()
     log_vero <- log_vero_1 + log_vero_2 #se suman por independiencia
     log_vero
   }
@@ -713,8 +728,8 @@ crear_log_p_nula <- function(x, y){
     mu <- params[1]
     sigma_1 <- params[2]
     sigma_2 <- params[3]
-    log_vero_1 <- dnorm(x, mean = mu, sd = sigma_1, log = TRUE) %>% sum
-    log_vero_2 <- dnorm(y, mean = mu, sd = sigma_2, log = TRUE) %>% sum
+    log_vero_1 <- dnorm(x, mean = mu, sd = sigma_1, log = TRUE) |> sum()
+    log_vero_2 <- dnorm(y, mean = mu, sd = sigma_2, log = TRUE) |> sum()
     log_vero <- log_vero_1 + log_vero_2 #se suman por independiencia
     log_vero
   }
@@ -835,7 +850,7 @@ que obtuvimos:
 
 
 ``` r
-tibble(lambda = lambda_sim) %>% 
+tibble(lambda = lambda_sim) |> 
   ggplot(aes(x = lambda)) +
   geom_histogram() +
   geom_vline(xintercept = lambda, colour = "red")
@@ -859,7 +874,7 @@ con un grado de libertad.
 
 
 ``` r
-tibble(lambda = lambda_sim) %>% 
+tibble(lambda = lambda_sim) |> 
   ggplot(aes(sample = lambda)) +
   geom_qq(distribution = stats::qchisq, dparams = list(df = 1)) +
   geom_qq_line(distribution = stats::qchisq, dparams = list(df = 1))
@@ -1068,8 +1083,8 @@ de la función potencia es entonces
 
 
 ``` r
-potencia_tbl <- tibble(mu = seq(450, 550, 1)) %>% 
-  mutate(beta = pnorm((505 - mu)/13)) %>% # probabilidad de rechazar
+potencia_tbl <- tibble(mu = seq(450, 550, 0.5)) |> 
+  mutate(beta = pnorm((505 - mu)/13)) |> # probabilidad de rechazar
   mutate(nula_verdadera = factor(mu >= 515)) # nula verdadera
 ggplot(potencia_tbl, aes(x = mu, y = beta, colour = nula_verdadera)) +
   geom_line() 

@@ -62,7 +62,7 @@ res$convergence
 ```
 
 ``` r
-est_mle <- tibble(parametro = c("media", "sigma"), estimador = res$par) %>% 
+est_mle <- tibble(parametro = c("media", "sigma"), estimador = res$par) |> 
   column_to_rownames(var = "parametro")
 ```
 
@@ -116,7 +116,7 @@ res_boot$convergence
 ```
 
 ``` r
-est_mle_boot <- tibble(parametro = c("media", "sigma"), estimador = res_boot$par) %>% 
+est_mle_boot <- tibble(parametro = c("media", "sigma"), estimador = res_boot$par) |> 
   column_to_rownames(var = "parametro")
 est_mle_boot
 ```
@@ -176,7 +176,7 @@ Ya ahora podemos estimar error estándar:
 
 
 ``` r
-error_est <- reps_boot %>% group_by(parametro) %>% 
+error_est <- reps_boot |> group_by(parametro) |> 
   summarise(ee_boot = sd(estimador_boot)) 
 error_est
 ```
@@ -192,8 +192,8 @@ Así que nuestra estimación final sería:
 
 
 ``` r
-bind_cols(est_mle, error_est) %>% 
-  mutate(across(where(is.numeric), round, 3)) %>% 
+bind_cols(est_mle, error_est) |> 
+  mutate(across(where(is.numeric), round, 3)) |> 
   select(parametro, estimador, ee_boot)
 ```
 
@@ -252,7 +252,7 @@ res$convergence
 ```
 
 ``` r
-est_mle <- tibble(parametro = c("media", "sigma"), estimador = res$par) %>% 
+est_mle <- tibble(parametro = c("media", "sigma"), estimador = res$par) |> 
   column_to_rownames(var = "parametro")
 est_mle
 ```
@@ -314,7 +314,7 @@ examinar este comportamiendo visualizando las replicaciones bootstrap
 
 
 ``` r
-ggplot(reps_boot %>% pivot_wider(names_from = parametro, values_from = estimador_boot),
+ggplot(reps_boot |> pivot_wider(names_from = parametro, values_from = estimador_boot),
        aes(x = media, y = sigma)) + geom_point(alpha = 0.5) + coord_equal()
 ```
 
@@ -459,11 +459,11 @@ ajustando un modelo para cada horario:
 
 
 ``` r
-propinas <- read_csv("data/propinas.csv") %>% 
+propinas <- read_csv("data/propinas.csv") |> 
     mutate(cuenta_persona = cuenta_total / num_personas)
-propinas_mle <- propinas %>% 
-  group_by(momento) %>% 
-  summarise(est_mle = list(tidy(MASS::fitdistr(cuenta_persona, "lognormal"))))  %>% 
+propinas_mle <- propinas |> 
+  group_by(momento) |> 
+  summarise(est_mle = list(tidy(MASS::fitdistr(cuenta_persona, "lognormal"))))  |> 
   unnest(est_mle)
 propinas_mle 
 ```
@@ -484,11 +484,11 @@ Ahora verificamos el ajuste:
 
 
 ``` r
-g_1 <- ggplot(propinas %>% filter(momento == "Cena"), aes(sample = cuenta_persona)) +
+g_1 <- ggplot(propinas |> filter(momento == "Cena"), aes(sample = cuenta_persona)) +
   geom_qq(dparams = list(mean = propinas_mle$estimate[1], sd = propinas_mle$estimate[2]),
           distribution = stats::qlnorm) + ylim(c(0, 20)) +
   geom_abline() + labs(subtitle = "Cena")
-g_2 <- ggplot(propinas %>% filter(momento == "Comida"), aes(sample = cuenta_persona)) +
+g_2 <- ggplot(propinas |> filter(momento == "Comida"), aes(sample = cuenta_persona)) +
   geom_qq(dparams = list(mean = propinas_mle$estimate[3], sd = propinas_mle$estimate[4]),
           distribution = stats::qlnorm) + ylim(c(0, 20)) +
   geom_abline() + labs(subtitle = "Comida")
@@ -630,9 +630,9 @@ rep_boot <- function(rep, simular, crear_log_p, pars, n){
 }
 set.seed(8934)
 reps_boot <- map(1:500, ~ rep_boot(.x, simular_modelo, crear_log_p, est_mle, 
-                                   n = length(muestra))) %>% 
-  bind_rows
-reps_boot %>% mutate(across(everything(), round, 2)) %>% head()
+                                   n = length(muestra))) |> 
+  bind_rows()
+reps_boot |> mutate(across(everything(), round, 2)) |> head()
 ```
 
 ```

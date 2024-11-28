@@ -95,11 +95,10 @@ Este es un ejemplo completo, aunque muy simple, de inferencia bayesiana. La
 estrategia de **inferencia bayesiana implica tomar decisiones basadas en las
 probabilidades posteriores.**
 
-<div class="ejercicio">
-<p>¿Cuál sería la estimación de máxima verosimilitud para este problema?
-¿Cómo cuantificaríamos la incertidumbre en la estimación de máxima
-verosimilitud?</p>
-</div>
+<!-- ```{block, type='ejercicio'} -->
+<!-- ¿Cuál sería la estimación de máxima verosimilitud para este problema? ¿Cómo -->
+<!-- cuantificaríamos la incertidumbre en la estimación de máxima verosimilitud? -->
+<!-- ``` -->
 
 Finalmente, podríamos hacer predicciones usando la **posterior predictiva**.
 Si ${X}_{nv}$ es una nueva tirada adicional de la moneda que estamos usando, nos
@@ -208,14 +207,14 @@ crear_verosim <- function(no_soles){
 # evaluar verosimilitud
 verosim <- crear_verosim(2)
 # ahora usamos regla de bayes para hacer tabla de probabilidades
-tabla_inferencia <- probs_inicial %>%
-  mutate(verosimilitud = map_dbl(theta, verosim)) %>%
-  mutate(inicial_x_verosim = prob_inicial * verosimilitud) %>%
+tabla_inferencia <- probs_inicial |>
+  mutate(verosimilitud = map_dbl(theta, verosim)) |>
+  mutate(inicial_x_verosim = prob_inicial * verosimilitud) |>
   # normalizar
   mutate(prob_posterior = inicial_x_verosim / sum(inicial_x_verosim))
 
-tabla_inferencia %>%
-  mutate(moneda_obs = moneda) %>%
+tabla_inferencia |>
+  mutate(moneda_obs = moneda) |>
   select(moneda_obs, theta, prob_inicial, verosimilitud, prob_posterior)
 ```
 
@@ -321,14 +320,14 @@ sim_inicial <- tibble(theta = rbeta(10000, 3, 3))
 ggplot(sim_inicial) + geom_histogram(aes(x = theta, y = ..density..), bins = 15)
 ```
 
-<img src="14-intro-bayesiana_files/figure-html/unnamed-chunk-7-1.png" width="480" style="display: block; margin: auto;" />
+<img src="14-intro-bayesiana_files/figure-html/unnamed-chunk-6-1.png" width="480" style="display: block; margin: auto;" />
 De modo que nuestra información inicial es que la proporción puede tomar
 cualquier valor entre 0 y 1, pero es probable que tome un
 valor no tan lejano de 0.5. Por ejemplo, con probabilidad 0.95 creemos
 que $\theta$ está en el intervalo
 
 ``` r
-quantile(sim_inicial$theta, c(0.025, 0.975)) %>% round(2)
+quantile(sim_inicial$theta, c(0.025, 0.975)) |> round(2)
 ```
 
 ```
@@ -362,14 +361,14 @@ Concluimos entonces que la posterior tiene una distribución $\mathsf{Beta}(22,
 
 
 ``` r
-sim_inicial <- sim_inicial %>% mutate(dist = "inicial")
-sim_posterior <- tibble(theta = rbeta(10000, 22, 14)) %>% mutate(dist = "posterior")
+sim_inicial <- sim_inicial |> mutate(dist = "inicial")
+sim_posterior <- tibble(theta = rbeta(10000, 22, 14)) |> mutate(dist = "posterior")
 sims <- bind_rows(sim_inicial, sim_posterior)
 ggplot(sims, aes(x = theta, fill = dist)) +
   geom_histogram(aes(x = theta), bins = 30, alpha = 0.5, position = "identity")
 ```
 
-<img src="14-intro-bayesiana_files/figure-html/unnamed-chunk-9-1.png" width="480" style="display: block; margin: auto;" />
+<img src="14-intro-bayesiana_files/figure-html/unnamed-chunk-8-1.png" width="480" style="display: block; margin: auto;" />
 
 La posterior nos dice cuáles son las *posibilidades* de dónde puede estar
 el parámetro $\theta$. Nótese que ahora excluye prácticamente valores más chicos
@@ -381,16 +380,16 @@ usamos la media posterior:
 
 
 ``` r
-sims %>% group_by(dist) %>%
-  summarise(theta_hat = mean(theta) %>% round(3))
+sims |> group_by(dist) |>
+  summarise(theta_hat = mean(theta) |> round(3))
 ```
 
 ```
 ## # A tibble: 2 × 2
 ##   dist      theta_hat
 ##   <chr>         <dbl>
-## 1 inicial       0.5  
-## 2 posterior     0.611
+## 1 inicial       0.503
+## 2 posterior     0.61
 ```
 Nota que el estimador de máxima verosimilitud es $\hat{p} = 19/30 = 0.63$, que
 es ligeramente diferente de la media posterior. ¿Por qué?
@@ -401,8 +400,8 @@ suelen llamarse *intervalos de credibilidad*, por ejemplo:
 
 ``` r
 f <- c(0.025, 0.975)
-sims %>% group_by(dist) %>%
-  summarise(cuantiles = quantile(theta, f) %>% round(2), f = f) %>%
+sims |> group_by(dist) |>
+  summarise(cuantiles = quantile(theta, f) |> round(2), f = f) |>
   pivot_wider(names_from = f, values_from = cuantiles)
 ```
 
@@ -455,7 +454,7 @@ puedes usar la aproximación de R, por ejemplo:
 
 
 ``` r
-qbeta(0.025, shape1 = 22, shape2 = 14) %>% round(2)
+qbeta(0.025, shape1 = 22, shape2 = 14) |> round(2)
 ```
 
 ```
@@ -463,7 +462,7 @@ qbeta(0.025, shape1 = 22, shape2 = 14) %>% round(2)
 ```
 
 ``` r
-qbeta(0.975, shape1 = 22, shape2 = 14) %>% round(2)
+qbeta(0.975, shape1 = 22, shape2 = 14) |> round(2)
 ```
 
 ```
@@ -496,7 +495,8 @@ $$P(\theta) = \frac{\alpha \theta_0^\alpha}{\theta^{\alpha + 1}}$$
 con soporte en $[\theta_0,\infty]$. Tenemos que escoger entonces el mínimo $\theta_0$ y
 el parámetro $\alpha$. En primer lugar, como sabemos que es una lotería nacional,
 creemos que no puede haber menos de unos 300 mil números, así que $\theta_0 = 300$.
-La función acumulada de la pareto es $1- (300/\theta)^\alpha$, así que el cuantil 99% es
+La función acumulada de la pareto es $1- (300/\theta)^\alpha$, así que si $\alpha = 1.1$
+el cuantil 99% es:
 
 
 ``` r
@@ -507,8 +507,10 @@ alpha <- 1.1
 ```
 ## [1] 19738
 ```
-es decir, alrededor de 20 millones de números.  Creemos que es un poco probable
+
+es decir, alrededor de 20 millones de números.  Creemos que es poco probable
 que el número de boletos sea mayor a esta cota.
+
 Nótese ahora que la posterior cumple (multiplicando verosimilitud por inicial):
 
 $$P(\theta|X_1,\ldots, X_n |\theta) \propto \theta^{-(n + 2.1)}$$
@@ -522,12 +524,12 @@ muestra de números:
 
 
 ``` r
-loteria_tbl <- read_csv("data/nums_loteria_avion.csv", col_names = c("id", "numero")) %>%
+loteria_tbl <- read_csv("data/nums_loteria_avion.csv", col_names = c("id", "numero")) |>
   mutate(numero = as.integer(numero))
 set.seed(334)
-muestra_loteria <- sample_n(loteria_tbl, 25) %>%
+muestra_loteria <- sample_n(loteria_tbl, 25) |>
   mutate(numero = numero/1000)
-muestra_loteria %>% as.data.frame %>% head
+muestra_loteria |> as.data.frame() |> head()
 ```
 
 ```
@@ -578,11 +580,12 @@ ggplot(sims_theta) +
   geom_rug(data = muestra_loteria, aes(x = numero))
 ```
 
-<img src="14-intro-bayesiana_files/figure-html/unnamed-chunk-18-1.png" width="480" style="display: block; margin: auto;" />
+<img src="14-intro-bayesiana_files/figure-html/unnamed-chunk-17-1.png" width="480" style="display: block; margin: auto;" />
+
 Nótese que cortamos algunos valores de la inicial en la cola derecha: un defecto
 de esta distribución inicial, con una cola tan larga a la derecha, es que
 pone cierto peso en valores que son poco creíbles y la vuelve poco apropiada para
-este problema. Regresamos más adelante a este problema.
+este problema. Regresaremos más adelante a este problema.
 
 Si obtenemos percentiles,
 obtenemos el intervalo
@@ -590,8 +593,8 @@ obtenemos el intervalo
 
 ``` r
 f <- c(0.025, 0.5, 0.975)
-sims_theta %>% group_by(dist) %>%
-  summarise(cuantiles = quantile(theta, f) %>% round(2), f = f) %>%
+sims_theta |> group_by(dist) |>
+  summarise(cuantiles = quantile(theta, f) |> round(2), f = f) |>
   pivot_wider(names_from = f, values_from = cuantiles)
 ```
 
@@ -626,7 +629,7 @@ qplot(rgamma(2000, 5, 0.001), geom="histogram", bins = 20) +
   scale_x_continuous(breaks = seq(1000, 15000, by = 2000))
 ```
 
-<img src="14-intro-bayesiana_files/figure-html/unnamed-chunk-21-1.png" width="480" style="display: block; margin: auto;" />
+<img src="14-intro-bayesiana_files/figure-html/unnamed-chunk-20-1.png" width="480" style="display: block; margin: auto;" />
 
 Sin embargo, los cálculos no son tan simples en este caso, pues la posterior
 no tiene un forma reconocible. Tendremos que usar otras estrategias de simulación
@@ -741,6 +744,7 @@ no son tratables con análisis conjugado (veremos más adelante cómo tratarlos 
 
 
 ### Ejemplo {-}
+
 Supongamos que queremos estimar la estatura de los cantantes de tesitura tenor con
 una muestra iid de tenores de Estados Unidos. Usaremos el modelo normal de forma que $X_i\sim \mathsf{N}(\mu, \sigma^2)$.
 
@@ -760,7 +764,7 @@ sigma_0 <- 7
 # disperisón
 a <- 3
 # ponemos 7 = sqrt(b/a) -> b = a * 64
-b <- a * sigma_0^2
+b <- a * sigma_0 ^ 2
 c(a = a, b = b)
 ```
 
@@ -853,15 +857,15 @@ simular_normal_invgamma <- function(n, pars){
   rnorm(n, mu, sigma)
 }
 set.seed(3461)
-sims_tbl <- tibble(rep = 1:20) %>%
-  mutate(estatura = map(rep, ~ simular_normal_invgamma(500, c(mu_0, n_0, a, b)))) %>%
+sims_tbl <- tibble(rep = 1:20) |>
+  mutate(estatura = map(rep, ~ simular_normal_invgamma(500, c(mu_0, n_0, a, b)))) |>
   unnest(cols = c(estatura))
 ggplot(sims_tbl, aes(x = estatura)) + geom_histogram() +
   facet_wrap(~ rep) +
   geom_vline(xintercept = c(150, 180), colour = "red")
 ```
 
-<img src="14-intro-bayesiana_files/figure-html/unnamed-chunk-26-1.png" width="672" style="display: block; margin: auto;" />
+<img src="14-intro-bayesiana_files/figure-html/unnamed-chunk-25-1.png" width="768" style="display: block; margin: auto;" />
 
 Pusimos líneas de referencia en 150 y 180. Vemos que nuestras iniciales no producen
 simulaciones totalmente fuera del contexto, y parecen cubrir apropiadamente el
@@ -876,9 +880,9 @@ Ahora podemos usar los datos para calcular nuestras posteriores.
 
 ``` r
 set.seed(3413)
-cantantes <- lattice::singer %>%
-  mutate(estatura_cm = round(2.54 * height)) %>%
-  filter(str_detect(voice.part, "Tenor")) %>%
+cantantes <- lattice::singer |>
+  mutate(estatura_cm = round(2.54 * height)) |>
+  filter(str_detect(voice.part, "Tenor")) |>
   sample_n(20)
 cantantes
 ```
@@ -947,22 +951,22 @@ sim_params <- function(m, pars){
   a <- pars[3]
   b <- pars[4]
   # simular sigmas
-  sims <- tibble(tau = rgamma(m, a, b)) %>%
+  sims <- tibble(tau = rgamma(m, a, b)) |>
     mutate(sigma = 1 / sqrt(tau))
   # simular mu
-  sims <- sims %>% mutate(mu = rnorm(m, mu_0, sigma / sqrt(n_0)))
+  sims <- sims |> mutate(mu = rnorm(m, mu_0, sigma / sqrt(n_0)))
   sims
 }
-sims_inicial <- sim_params(5000, c(mu_0, n_0, a, b)) %>%
+sims_inicial <- sim_params(5000, c(mu_0, n_0, a, b)) |>
   mutate(dist = "inicial")
-sims_posterior <- sim_params(5000, pars_posterior) %>%
+sims_posterior <- sim_params(5000, pars_posterior) |>
   mutate(dist = "posterior")
 sims <- bind_rows(sims_inicial, sims_posterior)
 ggplot(sims, aes(x = mu, y = sigma, colour = dist)) +
-  geom_point()
+  geom_point(alpha = 0.4)
 ```
 
-<img src="14-intro-bayesiana_files/figure-html/unnamed-chunk-29-1.png" width="480" style="display: block; margin: auto;" />
+<img src="14-intro-bayesiana_files/figure-html/unnamed-chunk-28-1.png" width="480" style="display: block; margin: auto;" />
 
 Y vemos que nuestra posterior es consistente con la información inicial
 que usamos, hemos aprendido considerablemente de la muestra. La posterior se
@@ -971,33 +975,33 @@ media y desviación estándar.
 
 
 ``` r
-medias_post <- sims %>% filter(dist == "posterior") %>%
-  select(-dist) %>%
+medias_post <- sims |> filter(dist == "posterior") |>
+  select(-dist) |>
   summarise(across(everything(), mean))
-ggplot(sims %>% filter(dist == "posterior"),
-    aes(x = mu, y = sigma)) +
+ggplot(sims |> filter(dist == "posterior"), aes(x = mu, y = sigma)) +
   geom_point(colour = "#00BFC4") +
   geom_point(data = medias_post, size = 5, colour = "black") +
   coord_equal()
 ```
 
-<img src="14-intro-bayesiana_files/figure-html/unnamed-chunk-30-1.png" width="480" style="display: block; margin: auto;" />
+<img src="14-intro-bayesiana_files/figure-html/unnamed-chunk-29-1.png" width="480" style="display: block; margin: auto;" />
+
 Podemos construir intervalos creíbles del 90% para estos dos parámetros, por ejemplo
 haciendo intervalos de percentiles:
 
 
 ``` r
 f <- c(0.05, 0.5, 0.95)
-sims %>%
-  pivot_longer(cols = mu:sigma, names_to = "parametro") %>%
-  group_by(dist, parametro) %>%
-  summarise(cuantil = quantile(value, f) %>% round(1), f= f) %>%
+sims |>
+  pivot_longer(cols = mu:sigma, names_to = "parametro") |>
+  group_by(dist, parametro) |>
+  reframe(cuantil = quantile(value, f) |> 
+            round(1), f = f) |>
   pivot_wider(names_from = f, values_from = cuantil)
 ```
 
 ```
 ## # A tibble: 4 × 5
-## # Groups:   dist, parametro [4]
 ##   dist      parametro `0.05` `0.5` `0.95`
 ##   <chr>     <chr>      <dbl> <dbl>  <dbl>
 ## 1 inicial   mu         169.  175.   181. 
@@ -1011,7 +1015,7 @@ Como comparación, los estimadores de máxima verosimlitud son
 
 ``` r
 media_mv <- mean(cantantes$estatura_cm)
-sigma_mv <- mean((cantantes$estatura_cm - media_mv)^2) %>% sqrt
+sigma_mv <- mean((cantantes$estatura_cm - media_mv)^2) |> sqrt()
 c(media_mv, sigma_mv)
 ```
 
@@ -1142,7 +1146,7 @@ Y ahora simulamos otra muestra
 
 ``` r
 muestra_sim <- simular_normal_invgamma(20, pars_posterior)
-muestra_sim %>% round(0)
+muestra_sim |> round(0)
 ```
 
 ```
@@ -1156,25 +1160,27 @@ Podemos simular varias muestras y hacer una prueba de lineup:
 ``` r
 library(nullabor)
 set.seed(9921)
-sims_obs <- tibble(.n = 1:19) %>%
-  mutate(estatura_cm = map(.n, ~ simular_normal_invgamma(20, pars_posterior))) %>%
+sims_obs <- tibble(.n = 1:19) |>
+  mutate(estatura_cm = map(.n, ~ simular_normal_invgamma(20, pars_posterior))) |>
   unnest(estatura_cm)
 pos <- sample(1:20, 1)
-lineup_tbl <- lineup(true = cantantes %>% select(estatura_cm),
+
+lineup_tbl <- lineup(true = cantantes |> select(estatura_cm),
                      samples = sims_obs, pos = pos)
 ggplot(lineup_tbl, aes(x = estatura_cm)) + geom_histogram(binwidth = 2.5) +
   facet_wrap(~.sample)
 ```
 
-<img src="14-intro-bayesiana_files/figure-html/unnamed-chunk-36-1.png" width="480" style="display: block; margin: auto;" />
+<img src="14-intro-bayesiana_files/figure-html/unnamed-chunk-35-1.png" width="480" style="display: block; margin: auto;" />
+
 Con este tipo de gráficas podemos checar desajustes potenciales de nuestro modelo.
 
 <div class="ejercicio">
 <ul>
 <li>¿Puedes encontrar los datos verdaderos? ¿Cuántos seleccionaron los
-datos correctos?</li>
-<li>Prueba hacer pruebas con una gráfica de cuantiles. ¿Qué problema ves
-y cómo lo resolverías?</li>
+datos correctos?
+<!-- - Prueba hacer pruebas con una gráfica de cuantiles. ¿Qué problema -->
+<!-- ves y cómo lo resolverías? --></li>
 </ul>
 </div>
 
@@ -1206,15 +1212,15 @@ crear_sim_rep <- function(x){
   }
 }
 sim_rep <- crear_sim_rep(x)
-lineup_tbl <- map(1:5, ~ sim_rep(.x)) %>%
-  bind_rows() %>%
+lineup_tbl <- map(1:5, ~ sim_rep(.x)) |>
+  bind_rows() |>
   bind_rows(tibble(rep = 6, x_rep = x))
 ggplot(lineup_tbl, aes(x = x_rep)) +
   geom_histogram(bins = 15) +
   facet_wrap(~rep)
 ```
 
-<img src="14-intro-bayesiana_files/figure-html/unnamed-chunk-38-1.png" width="480" style="display: block; margin: auto;" />
+<img src="14-intro-bayesiana_files/figure-html/unnamed-chunk-37-1.png" width="480" style="display: block; margin: auto;" />
 Y vemos claramente que nuestro modelo no explica apropiadamente la variación
 de los datos observados. Contrasta con:
 
@@ -1232,15 +1238,15 @@ crear_sim_rep <- function(x){
   }
 }
 sim_rep <- crear_sim_rep(x)
-lineup_tbl <- map(1:5, ~ sim_rep(.x)) %>%
-  bind_rows() %>%
+lineup_tbl <- map(1:5, ~ sim_rep(.x)) |>
+  bind_rows() |>
   bind_rows(tibble(rep = 6, x_rep = x))
 ggplot(lineup_tbl, aes(x = x_rep)) +
   geom_histogram(bins = 15) +
   facet_wrap(~rep)
 ```
 
-<img src="14-intro-bayesiana_files/figure-html/unnamed-chunk-39-1.png" width="480" style="display: block; margin: auto;" />
+<img src="14-intro-bayesiana_files/figure-html/unnamed-chunk-38-1.png" width="480" style="display: block; margin: auto;" />
 Y verificamos que en este caso el ajuste del modelo es apropiado.
 
 
@@ -1266,9 +1272,9 @@ del valor que vamos a observar. Entonces haríamos:
 
 
 ``` r
-sims_posterior <- sim_params(50000, pars_posterior) %>%
+sims_posterior <- sim_params(50000, pars_posterior) |>
   mutate(y_pred = rnorm(n(), mu, sigma))
-sims_posterior %>% head
+sims_posterior |> head()
 ```
 
 ```
@@ -1285,7 +1291,7 @@ sims_posterior %>% head
 
 ``` r
 f <- c(0.025, 0.5, 0.975)
-sims_posterior %>% summarise(f = f, y_pred = quantile(y_pred, f))
+sims_posterior |> summarise(f = f, y_pred = quantile(y_pred, f))
 ```
 
 ```
@@ -1346,7 +1352,7 @@ k_posterior <- nrow(muestra_loteria) + 1.1
 sims_pareto_posterior <- tibble(
   theta = rpareto(100000, lim_inf_post, k_posterior))
 # Simulamos una observación para cada una de las anteriores:
-sims_post_pred <- sims_pareto_posterior %>%
+sims_post_pred <- sims_pareto_posterior |>
   mutate(x_pred = map_dbl(theta, ~ runif(1, 0, .x)))
 # Graficamos
 ggplot(sims_post_pred, aes(x = x_pred)) +
@@ -1354,6 +1360,6 @@ ggplot(sims_post_pred, aes(x = x_pred)) +
   geom_vline(xintercept = lim_inf_post, colour = "red")
 ```
 
-<img src="14-intro-bayesiana_files/figure-html/unnamed-chunk-44-1.png" width="480" style="display: block; margin: auto;" />
+<img src="14-intro-bayesiana_files/figure-html/unnamed-chunk-43-1.png" width="480" style="display: block; margin: auto;" />
 
 Que es una mezcla de una uniforme con una Pareto.
