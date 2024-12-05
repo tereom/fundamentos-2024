@@ -189,7 +189,7 @@ c(media_post, momento_2_post)
 ```
 
 ```
-## [1] 0.7155559 0.5372170
+## [1] 0.7147007 0.5364443
 ```
 
 Y podemos aproximar de esta manera cualquier cantidad de interés que esté basada
@@ -202,7 +202,7 @@ mean(exp(theta) > 2)
 ```
 
 ```
-## [1] 0.5958
+## [1] 0.5959
 ```
 y así sucesivamente. 
 
@@ -286,10 +286,10 @@ simular_conjunta(1, datos)
 ## # A tibble: 4 × 2
 ##   sabor     valor_sim
 ##   <chr>         <dbl>
-## 1 fresa         0.755
-## 2 limón         0.783
-## 3 mango         0.819
-## 4 guanábana     0.569
+## 1 fresa         0.886
+## 2 limón         0.729
+## 3 mango         0.701
+## 4 guanábana     0.493
 ```
 
 
@@ -306,16 +306,16 @@ sims_posterior
 ## # A tibble: 20,000 × 3
 ##      rep sabor     valor_sim
 ##    <int> <chr>         <dbl>
-##  1     1 fresa         0.732
-##  2     1 limón         0.831
-##  3     1 mango         0.850
-##  4     1 guanábana     0.397
-##  5     2 fresa         0.670
-##  6     2 limón         0.839
-##  7     2 mango         0.664
-##  8     2 guanábana     0.558
-##  9     3 fresa         0.671
-## 10     3 limón         0.758
+##  1     1 fresa         0.727
+##  2     1 limón         0.823
+##  3     1 mango         0.849
+##  4     1 guanábana     0.474
+##  5     2 fresa         0.659
+##  6     2 limón         0.785
+##  7     2 mango         0.866
+##  8     2 guanábana     0.631
+##  9     3 fresa         0.553
+## 10     3 limón         0.719
 ## # ℹ 19,990 more rows
 ```
 
@@ -338,9 +338,9 @@ sims_posterior %>%
 ##   sabor         n   prop
 ##   <chr>     <int>  <dbl>
 ## 1 fresa      1264 0.0632
-## 2 guanábana     8 0.0004
-## 3 limón      5396 0.270 
-## 4 mango     13332 0.667
+## 2 guanábana    20 0.001 
+## 3 limón      5424 0.271 
+## 4 mango     13292 0.665
 ```
 Y vemos que los mejores sabores son mango y limón. La probabilidad posterior de
 que mango sea el sabor preferido por la población es de 66%. La integral correspondiente
@@ -372,7 +372,7 @@ de una distribución cualquiera $p(\theta) = K f(\theta)$, donde sólo conocemos
 la función $f(\theta)$.
 
 
-## Ejemplo de islas
+## Ejemplo de islas {-}
 
 Comenzamos revisando el ejemplo de las islas en @Kruschke (7.2) para tener más intuición de cómo funciona este algoritmo.
 
@@ -746,8 +746,8 @@ tibble(metodo = c("sim Metrópolis", "sim Independiente", "exacto"),
 ## # A tibble: 3 × 2
 ##   metodo            media_post
 ##   <chr>                  <dbl>
-## 1 sim Metrópolis         0.605
-## 2 sim Independiente      0.602
+## 1 sim Metrópolis         0.613
+## 2 sim Independiente      0.600
 ## 3 exacto                 0.6
 ```
 
@@ -894,7 +894,7 @@ estimaciones_media %>% bind_rows(tibble(tipo = "exacta", media = 20/100)) %>%
 ## # A tibble: 4 × 2
 ##   tipo            media
 ##   <chr>           <dbl>
-## 1 salto chico     0.128
+## 1 salto chico     0.132
 ## 2 salto grande    0.190
 ## 3 salto apropiado 0.203
 ## 4 exacta          0.2

@@ -713,7 +713,8 @@ se muestra como una horizontal punteada.
 
 ## Ejemplo: estimación de proporciones {-}
 
-Ahora repetimos el ejercicio 
+Ahora repetimos el ejercicio de la estimación de la proporción de hogares con ingresos
+superiores a 150 mil.
 
 
 ``` r

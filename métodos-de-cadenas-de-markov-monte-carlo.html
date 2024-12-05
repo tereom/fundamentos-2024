@@ -412,7 +412,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="métodos-de-cadenas-de-markov-monte-carlo.html"><a href="métodos-de-cadenas-de-markov-monte-carlo.html#ejemplo-varias-pruebas-independientes"><i class="fa fa-check"></i>Ejemplo: varias pruebas independientes</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="métodos-de-cadenas-de-markov-monte-carlo.html"><a href="métodos-de-cadenas-de-markov-monte-carlo.html#simulando-de-la-posterior"><i class="fa fa-check"></i>Simulando de la posterior</a></li>
-<li class="chapter" data-level="12.1" data-path="métodos-de-cadenas-de-markov-monte-carlo.html"><a href="métodos-de-cadenas-de-markov-monte-carlo.html#ejemplo-de-islas"><i class="fa fa-check"></i><b>12.1</b> Ejemplo de islas</a></li>
+<li class="chapter" data-level="" data-path="métodos-de-cadenas-de-markov-monte-carlo.html"><a href="métodos-de-cadenas-de-markov-monte-carlo.html#ejemplo-de-islas"><i class="fa fa-check"></i>Ejemplo de islas</a></li>
 <li class="chapter" data-level="" data-path="métodos-de-cadenas-de-markov-monte-carlo.html"><a href="métodos-de-cadenas-de-markov-monte-carlo.html#por-qué-funciona-metrópolis"><i class="fa fa-check"></i>¿Por qué funciona Metrópolis?</a></li>
 <li class="chapter" data-level="" data-path="métodos-de-cadenas-de-markov-monte-carlo.html"><a href="métodos-de-cadenas-de-markov-monte-carlo.html#método-de-metrópolis"><i class="fa fa-check"></i>Método de Metrópolis</a></li>
 <li class="chapter" data-level="" data-path="métodos-de-cadenas-de-markov-monte-carlo.html"><a href="métodos-de-cadenas-de-markov-monte-carlo.html#ajustando-el-tamaño-de-salto"><i class="fa fa-check"></i>Ajustando el tamaño de salto</a>
@@ -620,12 +620,12 @@ en teoría necesitamos calcular</p>
 <span id="cb572-2"><a href="métodos-de-cadenas-de-markov-monte-carlo.html#cb572-2" aria-hidden="true" tabindex="-1"></a>media_post <span class="ot">&lt;-</span> <span class="fu">mean</span>(theta)</span>
 <span id="cb572-3"><a href="métodos-de-cadenas-de-markov-monte-carlo.html#cb572-3" aria-hidden="true" tabindex="-1"></a>momento_2_post <span class="ot">&lt;-</span> <span class="fu">mean</span>(theta<span class="sc">^</span><span class="dv">2</span>)</span>
 <span id="cb572-4"><a href="métodos-de-cadenas-de-markov-monte-carlo.html#cb572-4" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(media_post, momento_2_post)</span></code></pre></div>
-<pre><code>## [1] 0.7155559 0.5372170</code></pre>
+<pre><code>## [1] 0.7147007 0.5364443</code></pre>
 <p>Y podemos aproximar de esta manera cualquier cantidad de interés que esté basada
 en integrales, como probabilidades asociadas a <span class="math inline">\(\theta\)</span> o cuantiles asociados.
 Por ejemplo, podemos aproximar fácilmente <span class="math inline">\(P(e^{\theta}&gt; 2|x)\)</span> haciendo</p>
 <div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="métodos-de-cadenas-de-markov-monte-carlo.html#cb574-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">exp</span>(theta) <span class="sc">&gt;</span> <span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## [1] 0.5958</code></pre>
+<pre><code>## [1] 0.5959</code></pre>
 <p>y así sucesivamente.</p>
 <p>Este enfoque, sin embargo, es mucho más flexible y poderoso.</p>
 </div>
@@ -682,10 +682,10 @@ de la conjunta posterior.</p>
 <pre><code>## # A tibble: 4 × 2
 ##   sabor     valor_sim
 ##   &lt;chr&gt;         &lt;dbl&gt;
-## 1 fresa         0.755
-## 2 limón         0.783
-## 3 mango         0.819
-## 4 guanábana     0.569</code></pre>
+## 1 fresa         0.886
+## 2 limón         0.729
+## 3 mango         0.701
+## 4 guanábana     0.493</code></pre>
 <div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="métodos-de-cadenas-de-markov-monte-carlo.html#cb582-1" aria-hidden="true" tabindex="-1"></a><span class="co"># esta no es una manera muy rápida, podríamos calcular todas las</span></span>
 <span id="cb582-2"><a href="métodos-de-cadenas-de-markov-monte-carlo.html#cb582-2" aria-hidden="true" tabindex="-1"></a><span class="co"># simulaciones de cada parámetro de manera vectorizada</span></span>
 <span id="cb582-3"><a href="métodos-de-cadenas-de-markov-monte-carlo.html#cb582-3" aria-hidden="true" tabindex="-1"></a>sims_posterior <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">rep =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5000</span>) <span class="sc">%&gt;%</span> </span>
@@ -695,16 +695,16 @@ de la conjunta posterior.</p>
 <pre><code>## # A tibble: 20,000 × 3
 ##      rep sabor     valor_sim
 ##    &lt;int&gt; &lt;chr&gt;         &lt;dbl&gt;
-##  1     1 fresa         0.732
-##  2     1 limón         0.831
-##  3     1 mango         0.850
-##  4     1 guanábana     0.397
-##  5     2 fresa         0.670
-##  6     2 limón         0.839
-##  7     2 mango         0.664
-##  8     2 guanábana     0.558
-##  9     3 fresa         0.671
-## 10     3 limón         0.758
+##  1     1 fresa         0.727
+##  2     1 limón         0.823
+##  3     1 mango         0.849
+##  4     1 guanábana     0.474
+##  5     2 fresa         0.659
+##  6     2 limón         0.785
+##  7     2 mango         0.866
+##  8     2 guanábana     0.631
+##  9     3 fresa         0.553
+## 10     3 limón         0.719
 ## # ℹ 19,990 more rows</code></pre>
 <p>Y ahora podemos aproximar fácilmente la probabilidad de interés:</p>
 <div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="métodos-de-cadenas-de-markov-monte-carlo.html#cb584-1" aria-hidden="true" tabindex="-1"></a>sims_posterior <span class="sc">%&gt;%</span> </span>
@@ -718,9 +718,9 @@ de la conjunta posterior.</p>
 ##   sabor         n   prop
 ##   &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;
 ## 1 fresa      1264 0.0632
-## 2 guanábana     8 0.0004
-## 3 limón      5396 0.270 
-## 4 mango     13332 0.667</code></pre>
+## 2 guanábana    20 0.001 
+## 3 limón      5424 0.271 
+## 4 mango     13292 0.665</code></pre>
 <p>Y vemos que los mejores sabores son mango y limón. La probabilidad posterior de
 que mango sea el sabor preferido por la población es de 66%. La integral correspondiente
 no es trivial.</p>
@@ -753,8 +753,8 @@ simulador estándar.</li>
 de una distribución cualquiera <span class="math inline">\(p(\theta) = K f(\theta)\)</span>, donde sólo conocemos
 la función <span class="math inline">\(f(\theta)\)</span>.</p>
 </div>
-<div id="ejemplo-de-islas" class="section level2 hasAnchor" number="12.1">
-<h2><span class="header-section-number">12.1</span> Ejemplo de islas<a href="métodos-de-cadenas-de-markov-monte-carlo.html#ejemplo-de-islas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="ejemplo-de-islas" class="section level2 unnumbered hasAnchor">
+<h2>Ejemplo de islas<a href="métodos-de-cadenas-de-markov-monte-carlo.html#ejemplo-de-islas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Comenzamos revisando el ejemplo de las islas en <span class="citation">Kruschke (<a href="#ref-Kruschke" role="doc-biblioref">2015</a>)</span> (7.2) para tener más intuición de cómo funciona este algoritmo.</p>
 </div>
 <div id="por-qué-funciona-metrópolis" class="section level2 unnumbered hasAnchor">
@@ -1063,8 +1063,8 @@ o cantidad que nos interesa. Por ejemplo, la media posterior es:</p>
 <pre><code>## # A tibble: 3 × 2
 ##   metodo            media_post
 ##   &lt;chr&gt;                  &lt;dbl&gt;
-## 1 sim Metrópolis         0.605
-## 2 sim Independiente      0.602
+## 1 sim Metrópolis         0.613
+## 2 sim Independiente      0.600
 ## 3 exacto                 0.6</code></pre>
 <div class="mathblock">
 <p>
@@ -1173,7 +1173,7 @@ los tres métodos:</p>
 <pre><code>## # A tibble: 4 × 2
 ##   tipo            media
 ##   &lt;chr&gt;           &lt;dbl&gt;
-## 1 salto chico     0.128
+## 1 salto chico     0.132
 ## 2 salto grande    0.190
 ## 3 salto apropiado 0.203
 ## 4 exacta          0.2</code></pre>
