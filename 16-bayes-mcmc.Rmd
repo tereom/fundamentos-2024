@@ -295,7 +295,7 @@ de una distribución cualquiera $p(\theta) = K f(\theta)$, donde sólo conocemos
 la función $f(\theta)$.
 
 
-## Ejemplo de islas
+## Ejemplo de islas {-}
 
 Comenzamos revisando el ejemplo de las islas en @Kruschke (7.2) para tener más intuición de cómo funciona este algoritmo.
 
