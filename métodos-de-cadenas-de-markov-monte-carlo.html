@@ -30,7 +30,7 @@
   
   
 <link rel="prev" href="calibración-bayesiana-y-regularización.html"/>
-<link rel="next" href="apéndice-principios-de-visualizacion.html"/>
+<link rel="next" href="ejemplos-de-inferencia-bayesiana-en-stan-i.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -440,6 +440,16 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="métodos-de-cadenas-de-markov-monte-carlo.html"><a href="métodos-de-cadenas-de-markov-monte-carlo.html#eficiencia"><i class="fa fa-check"></i>Eficiencia</a></li>
 <li class="chapter" data-level="" data-path="métodos-de-cadenas-de-markov-monte-carlo.html"><a href="métodos-de-cadenas-de-markov-monte-carlo.html#recomendaciones-generales"><i class="fa fa-check"></i>Recomendaciones generales</a></li>
 </ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="ejemplos-de-inferencia-bayesiana-en-stan-i.html"><a href="ejemplos-de-inferencia-bayesiana-en-stan-i.html"><i class="fa fa-check"></i><b>13</b> Ejemplos de inferencia bayesiana en Stan I</a>
+<ul>
+<li class="chapter" data-level="" data-path="ejemplos-de-inferencia-bayesiana-en-stan-i.html"><a href="ejemplos-de-inferencia-bayesiana-en-stan-i.html#estimación-de-una-proporción"><i class="fa fa-check"></i>Estimación de una proporción</a></li>
+<li class="chapter" data-level="" data-path="ejemplos-de-inferencia-bayesiana-en-stan-i.html"><a href="ejemplos-de-inferencia-bayesiana-en-stan-i.html#estimación-del-máximo-de-una-uniforme"><i class="fa fa-check"></i>Estimación del máximo de una uniforme</a></li>
+<li class="chapter" data-level="" data-path="ejemplos-de-inferencia-bayesiana-en-stan-i.html"><a href="ejemplos-de-inferencia-bayesiana-en-stan-i.html#ejemplo-de-cantantes"><i class="fa fa-check"></i>Ejemplo de cantantes</a>
+<ul>
+<li class="chapter" data-level="13.0.1" data-path="ejemplos-de-inferencia-bayesiana-en-stan-i.html"><a href="ejemplos-de-inferencia-bayesiana-en-stan-i.html#ejemplo-exámenes-1"><i class="fa fa-check"></i><b>13.0.1</b> Ejemplo: exámenes</a></li>
+</ul></li>
+<li class="chapter" data-level="13.1" data-path="ejemplos-de-inferencia-bayesiana-en-stan-i.html"><a href="ejemplos-de-inferencia-bayesiana-en-stan-i.html#ejemplo-exámenes-mal-identificado"><i class="fa fa-check"></i><b>13.1</b> Ejemplo: exámenes, mal identificado</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="apéndice-principios-de-visualizacion.html"><a href="apéndice-principios-de-visualizacion.html"><i class="fa fa-check"></i>Apéndice: Principios de visualizacion</a>
 <ul>
@@ -1158,8 +1168,8 @@ infactible.</p>
 <span id="cb599-4"><a href="métodos-de-cadenas-de-markov-monte-carlo.html#cb599-4" aria-hidden="true" tabindex="-1"></a>g_sim <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(sims_tbl <span class="sc">%&gt;%</span> <span class="fu">filter</span>(iter_num <span class="sc">&lt;</span> <span class="dv">3000</span>), </span>
 <span id="cb599-5"><a href="métodos-de-cadenas-de-markov-monte-carlo.html#cb599-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> iter_num, <span class="at">y =</span> theta)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>))</span>
 <span id="cb599-6"><a href="métodos-de-cadenas-de-markov-monte-carlo.html#cb599-6" aria-hidden="true" tabindex="-1"></a>g_sim <span class="sc">+</span> dist_bplot <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">widths =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">1</span>))</span></code></pre></div>
-<p><img src="16-bayes-mcmc_files/figure-html/unnamed-chunk-27-1.png" width="480" style="display: block; margin: auto;" />
-Donde vemos que esta cadena parece mezclar bien (está explorando la totalidad
+<p><img src="16-bayes-mcmc_files/figure-html/unnamed-chunk-27-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Donde vemos que esta cadena parece mezclar bien (está explorando la totalidad
 de la distribución objetivo), y también parece estar en un estado estable.</p>
 <p>Comparemos cómo saldría por ejemplo la media posterior aproximada según
 los tres métodos:</p>
@@ -2064,7 +2074,7 @@ Kruschke, John. 2015. <em>Doing Bayesian Data Analysis (Second Edition)</em>. Ac
         </div>
       </div>
 <a href="calibración-bayesiana-y-regularización.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="apéndice-principios-de-visualizacion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="ejemplos-de-inferencia-bayesiana-en-stan-i.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

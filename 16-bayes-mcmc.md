@@ -873,6 +873,7 @@ g_sim + dist_bplot + plot_layout(widths = c(5, 1))
 ```
 
 <img src="16-bayes-mcmc_files/figure-html/unnamed-chunk-27-1.png" width="480" style="display: block; margin: auto;" />
+
 Donde vemos que esta cadena parece mezclar bien (está explorando la totalidad
 de la distribución objetivo), y también parece estar en un estado estable.
 
