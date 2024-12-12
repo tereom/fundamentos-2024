@@ -746,6 +746,7 @@ g_sim <- ggplot(sims_tbl %>% filter(iter_num < 3000),
   aes(x = iter_num, y = theta)) + geom_line() + ylim(c(0, 0.5))
 g_sim + dist_bplot + plot_layout(widths = c(5, 1))
 ```
+
 Donde vemos que esta cadena parece mezclar bien (está explorando la totalidad
 de la distribución objetivo), y también parece estar en un estado estable.
 
